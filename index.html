@@ -1,368 +1,504 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#07130e">
-<title>BAUTIBOBICHBALL | Fútbol Total</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#06130d">
+<title>BOBICH WORLD CUP 2026</title>
 <style>
-:root{--bg:#07130e;--card:#10251a;--green:#39f28a;--lime:#c5ff56;--text:#f2fff5;--muted:#aac4b2}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif;line-height:1.5}
-header{background:#0b2115;border-bottom:2px solid var(--green);padding:16px;position:sticky;top:0;z-index:10}
-nav{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-nav a{color:var(--lime);text-decoration:none;font-weight:bold;font-size:14px}
-main{max-width:1000px;margin:auto;padding:16px}
-.hero{text-align:center;padding:35px 10px;background:linear-gradient(135deg,#123b24,#07130e);border-radius:18px}
-h1{font-size:clamp(28px,7vw,52px);margin:8px 0;color:var(--green)}
-h2{color:var(--lime);border-bottom:1px solid #28553a;padding-bottom:8px}
-section{margin:30px 0;scroll-margin-top:100px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}
-.card{background:var(--card);border:1px solid #28553a;border-radius:15px;padding:16px;margin-bottom:12px}
-button,select{padding:11px;border-radius:10px;border:1px solid #3e8255;font-size:15px}
-button{background:var(--green);color:#06140b;font-weight:bold;cursor:pointer;margin:4px}
-button.secondary{background:#183b27;color:white}
-select{background:#07130e;color:white;width:100%;margin:5px 0 12px}
-.result{background:#07180e;padding:12px;border-radius:10px;margin-top:10px;min-height:35px}
-.score{font-size:27px;color:var(--lime);font-weight:bold}
-small,.muted{color:var(--muted)}
-table{width:100%;border-collapse:collapse}
-td,th{text-align:left;padding:9px;border-bottom:1px solid #28553a}
-th{color:var(--lime)}
-.pitch{height:160px;background:repeating-linear-gradient(0deg,#14572b,#14572b 30px,#176333 30px,#176333 60px);border:2px solid white;border-radius:10px;position:relative;overflow:hidden;margin:10px 0}
-.target{position:absolute;border-radius:50%;padding:6px;background:#ffdf54;border:3px solid white}
-.quiz-option{display:block;width:100%;text-align:left;background:#183b27;color:white;margin:7px 0}
-.correct{background:#087d3b!important}
-.wrong{background:#a92f43!important}
-footer{text-align:center;color:var(--muted);padding:25px;border-top:1px solid #28553a}
-@media(max-width:500px){header{padding:12px}nav{gap:9px}nav a{font-size:12px}main{padding:10px}}
+body{margin:0;background:#06130d;color:white;font-family:Arial,sans-serif;overflow-x:hidden}
+button,select{font:inherit}
+button{border:0;border-radius:10px;padding:12px 16px;font-weight:bold;background:#e7ff37;color:#101510;cursor:pointer}
+button:active{transform:scale(.96)}
+button:disabled{opacity:.4}
+header{padding:15px;text-align:center;background:linear-gradient(120deg,#092d1b,#12623b);border-bottom:2px solid #b6f532}
+header h1{font-size:clamp(22px,5vw,38px);margin:0;color:#dfff43}
+header p{margin:7px 0 0;color:#d2e6d8;font-size:12px}
+.screen{display:none;padding:14px;max-width:1000px;margin:auto}
+.screen.active{display:block}
+.panel{background:#10241a;border:1px solid #294b35;border-radius:14px;padding:15px;margin:12px 0}
+h2{margin-top:0;color:#e2ff5b}
+label{display:block;margin:12px 0 6px;color:#c9ddcf}
+select{width:100%;padding:12px;border-radius:9px;background:#f2f7f3;color:#101810}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row>*{flex:1}
+.small{font-size:12px;color:#a9c4b2;line-height:1.5}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+.team-card{background:#183727;border:1px solid #315c40;padding:10px;border-radius:9px;text-align:center}
+.team-card b{display:block;margin-bottom:5px}
+.nav{display:flex;gap:7px;flex-wrap:wrap}
+.nav button{flex:1;min-width:95px;padding:10px 5px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{padding:8px 4px;border-bottom:1px solid #294b35;text-align:center}
+th{color:#e2ff5b}
+td:first-child,th:first-child{text-align:left}
+#gameWrap{position:relative;width:100%;height:min(65vh,570px);min-height:340px;background:#06150c;border-radius:14px;overflow:hidden;border:1px solid #416447}
+#game{width:100%;height:100%;display:block;touch-action:none}
+#hud{position:absolute;left:0;right:0;top:0;padding:10px;display:flex;justify-content:space-between;gap:8px;pointer-events:none;text-shadow:0 2px 4px #000;font-weight:bold}
+#scoreboard{background:#07150ddd;border:1px solid #ffffff55;border-radius:10px;padding:9px 13px;text-align:center}
+#clock{background:#07150ddd;border-radius:8px;padding:9px}
+#notice{position:absolute;top:65px;left:50%;transform:translateX(-50%);background:#07150de8;padding:10px 15px;border-radius:10px;display:none;text-align:center;max-width:90%;font-weight:bold}
+#controls{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;user-select:none}
+#stick{width:145px;height:125px;position:relative;flex-shrink:0}
+.dir{position:absolute;width:45px;height:40px;padding:0;background:#ffffff24;color:white;border:1px solid #ffffff66;border-radius:9px;font-size:21px;touch-action:none}
+#up{top:0;left:50px}#down{bottom:0;left:50px}#left{top:42px;left:3px}#right{top:42px;right:3px}
+.actions{display:flex;gap:10px;align-items:center}
+.action{width:78px;height:72px;border-radius:50%;background:#e3ff36;color:#14210e;border:3px solid #ffffff66;padding:5px}
+.action.secondary{background:#f4f7f3}
+#kickInfo{text-align:center;color:#a9c4b2;font-size:12px;margin-top:7px}
+.fixture{display:flex;justify-content:space-between;gap:8px;padding:10px 0;border-bottom:1px solid #294b35;font-size:13px}
+.fixture span:nth-child(2){font-weight:bold;color:#e2ff5b;white-space:nowrap}
+#champion{font-size:25px;text-align:center;color:#e2ff5b;padding:20px}
+@media(max-width:420px){.screen{padding:9px}#gameWrap{height:54vh;min-height:310px}#controls{gap:4px}#stick{transform:scale(.85);transform-origin:left center;width:125px}.action{width:65px;height:65px}.actions{gap:5px}}
 </style>
 </head>
 <body>
 <header>
-<nav>
-<a href="#partidos">PARTIDOS</a>
-<a href="#simulador">SIMULADOR</a>
-<a href="#juegos">MINIJUEGOS</a>
-<a href="#info">INFORMACIÓN</a>
-<a href="#trivia">TRIVIA</a>
-</nav>
+<h1>🏆 BOBICH WORLD CUP 2026</h1>
+<p>TORNEO INTERNACIONAL · FÚTBOL 3D · EDICIÓN JUGABLE</p>
 </header>
 
-<main>
-<div class="hero">
-<div style="font-size:55px">⚽</div>
-<h1>BAUTIBOBICHBALL</h1>
-<p>Fútbol, desafíos, simulaciones y conocimientos.</p>
-<button onclick="document.querySelector('#juegos').scrollIntoView()">🎮 JUGAR</button>
-<button class="secondary" onclick="document.querySelector('#simulador').scrollIntoView()">🏆 SIMULAR</button>
+<section id="setup" class="screen active">
+<div class="panel">
+<h2>⚽ Elegí tu selección</h2>
+<p class="small">Elegí un país, jugá sus partidos y tratá de levantar la copa. Cada partido dura 90 segundos de juego acelerado.</p>
+<label for="teamSelect">Tu selección</label>
+<select id="teamSelect"></select>
+<label for="difficulty">Dificultad</label>
+<select id="difficulty">
+<option value="easy">Fácil</option>
+<option value="normal" selected>Normal</option>
+<option value="hard">Difícil</option>
+</select>
+<button style="width:100%;margin-top:15px" onclick="startTournament()">COMENZAR EL MUNDIAL</button>
 </div>
-
-<section id="partidos">
-<h2>⚽ Partidos y resultados</h2>
-<p class="muted">Marcadores aleatorios de demostración.</p>
-<div class="card" id="matches"></div>
-<button onclick="generateMatches()">🔄 Generar nuevos partidos</button>
-<h3>🏆 Tabla de posiciones de ejemplo</h3>
-<div class="card" style="overflow-x:auto">
-<table><thead><tr><th>#</th><th>Selección</th><th>Pts</th><th>DG</th></tr></thead><tbody id="standings"></tbody></table>
+<div class="panel">
+<h2>🌎 El torneo</h2>
+<div class="row">
+<div class="team-card"><b>48</b>Selecciones</div>
+<div class="team-card"><b>12</b>Grupos</div>
+<div class="team-card"><b>32</b>Clasificados</div>
+<div class="team-card"><b>3D</b>Estadio</div>
 </div>
-<button onclick="generateStandings()">Actualizar tabla</button>
-</section>
-  
-<div style="text-align:center;margin:20px 0">
-  <a href="partido.html" style="display:inline-block;background:linear-gradient(135deg,#39f28a,#c5ff56);color:#06140b;padding:15px 24px;border-radius:14px;text-decoration:none;font-weight:900;font-size:18px">
-    ⚽ JUGAR PARTIDO 2D
-  </a>
-</div>
-  
-<section id="simulador">
-<h2>🏆 Simulador de partidos</h2>
-<div class="card">
-<label>Selección local</label>
-<select id="teamA"></select>
-<label>Selección visitante</label>
-<select id="teamB"></select>
-<button onclick="worldMatch()">⚽ Simular partido</button>
-<button class="secondary" onclick="simulateTournament()">🥇 Simular torneo</button>
-<div class="result" id="worldResult">¡Elegí dos selecciones!</div>
-<div id="tournamentResult"></div>
+<p class="small">Incluye fase de grupos, octavos previos (dieciseisavos), octavos, cuartos, semifinales y final. Los rivales que no controlás juegan automáticamente.</p>
 </div>
 </section>
 
-<section id="juegos">
-<h2>🎮 Minijuegos</h2>
-<div class="grid">
-<div class="card">
-<h3>🥅 Penales</h3>
-<p>Elegí dónde patear.</p>
-<div class="result" id="penMsg">Goles: 0/5</div>
-<button onclick="shoot('Izquierda')">⬅ Izquierda</button>
-<button onclick="shoot('Centro')">⬆ Centro</button>
-<button onclick="shoot('Derecha')">➡ Derecha</button>
-<button class="secondary" onclick="resetPen()">Reiniciar</button>
+<section id="tournament" class="screen">
+<div class="panel">
+<div class="nav">
+<button onclick="showTab('next')">⚽ Próximo partido</button>
+<button onclick="showTab('table')">📊 Grupos</button>
+<button onclick="showTab('fixtures')">📅 Resultados</button>
 </div>
-
-<div class="card">
-<h3>🏃 Regate</h3>
-<p>Avanzá esquivando obstáculos.</p>
-<div class="score"><span id="meters">0</span> m</div>
-<div class="result" id="dribbleMsg">¡Arrancá!</div>
-<button onclick="dribble()">⚡ Regatear</button>
-<button class="secondary" onclick="resetDribble()">Reiniciar</button>
 </div>
-
-<div class="card">
-<h3>🎯 Tiro al blanco</h3>
-<p>Tocá la pelota dentro de la cancha.</p>
-<div>Intentos: <span id="shots">0</span>/5 | Puntos: <span id="targetPoints">0</span></div>
-<div class="pitch" id="pitch"><span style="padding:8px">¡Preparado!</span></div>
-<button onclick="newTarget()">Nuevo objetivo</button>
-<button class="secondary" onclick="resetTarget()">Reiniciar</button>
-<div class="result" id="targetMsg"></div>
+<div id="tab-next" class="panel">
+<h2 id="roundTitle">Tu torneo</h2>
+<p id="nextInfo" class="small"></p>
+<button id="playBtn" style="width:100%" onclick="beginMatch()">JUGAR PARTIDO</button>
 </div>
-
-<div class="card">
-<h3>🧤 Arquero</h3>
-<p>Intentá adivinar dónde va la pelota.</p>
-<div class="result" id="keeperMsg">Atajadas: 0 | Goles: 0</div>
-<button onclick="saveShot('Izquierda')">⬅ Izquierda</button>
-<button onclick="saveShot('Centro')">⬆ Centro</button>
-<button onclick="saveShot('Derecha')">➡ Derecha</button>
-<button class="secondary" onclick="resetKeeper()">Reiniciar</button>
+<div id="tab-table" class="panel" style="display:none">
+<h2>Tabla de posiciones</h2>
+<label for="groupSelect">Elegir grupo</label>
+<select id="groupSelect" onchange="renderTable()"></select>
+<div id="tableContent"></div>
 </div>
-
-<div class="card">
-<h3>⚡ Reflejos</h3>
-<div class="score" id="reflexDisplay">¿Listo?</div>
-<div class="result" id="reflexMsg">Esperá la señal.</div>
-<button onclick="reflexStart()">Iniciar</button>
-<button onclick="reflexTap()">¡YA!</button>
+<div id="tab-fixtures" class="panel" style="display:none">
+<h2>Partidos y resultados</h2>
+<div id="fixtureContent"></div>
 </div>
-
-<div class="card">
-<h3>🧠 Pregunta rápida</h3>
-<div id="quickQuestion">¿Cuántos jugadores tiene cada equipo en cancha al empezar?</div>
-<div id="quickOptions"></div>
-<div class="result" id="quickMsg"></div>
-<button class="secondary" onclick="newQuick()">Otra pregunta</button>
+<div id="tab-game" class="panel" style="display:none">
+<h2>Partido en vivo</h2>
+<div id="gameWrap">
+<canvas id="game"></canvas>
+<div id="hud">
+<div id="scoreboard"><span id="nameA">LOCAL</span><br><span id="score">0 - 0</span><br><span id="nameB">VISITANTE</span></div>
+<div id="clock">90:00</div>
 </div>
+<div id="notice"></div>
+</div>
+<div id="controls">
+<div id="stick">
+<button class="dir" id="up" data-dir="up">▲</button>
+<button class="dir" id="down" data-dir="down">▼</button>
+<button class="dir" id="left" data-dir="left">◀</button>
+<button class="dir" id="right" data-dir="right">▶</button>
+</div>
+<div class="actions">
+<button class="action secondary" id="passBtn">PASE</button>
+<button class="action" id="shootBtn">⚽<br>TIRO</button>
+</div>
+</div>
+<div id="kickInfo">Flechas o WASD para moverte. PASE para acercar la pelota. TIRO para disparar.</div>
+</div>
+<div id="tab-result" class="panel" style="display:none">
+<h2>🏁 Final del partido</h2>
+<div id="matchResult" style="text-align:center;font-size:22px;padding:12px"></div>
+<p id="resultDescription" class="small"></p>
+<button onclick="continueTournament()" style="width:100%">CONTINUAR TORNEO</button>
 </div>
 </section>
 
-<section id="info">
-<h2>🔎 Información futbolera</h2>
-<div class="card">
-<p>Buscá datos futboleros disponibles en esta página.</p>
-<button onclick="searchInfo()">🔍 Buscar información</button>
-<div class="result" id="searchStatus">Esperando búsqueda...</div>
-<div id="facts"></div>
-<p class="muted">Esta versión no está conectada a internet para consultar noticias actuales. Muestra información general, no noticias en vivo.</p>
+<section id="end" class="screen">
+<div class="panel">
+<h2>🏆 Mundial terminado</h2>
+<div id="champion"></div>
+<p id="endText" class="small"></p>
+<button onclick="location.reload()" style="width:100%">JUGAR OTRO MUNDIAL</button>
 </div>
 </section>
 
-<section id="trivia">
-<h2>❓ Trivia de fútbol</h2>
-<div class="card">
-<div id="quizProgress">Pregunta 1 de 10</div>
-<h3 id="quizQuestion"></h3>
-<div id="quizOptions"></div>
-<div class="result" id="quizFeedback"></div>
-<h3>Puntaje: <span id="quizScore">0</span>/100</h3>
-<button id="nextBtn" onclick="nextQuestion()">Siguiente →</button>
-<button class="secondary" onclick="startQuiz()">Nueva partida</button>
-<div id="quizEnd"></div>
-</div>
-</section>
-</main>
-
-<footer>
-<strong>⚽ BAUTIBOBICHBALL</strong>
-<p>Fútbol para jugar, aprender y divertirse.</p>
-<p>Los partidos y las simulaciones son ficticios.</p>
-© <span id="year"></span> BAUTIBOBICHBALL
-</footer>
-
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 <script>
-"use strict";
+const countries=[
+["Argentina","🇦🇷"],["Brasil","🇧🇷"],["Francia","🇫🇷"],["España","🇪🇸"],
+["Inglaterra","🏴"],["Portugal","🇵🇹"],["Alemania","🇩🇪"],["Países Bajos","🇳🇱"],
+["Uruguay","🇺🇾"],["Colombia","🇨🇴"],["México","🇲🇽"],["Estados Unidos","🇺🇸"],
+["Canadá","🇨🇦"],["Japón","🇯🇵"],["Corea del Sur","🇰🇷"],["Marruecos","🇲🇦"],
+["Senegal","🇸🇳"],["Croacia","🇭🇷"],["Bélgica","🇧🇪"],["Suiza","🇨🇭"],
+["Italia","🇮🇹"],["Chile","🇨🇱"],["Ecuador","🇪🇨"],["Paraguay","🇵🇾"],
+["Australia","🇦🇺"],["Arabia Saudita","🇸🇦"],["Irán","🇮🇷"],["Qatar","🇶🇦"],
+["Nigeria","🇳🇬"],["Ghana","🇬🇭"],["Costa de Marfil","🇨🇮"],["Camerún","🇨🇲"],
+["Egipto","🇪🇬"],["Túnez","🇹🇳"],["Sudáfrica","🇿🇦"],["Nueva Zelanda","🇳🇿"],
+["Polonia","🇵🇱"],["Dinamarca","🇩🇰"],["Austria","🇦🇹"],["Turquía","🇹🇷"],
+["Ucrania","🇺🇦"],["Serbia","🇷🇸"],["Grecia","🇬🇷"],["Noruega","🇳🇴"],
+["Suecia","🇸🇪"],["Costa Rica","🇨🇷"],["Panamá","🇵🇦"],["Jamaica","🇯🇲"]
+];
+const colors=[0x75d834,0x29a6ff,0xff4e55,0xffcc36,0xeeeeee,0x9b62ff];
 const $=id=>document.getElementById(id);
-const teams=["Argentina","Brasil","Francia","España","Inglaterra","Portugal","Alemania","Uruguay","Colombia","México","Japón","Marruecos"];
-const rnd=n=>Math.floor(Math.random()*n);
-
-function generateMatches(){
-let html="";
-for(let i=0;i<6;i++){
-let a=teams[rnd(teams.length)],b;
-do{b=teams[rnd(teams.length)]}while(a===b);
-html+=`<div class="result">${a} <strong style="color:#c5ff56">${rnd(5)} - ${rnd(5)}</strong> ${b}</div>`;
+const teamSelect=$("teamSelect");
+countries.forEach((c,i)=>{let o=document.createElement("option");o.value=i;o.textContent=c[1]+" "+c[0];teamSelect.appendChild(o)});
+teamSelect.value="0";
+let userTeam=0,difficulty="normal",groups=[],teamData=[],fixtures=[],groupRound=0;
+let phase="group",knockoutRound=0,currentFixture=null,champion=null,gameRunning=false;
+let renderer,scene,camera,fieldGroup,playerA=[],playerB=[],ball;
+let ballVX=0,ballVZ=0,gameScoreA=0,gameScoreB=0,secondsLeft=90;
+let controlled=null,keys={},moveTouch={},kickCooldown=0,goalCooldown=0,noticeTimer=null;
+let lastFrame=0,gameClock=0,animFrame=null,matchResolved=false;
+const GROUP_NAMES=Array.from({length:12},(_,i)=>String.fromCharCode(65+i));
+function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function teamName(i){return countries[i][0]}
+function teamFlag(i){return countries[i][1]}
+function showScreen(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));$(id).classList.add("active")}
+function showTab(tab){["next","table","fixtures","game","result"].forEach(t=>$("tab-"+t).style.display=t===tab?"block":"none");if(tab==="table")renderTable();if(tab==="fixtures")renderFixtures();if(tab==="next")renderNext()}
+function startTournament(){
+ if(typeof THREE==="undefined"){alert("No se pudo cargar el motor 3D. Revisá tu conexión a internet y recargá la página.");return}
+ userTeam=Number(teamSelect.value);difficulty=$("difficulty").value;
+ teamData=countries.map((c,i)=>({id:i,name:c[0],flag:c[1],pj:0,gf:0,gc:0,pts:0,w:0,d:0,l:0}));
+ groups=[];fixtures=[];groupRound=0;phase="group";knockoutRound=0;champion=null;
+ let ids=shuffle(countries.map((_,i)=>i));
+ for(let g=0;g<12;g++){
+  let group={name:GROUP_NAMES[g],teams:ids.slice(g*4,g*4+4),matches:[]};
+  groups.push(group);
+  const t=group.teams;
+  const rounds=[[[t[0],t[1]],[t[2],t[3]]],[[t[0],t[2]],[t[1],t[3]]],[[t[0],t[3]],[t[1],t[2]]]];
+  rounds.forEach((matches,r)=>matches.forEach(pair=>{
+   let f={id:fixtures.length,phase:"group",round:r,group:g,a:pair[0],b:pair[1],played:false,sa:null,sb:null};
+   fixtures.push(f);group.matches.push(f);
+  }));
+ }
+ $("groupSelect").innerHTML=groups.map(g=>`<option value="${g.name}">Grupo ${g.name}</option>`).join("");
+ showScreen("tournament");showTab("next");renderTable();
 }
-$("matches").innerHTML=html;
+function getUserFixture(){
+ if(phase==="group")return fixtures.find(f=>f.phase==="group"&&f.round===groupRound&&!f.played&&(f.a===userTeam||f.b===userTeam));
+ return fixtures.find(f=>f.phase==="knockout"&&f.round===knockoutRound&&!f.played&&(f.a===userTeam||f.b===userTeam));
 }
-function generateStandings(){
-$("standings").innerHTML=teams.slice(0,8).map(t=>({t,p:rnd(25),d:rnd(15)-7})).sort((a,b)=>b.p-a.p).map((x,i)=>`<tr><td>${i+1}</td><td>${x.t}</td><td>${x.p}</td><td>${x.d>0?"+":""}${x.d}</td></tr>`).join("");
+function renderNext(){
+ if(champion!==null){showScreen("end");$("champion").textContent=teamFlag(champion)+" "+teamName(champion);$("endText").textContent=champion===userTeam?"¡Ganaste el Bobich World Cup 2026!":"El campeón fue "+teamName(champion)+". ¡Volvé a intentarlo!";return}
+ const f=getUserFixture();
+ if(!f){
+  $("roundTitle").textContent="Preparando la siguiente ronda…";
+  $("nextInfo").textContent="No hay un partido pendiente para tu selección en esta fase.";
+  $("playBtn").disabled=true;return;
+ }
+ $("playBtn").disabled=false;
+ $("roundTitle").textContent=phase==="group"?"Fase de grupos · Grupo "+GROUP_NAMES[f.group]:roundName(knockoutRound);
+ $("nextInfo").textContent=teamFlag(userTeam)+" "+teamName(userTeam)+" contra "+teamName(f.a===userTeam?f.b:f.a)+". ¡Prepará el partido!";
 }
-function setupTeams(){
-["teamA","teamB"].forEach((id,i)=>{
-$(id).innerHTML=teams.map(t=>`<option ${t===(i?"Brasil":"Argentina")?"selected":""}>${t}</option>`).join("");
+function roundName(r){return ["Dieciseisavos de final","Octavos de final","Cuartos de final","Semifinal","Final"][r]||"Eliminatorias"}
+function standings(group){
+ return group.teams.map(id=>teamData[id]).slice().sort((a,b)=>b.pts-a.pts||(b.gf-b.gc)-(a.gf-a.gc)||b.gf-a.gf||a.id-b.id)
+}
+function renderTable(){
+ const g=groups.find(x=>x.name===$("groupSelect").value)||groups[0];if(!g)return;
+ const rows=standings(g);
+ $("tableContent").innerHTML=`<table><thead><tr><th>Selección</th><th>PJ</th><th>DG</th><th>PTS</th></tr></thead><tbody>${rows.map(t=>`<tr><td>${t.flag} ${t.name}${t.id===userTeam?" ★":""}</td><td>${t.pj}</td><td>${t.gf-t.gc}</td><td><b>${t.pts}</b></td></tr>`).join("")}</tbody></table><p class="small">★ Tu selección. Clasifican los dos primeros de cada grupo y los ocho mejores terceros.</p>`;
+}
+function renderFixtures(){
+ const sorted=fixtures.slice().sort((a,b)=>a.phase===b.phase?a.round-b.round:a.phase==="group"?-1:1);
+ $("fixtureContent").innerHTML=sorted.map(f=>`<div class="fixture"><span>${f.phase==="group"?"Grupo "+GROUP_NAMES[f.group]:roundName(f.round)}</span><span>${teamName(f.a)} ${f.played?f.sa+" - "+f.sb:"vs"} ${teamName(f.b)}</span></div>`).join("");
+}
+function recordResult(f,sa,sb){
+ if(f.played)return;
+ f.played=true;f.sa=sa;f.sb=sb;
+ const a=teamData[f.a],b=teamData[f.b];
+ a.pj++;b.pj++;a.gf+=sa;a.gc+=sb;b.gf+=sb;b.gc+=sa;
+ if(sa>sb){a.pts+=3;a.w++;b.l++}
+ else if(sb>sa){b.pts+=3;b.w++;a.l++}
+ else{a.pts++;b.pts++;a.d++;b.d++}
+}
+function simulatedScore(a,b){
+ let rating=difficulty==="easy"?0.25:difficulty==="hard"?-0.25:0;
+ const skillA=Math.random()+rating,skillB=Math.random();
+ let sa=Math.random()<0.25+skillA*.24?1:0;
+ let sb=Math.random()<0.20+skillB*.24?1:0;
+ if(Math.random()<.18)sa++;
+ if(Math.random()<.12)sb++;
+ return [Math.min(sa,4),Math.min(sb,4)];
+}
+function simulateGroupRound(){
+ fixtures.filter(f=>f.phase==="group"&&f.round===groupRound&&!f.played).forEach(f=>{const [a,b]=simulatedScore(f.a,f.b);recordResult(f,a,b)});
+}
+function beginMatch(){
+ let f=getUserFixture();if(!f)return;
+ currentFixture={...f,originalA:f.a,originalB:f.b};
+ // El usuario siempre juega con el equipo A en pantalla.
+ if(currentFixture.b===userTeam){[currentFixture.a,currentFixture.b]=[currentFixture.b,currentFixture.a]}
+ gameScoreA=0;gameScoreB=0;secondsLeft=90;gameClock=0;matchResolved=false;
+ $("nameA").textContent=teamFlag(currentFixture.a)+" "+teamName(currentFixture.a);
+ $("nameB").textContent=teamFlag(currentFixture.b)+" "+teamName(currentFixture.b);
+ updateScore();$("clock").textContent="90:00";
+ $("notice").style.display="none";
+ showTab("game");init3D();gameRunning=true;lastFrame=performance.now();
+ if(animFrame)cancelAnimationFrame(animFrame);animFrame=requestAnimationFrame(loop);
+}
+function mat(color,rough=.8){return new THREE.MeshStandardMaterial({color,roughness:rough})}
+function addBox(parent,w,h,d,color,x,y,z,material=null){
+ const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),material||mat(color));m.position.set(x,y,z);parent.add(m);return m;
+}
+function makePlayer(team,x,z,isKeeper=false){
+ const g=new THREE.Group();g.position.set(x,0,z);scene.add(g);
+ const jersey=team===0?0x39d66f:0x38a5ff;
+ const skin=0xdca477;
+ addBox(g,.45,.62,.27,jersey,0,1.05,0);
+ addBox(g,.34,.32,.32,skin,0,1.55,0);
+ addBox(g,.17,.12,.12,0x171717,0,1.72,0);
+ for(let side of [-1,1]){
+  addBox(g,.14,.52,.16,0x20252a,side*.13,.48,0);
+  addBox(g,.22,.12,.28,0xffffff,side*.13,.16,-.06);
+ }
+ g.userData={team,isKeeper,speed:isKeeper?4:5+Math.random()*1.4,homeX:x,homeZ:z,phase:Math.random()*6};
+ return g;
+}
+function init3D(){
+ const canvas=$("game");
+ if(renderer){renderer.dispose();renderer=null}
+ renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false});
+ renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.7));
+ renderer.setClearColor(0x142c1b);
+ scene=new THREE.Scene();scene.background=new THREE.Color(0x142c1b);
+ scene.fog=new THREE.Fog(0x142c1b,42,100);
+ camera=new THREE.PerspectiveCamera(48,1,.1,180);
+ camera.position.set(0,26,35);camera.lookAt(0,0,0);
+ scene.add(new THREE.HemisphereLight(0xffffff,0x355333,2));
+ let light=new THREE.DirectionalLight(0xffffff,2.1);light.position.set(-10,25,12);scene.add(light);
+ // Estadio y cancha
+ addBox(scene,112,.8,72,0x17221a,0,-.65,0);
+ addBox(scene,100,.1,60,0x137c35,0,-.18,0);
+ for(let i=0;i<10;i++)addBox(scene,10,.015,60,i%2?0x16813a:0x147735,-45+i*10,-.12,0);
+ const lineMat=new THREE.MeshBasicMaterial({color:0xffffff});
+ function line(w,d,x,z){let m=new THREE.Mesh(new THREE.BoxGeometry(w,.025,d),lineMat);m.position.set(x,-.055,z);scene.add(m)}
+ line(100,.14,0,-29.5);line(100,.14,0,29.5);line(.14,59, -49.5,0);line(.14,59,49.5,0);line(.14,59,0,0);
+ let circle=new THREE.Mesh(new THREE.RingGeometry(8.7,8.85,64),lineMat);circle.rotation.x=-Math.PI/2;circle.position.y=-.045;scene.add(circle);
+ addBox(scene,1,.03,18,0xffffff,-42,-.05,0);addBox(scene,1,.03,18,0xffffff,42,-.05,0);
+ // Porterías
+ for(const x of [-51,51]){
+  for(const z of [-7,7])addBox(scene,.35,4,.35,0xffffff,x,1.9,z);
+  addBox(scene,.35,.35,14,0xffffff,x,3.7,0);
+  addBox(scene,3.5,3,.2,0xcbd7d1,x+(x<0?-1.4:1.4),1.5,0);
+ }
+ playerA=[];playerB=[];
+ const formation=[[-29,0],[-20,-14],[-20,14],[-9,-7],[-9,7],[-3,0]];
+ const formationB=[[29,0],[20,-14],[20,14],[9,-7],[9,7],[3,0]];
+ formation.forEach((p,i)=>playerA.push(makePlayer(0,p[0],p[1],i===0)));
+ formationB.forEach((p,i)=>playerB.push(makePlayer(1,p[0],p[1],i===0)));
+ controlled=playerA[5];
+ ball=new THREE.Mesh(new THREE.SphereGeometry(.48,16,12),mat(0xffffff,.45));
+ ball.position.set(0,.5,0);scene.add(ball);
+ // detalles de público simplificados
+ for(let i=0;i<160;i++){
+  const ang=Math.random()*Math.PI*2,r=34+Math.random()*7;
+  const m=new THREE.Mesh(new THREE.BoxGeometry(.5,.8,.5),mat([0xe9e9e9,0xffd337,0x42b6ff,0xf24b55][i%4]));
+  m.position.set(Math.cos(ang)*r,.3,Math.sin(ang)*r);scene.add(m);
+ }
+ resizeRenderer();
+}
+function resizeRenderer(){
+ if(!renderer||!camera)return;
+ const w=$("gameWrap").clientWidth,h=$("gameWrap").clientHeight;
+ renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();
+}
+window.addEventListener("resize",resizeRenderer);
+function updateScore(){$("score").textContent=gameScoreA+" - "+gameScoreB}
+function showNotice(msg){
+ $("notice").textContent=msg;$("notice").style.display="block";
+ clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>{$("notice").style.display="none"},1500);
+}
+function resetBall(scoredTeam){
+ ball.position.set(scoredTeam===0?-3:3,.5,0);ballVX=0;ballVZ=0;
+ playerA.forEach((p,i)=>{p.position.x=p.userData.homeX;p.position.z=p.userData.homeZ});
+ playerB.forEach((p,i)=>{p.position.x=p.userData.homeX;p.position.z=p.userData.homeZ});
+}
+function goal(team){
+ if(goalCooldown>0||!gameRunning)return;
+ goalCooldown=1.8;
+ if(team===0)gameScoreA++;else gameScoreB++;
+ updateScore();showNotice("⚽ GOOOOOL · "+teamName(team===0?currentFixture.a:currentFixture.b));
+ resetBall(team);
+}
+function loop(now){
+ if(!gameRunning)return;
+ const dt=Math.min((now-lastFrame)/1000,.04);lastFrame=now;
+ gameClock+=dt;secondsLeft-=dt*1.5;
+ kickCooldown=Math.max(0,kickCooldown-dt);goalCooldown=Math.max(0,goalCooldown-dt);
+ if(secondsLeft<=0){secondsLeft=0;finishMatch();return}
+ $("clock").textContent=Math.floor(secondsLeft)+":00";
+ updateGame(dt);
+ renderer.render(scene,camera);
+ animFrame=requestAnimationFrame(loop);
+}
+function updateGame(dt){
+ let dx=0,dz=0;
+ if(keys.ArrowUp||keys.w||moveTouch.up)dz-=1;
+ if(keys.ArrowDown||keys.s||moveTouch.down)dz+=1;
+ if(keys.ArrowLeft||keys.a||moveTouch.left)dx-=1;
+ if(keys.ArrowRight||keys.d||moveTouch.right)dx+=1;
+ const len=Math.hypot(dx,dz)||1;
+ controlled.position.x=THREE.MathUtils.clamp(controlled.position.x+dx/len*controlled.userData.speed*dt,-46,46);
+ controlled.position.z=THREE.MathUtils.clamp(controlled.position.z+dz/len*controlled.userData.speed*dt,-26,26);
+ // El equipo rival presiona la pelota; los compañeros se mueven y buscan espacios.
+ [...playerA.slice(0,-1),...playerB.slice(0,-1)].forEach(p=>{
+  const team=p.userData.team;
+  const tx=ball.position.x+(team===0?-4:4);
+  const tz=ball.position.z+(p.userData.homeZ>0?3:-3);
+  p.position.x+=THREE.MathUtils.clamp(tx-p.position.x,-p.userData.speed*dt,p.userData.speed*dt);
+  p.position.z+=THREE.MathUtils.clamp(tz-p.position.z,-p.userData.speed*dt,p.userData.speed*dt);
+  p.position.x=THREE.MathUtils.clamp(p.position.x,-47,47);
+  p.position.z=THREE.MathUtils.clamp(p.position.z,-27,27);
+ });
+ // La pelota se desplaza con fricción y rebota en las bandas.
+ ball.position.x+=ballVX*dt;ball.position.z+=ballVZ*dt;
+ ballVX*=Math.pow(.985,dt*60);ballVZ*=Math.pow(.985,dt*60);
+ if(Math.abs(ball.position.z)>28){ball.position.z=Math.sign(ball.position.z)*28;ballVZ*=-.65}
+ if(ball.position.x>49&&Math.abs(ball.position.z)<7.2)goal(0);
+ if(ball.position.x< -49&&Math.abs(ball.position.z)<7.2)goal(1);
+ if(ball.position.x>50||ball.position.x< -50){ball.position.x=Math.sign(ball.position.x)*49;ballVX*=-.5}
+ // La pelota queda cerca del jugador cuando éste se aproxima.
+ const dist=Math.hypot(controlled.position.x-ball.position.x,controlled.position.z-ball.position.z);
+ if(dist<1.7&&Math.hypot(ballVX,ballVZ)<5){
+  ball.position.x+=(controlled.position.x-ball.position.x)*.045;
+  ball.position.z+=(controlled.position.z-ball.position.z)*.045;
+ }
+ ball.position.y=.48+Math.abs(Math.sin(gameClock*9))*Math.min(.18,Math.hypot(ballVX,ballVZ)*.025);
+ // Cámara sigue la pelota sin perder la cancha.
+ camera.position.x+=(ball.position.x*.22-camera.position.x)*dt*.6;
+ camera.position.z+=(ball.position.z*.3+32-camera.position.z)*dt*.6;
+ camera.lookAt(ball.position.x*.25,0,0);
+}
+function shoot(){
+ if(!gameRunning||kickCooldown>0)return;
+ const dist=Math.hypot(controlled.position.x-ball.position.x,controlled.position.z-ball.position.z);
+ if(dist>9){showNotice("Acercate a la pelota para tirar");return}
+ const direction=controlled.position.x<0?1:1;
+ const targetX=direction>0?51:-51;
+ let vx=(targetX-ball.position.x)*.65;
+ let vz=(Math.random()-.5)*5+(ball.position.z*.03);
+ if(Math.abs(ball.position.x)>38)vz+=(Math.random()-.5)*8;
+ ballVX=THREE.MathUtils.clamp(vx,18,39);ballVZ=vz;
+ if(controlled.position.x>ball.position.x)ballVX=-Math.abs(ballVX);
+ kickCooldown=.65;
+}
+function passBall(){
+ if(!gameRunning||kickCooldown>0)return;
+ const dist=Math.hypot(controlled.position.x-ball.position.x,controlled.position.z-ball.position.z);
+ if(dist>10){showNotice("Acercate a la pelota para pasar");return}
+ const teammates=playerA.filter(p=>p!==controlled).sort((a,b)=>Math.hypot(a.position.x-ball.position.x,a.position.z-ball.position.z)-Math.hypot(b.position.x-ball.position.x,b.position.z-ball.position.z));
+ let target=teammates[0];
+ const tx=target?target.position.x:controlled.position.x+8;
+ const tz=target?target.position.z:controlled.position.z;
+ const dx=tx-ball.position.x,dz=tz-ball.position.z,l=Math.hypot(dx,dz)||1;
+ ballVX=dx/l*17;ballVZ=dz/l*17;kickCooldown=.5;
+}
+function finishMatch(){
+ if(matchResolved)return;
+ gameRunning=false;matchResolved=true;
+ if(animFrame)cancelAnimationFrame(animFrame);
+ const f=fixtures.find(x=>x.id===currentFixture.id);
+ let sa=gameScoreA,sb=gameScoreB;
+ // Los partidos eliminatorios no pueden terminar empatados.
+ if(f.phase==="knockout"&&sa===sb){if(Math.random()<.5)sa++;else sb++}
+ // El marcador de juego está orientado para que el usuario sea el equipo A.
+ const originalSa=currentFixture.originalA===userTeam?sa:sb;
+ const originalSb=currentFixture.originalA===userTeam?sb:sa;
+ recordResult(f,originalSa,originalSb);
+ if(f.phase==="knockout"){
+  f.winner=originalSa>originalSb?f.a:f.b;
+  f.loser=f.winner===f.a?f.b:f.a;
+ }
+ $("matchResult").textContent=teamFlag(userTeam)+" "+teamName(userTeam)+" "+(userTeam===f.a?originalSa:originalSb)+" - "+(userTeam===f.a?originalSb:originalSa)+" "+teamFlag(f.a===userTeam?f.b:f.a);
+ $("resultDescription").textContent=f.phase==="group"?"El resultado quedó registrado en la tabla del grupo.":"Resultado registrado en la fase eliminatoria.";
+ showTab("result");renderTable();renderFixtures();
+}
+function simulateRemainingGroup(){
+ fixtures.filter(f=>f.phase==="group"&&f.round===groupRound&&!f.played).forEach(f=>{
+  const [a,b]=simulatedScore(f.a,f.b);recordResult(f,a,b);
+ });
+}
+function qualifyForKnockouts(){
+ const topTwo=[],thirds=[];
+ groups.forEach(g=>{let s=standings(g);topTwo.push(s[0].id,s[1].id);thirds.push(s[2])});
+ thirds.sort((a,b)=>b.pts-a.pts||(b.gf-b.gc)-(a.gf-a.gc)||b.gf-a.gf);
+ const qualifiers=shuffle(topTwo.concat(thirds.slice(0,8).map(t=>t.id)));
+ fixtures.push(...Array.from({length:16},(_,i)=>({id:fixtures.length+i,phase:"knockout",round:0,a:qualifiers[i*2],b:qualifiers[i*2+1],played:false,sa:null,sb:null})));
+ phase="knockout";knockoutRound=0;
+}
+function simulateKnockoutRound(){
+ const round=fixtures.filter(f=>f.phase==="knockout"&&f.round===knockoutRound);
+ round.forEach(f=>{
+  if(!f.played){
+   let [a,b]=simulatedScore(f.a,f.b);
+   if(a===b){if(Math.random()<.5)a++;else b++}
+   recordResult(f,a,b);f.winner=a>b?f.a:f.b;f.loser=f.winner===f.a?f.b:f.a;
+  }
+ });
+ const winners=round.map(f=>f.winner).filter(x=>x!==undefined);
+ if(winners.length===1){champion=winners[0];return}
+ if(winners.length===0)return;
+ const nextRound=knockoutRound+1;
+ for(let i=0;i<winners.length;i+=2){
+  fixtures.push({id:fixtures.length,phase:"knockout",round:nextRound,a:winners[i],b:winners[i+1],played:false,sa:null,sb:null});
+ }
+ knockoutRound=nextRound;
+}
+function continueTournament(){
+ if(phase==="group"){
+  simulateRemainingGroup();
+  groupRound++;
+  if(groupRound>=3){
+   qualifyForKnockouts();
+   showNotice("¡Fase de grupos terminada!");
+  }
+ }else{
+  simulateKnockoutRound();
+ }
+ if(champion!==null){renderNext();return}
+ showTab("next");renderNext();renderTable();renderFixtures();
+}
+function renderTabRefresh(){renderNext();renderTable();renderFixtures()}
+function keyDown(e){let k=e.key.length===1?e.key.toLowerCase():e.key;keys[k]=true;if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"," "].includes(e.key))e.preventDefault()}
+function keyUp(e){let k=e.key.length===1?e.key.toLowerCase():e.key;keys[k]=false}
+window.addEventListener("keydown",keyDown,{passive:false});window.addEventListener("keyup",keyUp);
+document.querySelectorAll(".dir").forEach(btn=>{
+ const d=btn.dataset.dir;
+ const on=e=>{e.preventDefault();moveTouch[d]=true};
+ const off=e=>{e.preventDefault();moveTouch[d]=false};
+ btn.addEventListener("pointerdown",on);btn.addEventListener("pointerup",off);
+ btn.addEventListener("pointercancel",off);btn.addEventListener("pointerleave",off);
 });
-}
-function worldMatch(){
-let a=$("teamA").value,b=$("teamB").value;
-if(a===b){$("worldResult").textContent="Elegí dos selecciones diferentes.";return}
-let x=rnd(5),y=rnd(5);
-$("worldResult").innerHTML=`<div class="score">${a} ${x} - ${y} ${b}</div><p>${x===y?"¡Empate!":x>y?"¡Gana "+a+"!":"¡Gana "+b+"!"}</p><small>Resultado aleatorio de demostración.</small>`;
-}
-function simulateTournament(){
-let t=[...teams].sort(()=>Math.random()-.5).slice(0,4),w=[];
-let html="<h3>Mini torneo</h3>";
-for(let i=0;i<4;i+=2){
-let x=rnd(4),y=rnd(4),win=x===y?(rnd(2)?t[i]:t[i+1]):x>y?t[i]:t[i+1];
-w.push(win);html+=`<div class="result">${t[i]} ${x}-${y} ${t[i+1]}<br>Clasifica: <b>${win}</b></div>`;
-}
-let x=rnd(4),y=rnd(4),champ=x===y?(rnd(2)?w[0]:w[1]):x>y?w[0]:w[1];
-html+=`<div class="result">FINAL: ${w[0]} ${x}-${y} ${w[1]}<h3>🏆 Campeón: ${champ}</h3></div>`;
-$("tournamentResult").innerHTML=html;
-}
-
-let penN=0,penG=0;
-function shoot(side){
-if(penN>=5){$("penMsg").textContent=`Terminaste: ${penG}/5 goles. Reiniciá para jugar otra vez.`;return}
-penN++;
-let keeper=["Izquierda","Centro","Derecha"][rnd(3)];
-if(side!==keeper)penG++;
-$("penMsg").textContent=`${side!==keeper?"¡GOOOL!":"¡ATAJÓ EL ARQUERO!"} Goles: ${penG}/5. Tiro: ${penN}/5.`;
-}
-function resetPen(){penN=penG=0;$("penMsg").textContent="Goles: 0/5"}
-let meters=0;
-function dribble(){
-if(meters>=100){$("dribbleMsg").textContent="¡Completaste la carrera!";return}
-if(Math.random()<.18){$("dribbleMsg").textContent="¡Te quitaron la pelota! Intentá otra vez."}
-else{meters=Math.min(100,meters+10+rnd(16));$("meters").textContent=meters;$("dribbleMsg").textContent=meters===100?"¡Golazo! Llegaste a 100 metros.":"¡Buen regate!"}
-}
-function resetDribble(){meters=0;$("meters").textContent=0;$("dribbleMsg").textContent="¡Arrancá!"}
-
-let shots=0,targetPoints=0,targetActive=false;
-function newTarget(){
-if(shots>=5){$("targetMsg").textContent=`Fin del juego: ${targetPoints} puntos.`;return}
-$("pitch").innerHTML="";
-let b=document.createElement("button");b.className="target";b.textContent="⚽";
-b.style.left=(5+rnd(75))+"%";b.style.top=(10+rnd(65))+"%";
-b.onclick=()=>{if(!targetActive)return;targetActive=false;shots++;let p=1+rnd(3);targetPoints+=p;$("shots").textContent=shots;$("targetPoints").textContent=targetPoints;$("targetMsg").textContent=`¡Acertaste! +${p} puntos.`;b.disabled=true};
-$("pitch").appendChild(b);targetActive=true;
-}
-function resetTarget(){shots=targetPoints=0;targetActive=false;$("shots").textContent=0;$("targetPoints").textContent=0;$("pitch").innerHTML="¡Preparado!";$("targetMsg").textContent=""}
-
-let saves=0,conceded=0;
-function saveShot(side){
-let d=["Izquierda","Centro","Derecha"][rnd(3)];
-if(side===d)saves++;else conceded++;
-$("keeperMsg").textContent=`${side===d?"¡ATAJADÓN!":"¡GOL DEL RIVAL!"} Atajadas: ${saves} | Goles: ${conceded}.`;
-}
-function resetKeeper(){saves=conceded=0;$("keeperMsg").textContent="Atajadas: 0 | Goles: 0"}
-
-let reflexTimer=null,reflexReady=false,reflexTime=0;
-function reflexStart(){
-clearTimeout(reflexTimer);reflexReady=false;$("reflexDisplay").textContent="Esperá…";$("reflexMsg").textContent="No toques todavía.";
-reflexTimer=setTimeout(()=>{reflexReady=true;reflexTime=performance.now();$("reflexDisplay").textContent="¡YA!";$("reflexMsg").textContent="¡Tocá el botón!";},1000+rnd(3000));
-}
-function reflexTap(){
-if(!reflexReady){$("reflexMsg").textContent="Esperá hasta que aparezca ¡YA!";return}
-let ms=Math.round(performance.now()-reflexTime);reflexReady=false;$("reflexDisplay").textContent=ms+" ms";$("reflexMsg").textContent=ms<250?"¡Reflejos excelentes!":"¡Buen intento! Probá de nuevo.";
-}
-const quickQs=[
-["¿Cuántos jugadores por equipo empiezan en cancha?",["9","11","12"],1],
-["¿Qué tarjeta significa expulsión?",["Verde","Roja","Azul"],1],
-["¿Cuántos minutos dura un partido normal sin añadido?",["60","90","120"],1],
-["¿Quién puede usar las manos en su área?",["Delantero","Arquero","Volante"],1]
-];
-let quickIndex=0;
-function newQuick(){
-quickIndex=rnd(quickQs.length);let q=quickQs[quickIndex];
-$("quickQuestion").textContent=q[0];$("quickMsg").textContent="";
-$("quickOptions").innerHTML=q[1].map((x,i)=>`<button onclick="quickAnswer(${i})">${x}</button>`).join("");
-}
-function quickAnswer(i){let q=quickQs[quickIndex];$("quickMsg").textContent=i===q[2]?"✅ ¡Correcto!":"❌ Respuesta correcta: "+q[1][q[2]]}
-
-const facts=[
-["Duración","Un partido estándar tiene dos tiempos de 45 minutos, más el tiempo añadido."],
-["Tarjetas","La amarilla es una amonestación; la roja significa expulsión."],
-["Fuera de juego","La posición adelantada por sí sola no siempre es infracción: también importa la participación en la jugada."],
-["Penales","En una tanda, los equipos alternan tiros y, si siguen empatados, continúan hasta que uno quede por delante con igual número de tiros."],
-["Córner","Se concede cuando el balón cruza la línea de meta tras tocar por último a un defensor, sin que sea gol."],
-["Puntos","En la mayoría de las ligas, una victoria suma tres puntos."]
-];
-function searchInfo(){
-$("searchStatus").textContent="🔎 Buscando información futbolera...";
-$("facts").innerHTML="";
-setTimeout(()=>{
-$("searchStatus").textContent="✅ Información encontrada";
-$("facts").innerHTML=[...facts].sort(()=>Math.random()-.5).slice(0,4).map(f=>`<div class="result"><b>${f[0]}</b><br>${f[1]}</div>`).join("");
-},700);
-}
-
-const questions=[
-["¿Cuántos jugadores por equipo comienzan en cancha?",["9","10","11","12"],2,"Cada equipo comienza con 11 jugadores."],
-["¿Qué país ganó el Mundial masculino de 2022?",["Francia","Argentina","Brasil","Croacia"],1,"Argentina ganó la final de Qatar 2022."],
-["¿Qué selección ganó el Mundial de 2018?",["Francia","Alemania","Brasil","España"],0,"Francia ganó el Mundial de Rusia 2018."],
-["¿Cuánto dura un partido normal sin añadido?",["60 minutos","80 minutos","90 minutos","120 minutos"],2,"Son dos tiempos de 45 minutos."],
-["¿Qué tarjeta indica expulsión?",["Amarilla","Roja","Verde","Azul"],1,"La tarjeta roja indica expulsión."],
-["¿Cómo se llama el jugador que defiende el arco?",["Volante","Arquero","Delantero","Árbitro"],1,"El arquero defiende el arco."],
-["¿Qué organismo dirige el fútbol mundial?",["FIFA","NBA","ATP","FIBA"],0,"La FIFA es el organismo rector internacional del fútbol."],
-["¿Cuántos puntos suele dar una victoria en una liga?",["1","2","3","5"],2,"Normalmente, una victoria vale tres puntos."],
-["¿Qué significa un hat-trick?",["Tres goles de un jugador","Tres tarjetas","Tres córners","Tres atajadas"],0,"Es marcar tres goles en un partido."],
-["¿Qué país organizó el Mundial de 2014?",["Brasil","Rusia","Qatar","Italia"],0,"Brasil fue sede en 2014."],
-["¿Cómo se llama un saque desde la esquina?",["Córner","Penal","Saque inicial","Saque de banda"],0,"Se conoce como córner o saque de esquina."],
-["¿Qué selección es conocida como la Albiceleste?",["Brasil","Argentina","Uruguay","Chile"],1,"La Albiceleste es Argentina."],
-["¿Qué selección es conocida como la Canarinha?",["México","Brasil","Japón","España"],1,"La Canarinha es Brasil."],
-["¿Qué significa estar invicto?",["No haber perdido","Haber empatado siempre","No marcar goles","Jugar un solo partido"],0,"Invicto significa no haber perdido."],
-["¿Qué reanuda el juego si el balón sale por la banda?",["Saque de banda","Penal","Córner siempre","Saque inicial"],0,"El juego se reanuda con saque de banda."],
-["¿Qué posición suele enfocarse en marcar goles?",["Delantero","Arquero","Árbitro","Defensor solamente"],0,"Los delanteros suelen buscar ocasiones de gol."],
-["¿Qué es una asistencia?",["Un pase que ayuda a un gol","Una tarjeta","Un saque de arco","Una falta"],0,"Una asistencia contribuye directamente a un gol."],
-["¿Qué país ganó el Mundial de 2010?",["España","Países Bajos","Brasil","Argentina"],0,"España fue campeona en 2010."],
-["¿Qué ocurre al recibir dos amarillas en el mismo partido?",["Expulsión","Nada","Gol rival","Se termina el partido"],0,"Dos amarillas en el mismo partido llevan a la expulsión."],
-["¿Qué jugador puede usar las manos dentro de su área?",["Cualquier jugador","Solo el arquero de ese equipo","El capitán","El delantero"],1,"El arquero puede usar las manos en su propia área, respetando las reglas."],
-["¿Qué es un penal?",["Un tiro desde el punto penal","Un saque de banda","Un córner","Una sustitución"],0,"Se concede por ciertas faltas sancionables dentro del área penal."],
-["¿Qué parte del cuerpo no puede usar deliberadamente un jugador de campo?",["Cabeza","Pecho","Manos o brazos","Pie"],2,"Los jugadores de campo no pueden tocar deliberadamente la pelota con manos o brazos."],
-["¿Qué torneo enfrenta selecciones nacionales?",["Copa Mundial","Liga local solamente","Copa de barrio","Torneo de clubes solamente"],0,"La Copa Mundial enfrenta selecciones nacionales."],
-["¿Qué hace el árbitro principal?",["Aplica las reglas","Elige el campeón","Marca los goles","Entrena a ambos equipos"],0,"El árbitro dirige el partido y aplica las reglas."],
-["¿Qué país ganó el Mundial de 2002?",["Brasil","Alemania","Argentina","Francia"],0,"Brasil ganó el Mundial de Corea y Japón 2002."],
-["¿Qué es un saque inicial?",["Reanudación desde el centro","Un penal","Una atajada","Una tarjeta"],0,"Se ejecuta desde el centro al comenzar el juego o tras un gol."],
-["¿Qué línea marca el límite lateral del campo?",["Línea de banda","Línea de gol","Círculo central","Área técnica"],0,"Las líneas de banda delimitan los lados largos del campo."],
-["¿Qué significa DG en una tabla?",["Diferencia de goles","Días jugados","Defensas ganadas","Duración del juego"],0,"DG suele significar diferencia de goles."],
-["¿Qué es una tanda de penales?",["Serie de tiros para desempatar","Entrenamiento de arquero","Un saque de esquina","Un tipo de pase"],0,"Se utiliza para decidir un ganador cuando la competición lo requiere."],
-["¿Qué selección ganó el Mundial femenino de 2023?",["España","Inglaterra","Estados Unidos","Suecia"],0,"España ganó el Mundial femenino de 2023."]
-];
-let quizOrder=[],quizIndex=0,quizScore=0,answered=false;
-function startQuiz(){
-quizOrder=[...Array(questions.length).keys()].sort(()=>Math.random()-.5).slice(0,10);
-quizIndex=0;quizScore=0;answered=false;
-$("quizScore").textContent=0;$("quizEnd").textContent="";$("nextBtn").classList.remove("hidden");showQuestion();
-}
-function showQuestion(){
-answered=false;let q=questions[quizOrder[quizIndex]];
-$("quizProgress").textContent=`Pregunta ${quizIndex+1} de 10`;
-$("quizQuestion").textContent=q[0];$("quizFeedback").textContent="";
-$("quizOptions").innerHTML=q[1].map((o,i)=>`<button class="quiz-option" onclick="answerQuestion(${i})">${String.fromCharCode(65+i)}. ${o}</button>`).join("");
-$("nextBtn").textContent=quizIndex===9?"Ver resultado":"Siguiente →";
-}
-function answerQuestion(i){
-if(answered)return;answered=true;let q=questions[quizOrder[quizIndex]];
-[...$("quizOptions").children].forEach((b,j)=>{b.disabled=true;if(j===q[2])b.classList.add("correct");else if(j===i)b.classList.add("wrong")});
-if(i===q[2])quizScore+=10;
-$("quizScore").textContent=quizScore;
-$("quizFeedback").textContent=(i===q[2]?"✅ ¡Correcto! ":"❌ Incorrecto. ")+q[3];
-}
-function nextQuestion(){
-if(!answered){$("quizFeedback").textContent="Primero elegí una respuesta.";return}
-if(quizIndex<9){quizIndex++;showQuestion()}
-else{$("quizQuestion").textContent="¡Trivia terminada!";$("quizOptions").innerHTML="";$("quizFeedback").textContent="Tu resultado final:";$("quizEnd").innerHTML=`<h2>${quizScore}/100 puntos</h2><p>${quizScore>=80?"¡Sos un crack del fútbol!":quizScore>=50?"¡Buen trabajo! Seguí practicando.":"¡Buen intento! Probá otra vez."}</p>`;$("nextBtn").classList.add("hidden")}
-}
-function init(){
-$("year").textContent=new Date().getFullYear();
-generateMatches();generateStandings();setupTeams();newQuick();searchInfo();startQuiz();
-}
-document.addEventListener("DOMContentLoaded",init); 
+$("shootBtn").addEventListener("pointerdown",e=>{e.preventDefault();shoot()});
+$("passBtn").addEventListener("pointerdown",e=>{e.preventDefault();passBall()});
 </script>
 </body>
 </html>
