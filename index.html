@@ -70,7 +70,13 @@ footer{text-align:center;color:var(--muted);padding:25px;border-top:1px solid #2
 </div>
 <button onclick="generateStandings()">Actualizar tabla</button>
 </section>
-
+  
+<div style="text-align:center;margin:20px 0">
+  <a href="partido.html" style="display:inline-block;background:linear-gradient(135deg,#39f28a,#c5ff56);color:#06140b;padding:15px 24px;border-radius:14px;text-decoration:none;font-weight:900;font-size:18px">
+    ⚽ JUGAR PARTIDO 2D
+  </a>
+</div>
+  
 <section id="simulador">
 <h2>🏆 Simulador de partidos</h2>
 <div class="card">
@@ -356,12 +362,7 @@ function init(){
 $("year").textContent=new Date().getFullYear();
 generateMatches();generateStandings();setupTeams();newQuick();searchInfo();startQuiz();
 }
-document.addEventListener("DOMContentLoaded",init);  
-<div style="text-align:center;margin:20px 0">
-  <a href="partido.html" style="display:inline-block;background:linear-gradient(135deg,#39f28a,#c5ff56);color:#06140b;padding:15px 24px;border-radius:14px;text-decoration:none;font-weight:900;font-size:18px">
-    ⚽ JUGAR PARTIDO 2D
-  </a>
-</div>
+document.addEventListener("DOMContentLoaded",init); 
 </script>
 </body>
 </html>
