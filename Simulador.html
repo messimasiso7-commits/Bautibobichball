@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#07150e">
+<title>BAUTIBOBICHBALL | Simulador 3D</title>
+<style>
+:root{--bg:#07150e;--panel:#10251a;--line:#294735;--green:#36e76a;--red:#ff5252;--gold:#ffd66b}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:#fff;font-family:Arial,Helvetica,sans-serif}
+button,input,select{font:inherit}
+button{cursor:pointer;touch-action:manipulation}
+header{padding:13px 15px;background:#091c11;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{font-size:17px;font-weight:1000;letter-spacing:.5px}
+.brand span{color:var(--green)}
+header a{color:white;text-decoration:none;font-size:12px;padding:10px 12px;border:1px solid var(--line);border-radius:10px}
+main{width:min(100%,1100px);margin:auto;padding:13px;display:grid;gap:13px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:13px}
+h2{font-size:16px;margin:0 0 12px}
+.settings{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{display:grid;gap:6px;font-size:12px;color:#b7cbbd}
+input,select{width:100%;min-width:0;background:#07160e;color:#fff;border:1px solid #355641;border-radius:10px;padding:11px}
+input[type=color]{height:42px;padding:4px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.btn{border:0;border-radius:11px;padding:12px 15px;background:#234d32;color:white;font-weight:800}
+.btn.primary{background:var(--green);color:#06220d}
+.btn.stop{background:#512426}
+.btn:disabled{opacity:.45}
+#stadium{position:relative;width:100%;height:clamp(270px,55vw,510px);overflow:hidden;border-radius:15px;border:1px solid #3a6548;background:#143b22}
+#stadium canvas{display:block;width:100%;height:100%;touch-action:pan-y}
+.scoreboard{position:absolute;z-index:2;top:10px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;background:#07150eea;border:1px solid #ffffff2b;border-radius:13px;padding:10px 13px;min-width:min(94%,330px);justify-content:space-between;pointer-events:none}
+.scoreteam{font-weight:900;font-size:clamp(10px,2.7vw,14px);max-width:35%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#score{font-size:clamp(24px,6vw,33px);font-weight:1000;white-space:nowrap}
+#clock{position:absolute;z-index:2;top:68px;left:50%;transform:translateX(-50%);padding:6px 12px;border-radius:20px;background:#07150ee8;font-size:12px;font-weight:bold;pointer-events:none;white-space:nowrap}
+#matchstatus{font-size:12px;color:#d1e6d5;text-align:center;margin-top:10px;min-height:15px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.stat{background:#07170f;border:1px solid #294735;border-radius:12px;padding:10px 5px;text-align:center;min-width:0}
+.stat strong{display:block;font-size:20px;margin-bottom:5px}
+.stat span{font-size:10px;color:#a9c2b0}
+.possession{display:grid;gap:8px;margin-top:13px}
+.posrow{display:flex;justify-content:space-between;font-size:12px;gap:8px}
+.bar{height:9px;border-radius:20px;overflow:hidden;display:flex;background:#25372b}
+#greenbar{height:100%;width:50%;background:var(--green)}
+#redbar{height:100%;width:50%;background:var(--red)}
+.note{font-size:12px;color:#a8bfae;line-height:1.5}
+footer{text-align:center;padding:18px;color:#779080;font-size:11px}
+@media(max-width:420px){main{padding:9px}.panel{padding:10px}.settings{gap:7px}.btn{padding:12px 10px;flex:1}.stats{gap:5px}.stat strong{font-size:17px}.scoreboard{gap:6px;padding:8px 9px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">BAUTI<span>BOBICH</span>BALL <small style="color:#a8bfae">3D</small></div>
+  <a href="index.html">← VOLVER</a>
+</header>
+
+<main>
+  <section class="panel">
+    <h2>⚽ Configurar partido</h2>
+    <div class="settings">
+      <label>Equipo local
+        <input id="teamA" maxlength="18" value="VERDES FC">
+      </label>
+      <label>Equipo visitante
+        <input id="teamB" maxlength="18" value="ROJOS FC">
+      </label>
+      <label>Camiseta local
+        <input id="colorA" type="color" value="#22dd55">
+      </label>
+      <label>Camiseta visitante
+        <input id="colorB" type="color" value="#f23b45">
+      </label>
+      <label>Duración del partido
+        <select id="duration">
+          <option value="60">1 minuto</option>
+          <option value="180">3 minutos</option>
+          <option value="300" selected>5 minutos</option>
+          <option value="600">10 minutos</option>
+          <option value="0">Sin límite</option>
+        </select>
+      </label>
+      <label>Velocidad
+        <select id="speed">
+          <option value="0.7">Lenta</option>
+          <option value="1" selected>Normal</option>
+          <option value="1.5">Rápida</option>
+          <option value="2">Muy rápida</option>
+        </select>
+      </label>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="start">▶ INICIAR</button>
+      <button class="btn" id="pause" disabled>Ⅱ PAUSAR</button>
+      <button class="btn stop" id="reset">↻ REINICIAR</button>
+    </div>
+  </section>
+
+  <section id="stadium" aria-label="Cancha de fútbol tridimensional">
+    <div class="scoreboard">
+      <div class="scoreteam" id="nameA" style="color:var(--green)">VERDES FC</div>
+      <div id="score">0 - 0</div>
+      <div class="scoreteam" id="nameB" style="color:var(--red);text-align:right">ROJOS FC</div>
+    </div>
+    <div id="clock">00:00 / 05:00</div>
+  </section>
+
+  <div id="matchstatus" aria-live="polite">Preparado para comenzar el partido.</div>
+
+  <section class="panel">
+    <h2>📊 Estadísticas del partido</h2>
+    <div class="stats">
+      <div class="stat"><strong id="shotsA">0</strong><span>Tiros local</span></div>
+      <div class="stat"><strong id="shotsB">0</strong><span>Tiros visitante</span></div>
+      <div class="stat"><strong id="goalsA">0</strong><span>Goles local</span></div>
+      <div class="stat"><strong id="goalsB">0</strong><span>Goles visitante</span></div>
+    </div>
+    <div class="possession">
+      <div class="posrow"><span id="possA">Local 50%</span><span id="possB">Visitante 50%</span></div>
+      <div class="bar"><div id="greenbar"></div><div id="redbar"></div></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>🎮 Cómo funciona</h2>
+    <p class="note">Los dos equipos juegan automáticamente. Los jugadores corren, buscan la pelota, pasan, defienden y disparan al arco rival. Podés cambiar los nombres, los colores, la duración y la velocidad. La cámara es diagonal y muestra la cancha en 3D.</p>
+    <p class="note">Necesitás conexión a Internet para cargar Three.js desde su CDN. Los jugadores de esta versión son modelos 3D creados con formas geométricas, no modelos humanos profesionales.</p>
+  </section>
+</main>
+<footer>BAUTIBOBICHBALL · SIMULADOR 3D · ANDROID</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+(() => {
+'use strict';
+const $=id=>document.getElementById(id);
+const stadium=$('stadium');
+if(!window.THREE){
+  $('matchstatus').textContent='No se pudo cargar Three.js. Revisá tu conexión a Internet.';
+  $('start').disabled=true;
+  return;
+}
+
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x9bc5df);
+scene.fog=new THREE.Fog(0x9bc5df,95,170);
+
+const camera=new THREE.PerspectiveCamera(43,1,.1,300);
+camera.position.set(0,48,55);
+camera.lookAt(0,0,0);
+
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5));
+renderer.shadowMap.enabled=true;
+renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+renderer.domElement.style.position='absolute';
+renderer.domElement.style.inset='0';
+stadium.appendChild(renderer.domElement);
+
+scene.add(new THREE.HemisphereLight(0xe9f6ff,0x263b25,2));
+const sun=new THREE.DirectionalLight(0xffffff,2);
+sun.position.set(-25,45,30);
+sun.castShadow=true;
+sun.shadow.mapSize.set(1024,1024);
+sun.shadow.camera.left=-60;
+sun.shadow.camera.right=60;
+sun.shadow.camera.top=45;
+sun.shadow.camera.bottom=-45;
+scene.add(sun);
+
+const material=(color,roughness=.8)=>new THREE.MeshStandardMaterial({color,roughness});
+const white=material(0xffffff);
+const turf1=material(0x167b35);
+const turf2=material(0x218b3c);
+const dark=material(0x19211b);
+const skin=material(0xd6a078);
+const black=material(0x101010,.55);
+
+const FIELD_X=96,FIELD_Z=60,HALF_X=48,HALF_Z=30;
+const players=[];
+let ball,ballShadow;
+let scoreA=0,scoreB=0,shotsA=0,shotsB=0;
+let running=false,finished=false,paused=false;
+let elapsed=0,remaining=300,matchDuration=300;
+let speedMultiplier=1;
+let lastTime=performance.now();
+let goalCooldown=0,kickoffDelay=0,kickoffTeam=0;
+let possessionA=0,possessionB=0,possTime=0;
+let lastPossession=-1;
+let shotClock=0;
+let kickoffMessage='';
+let ballX=0,ballZ=0,ballVX=0,ballVZ=0;
+let simTime=0;
+
+function addBox(parent,w,h,d,mat,x,y,z){
+  const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);
+  m.position.set(x,y,z);
+  m.castShadow=true;
+  m.receiveShadow=true;
+  parent.add(m);
+  return m;
+}
+function addSphere(parent,r,mat,x,y,z,segments=12){
+  const m=new THREE.Mesh(new THREE.SphereGeometry(r,segments,10),mat);
+  m.position.set(x,y,z);
+  m.castShadow=true;
+  parent.add(m);
+  return m;
+}
+function addLine(points,mat=white,r=.065){
+  const curve=new THREE.CatmullRomCurve3(points.map(p=>new THREE.Vector3(p[0],.08,p[1])));
+  const mesh=new THREE.Mesh(new THREE.TubeGeometry(curve,Math.max(12,points.length*4),r,5,false),mat);
+  scene.add(mesh);
+  return mesh;
+}
+
+// Cancha y franjas
+addBox(scene,FIELD_X,.3,FIELD_Z,turf1,0,-.25,0);
+for(let i=0;i<12;i++){
+  addBox(scene,FIELD_X/12,.015,FIELD_Z,i%2?turf1:turf2,-HALF_X+FIELD_X/24+i*FIELD_X/12,0,0);
+}
+addLine([[-HALF_X,-HALF_Z],[HALF_X,-HALF_Z],[HALF_X,HALF_Z],[-HALF_X,HALF_Z],[-HALF_X,-HALF_Z]]);
+addLine([[0,-HALF_Z],[0,HALF_Z]]);
+const circlePoints=[];
+for(let i=0;i<=64;i++){
+  const a=i/64*Math.PI*2;
+  circlePoints.push([Math.cos(a)*9.15,Math.sin(a)*9.15]);
+}
+addLine(circlePoints);
+addSphere(scene,.13,white,0,.08,0,8);
+
+for(const side of [-1,1]){
+  addLine([[side*HALF_X,-20],[side*34,-20],[side*34,20],[side*HALF_X,20]]);
+  addLine([[side*HALF_X,-10],[side*41,-10],[side*41,10],[side*HALF_X,10]]);
+  addSphere(scene,.13,white,side*41,.08,0,8);
+  const gm=material(0xffffff,.4);
+  addBox(scene,.22,4.3,.22,gm,side*49.4,2.15,-7);
+  addBox(scene,.22,4.3,.22,gm,side*49.4,2.15,7);
+  addBox(scene,.22,.22,14,gm,side*49.4,4.3,0);
+  addBox(scene,3,.16,.16,gm,side*50.8,4.3,-7);
+  addBox(scene,3,.16,.16,gm,side*50.8,4.3,7);
+  addBox(scene,.16,4.3,.16,gm,side*50.8,2.15,-7);
+  addBox(scene,.16,4.3,.16,gm,side*50.8,2.15,7);
+  const net=material(0xd8e5e9,.9);
+  for(let z=-6;z<=6;z+=1.5)addBox(scene,2.5,.025,.025,net,side*52,2,z);
+  for(let y=.5;y<=4;y+=.7)addBox(scene,2.5,.025,.025,net,side*52,y,0);
+}
+
+// Tribunas sencillas
+const stand=material(0x3a4449);
+const seats=[material(0x224d82),material(0x9b2633),material(0xe3e3e3)];
+for(const side of [-1,1]){
+  addBox(scene,103,3.2,5,stand,0,1.2,side*34);
+  for(let row=0;row<3;row++){
+    for(let x=-47;x<=47;x+=3.3){
+      addBox(scene,2.3,.48,1,seats[(Math.floor(x/3.3)+row+10)%3],x,2.7+row*.5,side*(33+row*.75));
+    }
+  }
+}
+addBox(scene,110,.7,80,material(0x303d35),0,-3.2,0);
+
+// Crear jugador tridimensional
+function createPlayer(team,index){
+  const root=new THREE.Group();
+  scene.add(root);
+  const shirt=material(team===0?$ ('colorA').value:$('colorB').value);
+  const shorts=material(team===0?0x08662a:0x92232a);
+  addBox(root,.92,1.1,.55,shirt,0,1.45,0);
+  addBox(root,.73,.35,.6,shorts,0,.67,0);
+  addSphere(root,.31,skin,0,2.25,0,12);
+  addSphere(root,.34,shirt,0,2.35,0,12);
+  addSphere(root,.23,skin,0,2.23,-.22,12);
+  addBox(root,.14,.13,.04,dark,0,2.28,-.43);
+  const legs=[],arms=[];
+  for(const side of [-1,1]){
+    const leg=addBox(root,.23,.7,.25,shorts,side*.25,.2,0);
+    const foot=addBox(root,.27,.15,.4,black,side*.25,-.16,-.1);
+    legs.push({leg,foot,side});
+    const arm=addBox(root,.21,.72,.23,shirt,side*.57,1.48,0);
+    arms.push({arm,side});
+  }
+  const shadow=new THREE.Mesh(new THREE.CircleGeometry(.55,14),new THREE.MeshBasicMaterial({color:0x000000,transparent:true,opacity:.22}));
+  shadow.rotation.x=-Math.PI/2;
+  shadow.position.y=.02;
+  root.add(shadow);
+  return {
+    team,index,root,legs,arms,shirt,shorts,
+    x:0,z:0,vx:0,vz:0,angle:team===0?0:Math.PI,
+    phase:Math.random()*6,speed:team===0?7.4:7.2
+  };
+}
+function disposePlayers(){
+  for(const p of players){
+    scene.remove(p.root);
+    p.root.traverse(obj=>{
+      if(obj.geometry)obj.geometry.dispose();
+      if(obj.material){
+        if(Array.isArray(obj.material))obj.material.forEach(m=>m.dispose());
+        else obj.material.dispose();
+      }
+    });
+  }
+  players.length=0;
+}
+function createTeams(){
+  disposePlayers();
+  const formationA=[[-34,0],[-23,-16],[-23,16],[-8,-10],[-8,10],[3,0]];
+  const formationB=[[34,0],[23,-16],[23,16],[8,-10],[8,10],[-3,0]];
+  for(let i=0;i<formationA.length;i++){
+    const p=createPlayer(0,i);
+    p.x=formationA[i][0];p.z=formationA[i][1];
+    p.root.position.set(p.x,0,p.z);players.push(p);
+  }
+  for(let i=0;i<formationB.length;i++){
+    const p=createPlayer(1,i);
+    p.x=formationB[i][0];p.z=formationB[i][1];
+    p.root.position.set(p.x,0,p.z);players.push(p);
+  }
+}
+function createBall(){
+  if(ball){
+    scene.remove(ball);
+    ball.traverse(o=>{if(o.geometry)o.geometry.dispose();});
+  }
+  ball=new THREE.Group();
+  const base=material(0xffffff,.35);
+  addSphere(ball,.58,base,0,.58,0,16);
+  const patchMat=material(0x161616,.5);
+  for(let i=0;i<5;i++){
+    const a=i*Math.PI*2/5;
+    addSphere(ball,.14,patchMat,Math.cos(a)*.43,.58+Math.sin(a)*.28,Math.sin(a)*.43,7);
+  }
+  scene.add(ball);
+  ballShadow=new THREE.Mesh(new THREE.CircleGeometry(.65,16),new THREE.MeshBasicMaterial({color:0x000000,transparent:true,opacity:.23}));
+  ballShadow.rotation.x=-Math.PI/2;
+  ballShadow.position.y=.025;
+  scene.add(ballShadow);
+}
+createTeams();
+createBall();
+
+function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
+function distance(a,b){return Math.hypot(a.x-b.x,a.z-b.z);}
+function nearestPlayer(team){
+  let best=null,distanceBest=Infinity;
+  for(const p of players){
+    if(p.team!==team)continue;
+    const d=Math.hypot(p.x-ballX,p.z-ballZ);
+    if(d<distanceBest){distanceBest=d;best=p;}
+  }
+  return best;
+}
+function moveToward(p,tx,tz,sp,dt){
+  let dx=tx-p.x,dz=tz-p.z;
+  const d=Math.hypot(dx,dz);
+  if(d>.1){dx/=d;dz/=d;}else{dx=0;dz=0;}
+  const targetX=dx*sp,targetZ=dz*sp;
+  p.vx+=(targetX-p.vx)*Math.min(1,dt*5);
+  p.vz+=(targetZ-p.vz)*Math.min(1,dt*5);
+  p.x=clamp(p.x+p.vx*dt,-HALF_X+1.5,HALF_X-1.5);
+  p.z=clamp(p.z+p.vz*dt,-HALF_Z+1.5,HALF_Z-1.5);
+  if(Math.hypot(p.vx,p.vz)>.25)p.angle=Math.atan2(-p.vz,-p.vx);
+}
+function animatePlayer(p,time){
+  p.root.position.set(p.x,Math.abs(Math.sin(time*9+p.phase))*.045,p.z);
+  p.root.rotation.y=p.angle;
+  const speed=Math.min(1,Math.hypot(p.vx,p.vz)/5);
+  const swing=Math.sin(time*10+p.phase)*speed*.48;
+  for(const l of p.legs){
+    l.leg.rotation.x=swing*l.side;
+    l.foot.rotation.x=swing*l.side;
+  }
+  for(const a of p.arms)a.arm.rotation.x=-swing*a.side*.8;
+}
+function resetPositions(){
+  const a=[[-34,0],[-23,-16],[-23,16],[-8,-10],[-8,10],[3,0]];
+  const b=[[34,0],[23,-16],[23,16],[8,-10],[8,10],[-3,0]];
+  for(const p of players){
+    const pos=(p.team===0?a:b)[p.index];
+    p.x=pos[0];p.z=pos[1];p.vx=0;p.vz=0;
+    p.root.position.set(p.x,0,p.z);
+  }
+  ballX=0;ballZ=0;ballVX=0;ballVZ=0;
+  ball.position.set(0,0,0);
+  ballShadow.position.set(0,.025,0);
+}
+function updateScore(){
+  $('score').textContent=scoreA+' - '+scoreB;
+  $('goalsA').textContent=scoreA;
+  $('goalsB').textContent=scoreB;
+  $('shotsA').textContent=shotsA;
+  $('shotsB').textContent=shotsB;
+}
+function updateClock(){
+  const fmt=s=>{
+    s=Math.max(0,Math.floor(s));
+    return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+  };
+  $('clock').textContent=matchDuration===0
+    ?fmt(elapsed)+' · SIN LÍMITE'
+    :fmt(elapsed)+' / '+fmt(matchDuration);
+}
+function updatePossession(){
+  const total=possessionA+possessionB;
+  const a=total?Math.round(possessionA/total*100):50;
+  const b=100-a;
+  $('possA').textContent=$('teamA').value+' '+a+'%';
+  $('possB').textContent=$('teamB').value+' '+b+'%';
+  $('greenbar').style.width=a+'%';
+  $('redbar').style.width=b+'%';
+}
+function applyNames(){
+  const a=$('teamA').value.trim()||'LOCAL';
+  const b=$('teamB').value.trim()||'VISITANTE';
+  $('nameA').textContent=a;
+  $('nameB').textContent=b;
+  $('nameA').style.color=$('colorA').value;
+  $('nameB').style.color=$('colorB').value;
+  for(const p of players){
+    const col=new THREE.Color(p.team===0?$('colorA').value:$('colorB').value);
+    p.shirt.color.copy(col);
+  }
+  updatePossession();
+}
+$('teamA').addEventListener('input',applyNames);
+$('teamB').addEventListener('input',applyNames);
+$('colorA').addEventListener('input',applyNames);
+$('colorB').addEventListener('input',applyNames);
+
+function startMatch(){
+  if(finished)resetMatch();
+  matchDuration=Number($('duration').value);
+  speedMultiplier=Number($('speed').value);
+  running=true;paused=false;
+  $('pause').disabled=false;
+  $('pause').textContent='Ⅱ PAUSAR';
+  $('start').textContent='▶ EN JUEGO';
+  $('matchstatus').textContent='¡Partido en marcha! Los dos equipos juegan automáticamente.';
+  applyNames();
+}
+function pauseMatch(){
+  if(!running)return;
+  paused=!paused;
+  $('pause').textContent=paused?'▶ CONTINUAR':'Ⅱ PAUSAR';
+  $('matchstatus').textContent=paused?'Partido pausado.':'Partido reanudado.';
+}
+function resetMatch(){
+  scoreA=0;scoreB=0;shotsA=0;shotsB=0;
+  elapsed=0;remaining=Number($('duration').value);
+  running=false;paused=false;finished=false;
+  goalCooldown=0;kickoffDelay=0;kickoffTeam=0;
+  possessionA=0;possessionB=0;possTime=0;lastPossession=-1;shotClock=0;
+  createTeams();resetPositions();applyNames();updateScore();updateClock();updatePossession();
+  $('pause').disabled=true;$('pause').textContent='Ⅱ PAUSAR';
+  $('start').textContent='▶ INICIAR';
+  $('matchstatus').textContent='Partido reiniciado. Presioná INICIAR para jugar.';
+}
+$('start').addEventListener('click',startMatch);
+$('pause').addEventListener('click',pauseMatch);
+$('reset').addEventListener('click',resetMatch);
+
+function kickoff(team){
+  kickoffTeam=team;
+  const p=players.find(q=>q.team===team&&q.index===5);
+  ballX=team===0?-1:1;ballZ=0;
+  ballVX=team===0?7:-7;ballVZ=0;
+  if(p){p.x=team===0?-2:2;p.z=0;}
+}
+function scoreGoal(team){
+  if(goalCooldown>0||finished)return;
+  goalCooldown=2;
+  if(team===0)scoreA++;else scoreB++;
+  kickoffTeam=team===0?1:0;
+  updateScore();
+  resetPositions();
+  kickoffDelay=1.2;
+  $('matchstatus').textContent='⚽ ¡GOL DE '+(team===0?$('teamA').value:$('teamB').value)+'! Saque para '+(kickoffTeam===0?$('teamA').value:$('teamB').value)+'.';
+}
+function endMatch(){
+  finished=true;running=false;paused=false;
+  $('pause').disabled=true;
+  $('start').textContent='▶ NUEVO PARTIDO';
+  const a=$('teamA').value,b=$('teamB').value;
+  $('matchstatus').textContent=scoreA>scoreB?'🏆 Ganó '+a+' '+scoreA+' - '+scoreB:
+    scoreB>scoreA?'🏆 Ganó '+b+' '+scoreB+' - '+scoreA:
+    '🤝 ¡Empate! '+scoreA+' - '+scoreB;
+}
+
+function update(dt){
+  if(!running||paused||finished)return;
+  dt=Math.min(dt,.04)*speedMultiplier;
+  elapsed+=dt;
+  if(matchDuration>0&&elapsed>=matchDuration){
+    elapsed=matchDuration;updateClock();endMatch();return;
+  }
+  updateClock();
+  goalCooldown=Math.max(0,goalCooldown-dt);
+
+  if(kickoffDelay>0){
+    kickoffDelay-=dt;
+    if(kickoffDelay<=0)kickoff(kickoffTeam);
+    for(const p of players)animatePlayer(p,simTime);
+    ball.position.set(ballX,.58,ballZ);
+    ballShadow.position.set(ballX,.025,ballZ);
+    return;
+  }
+
+  const carrier=nearestPlayer(0);
+  const carrierB=nearestPlayer(1);
+  let teamPoss=-1;
+  if(carrier&&Math.hypot(carrier.x-ballX,carrier.z-ballZ)<1.9)teamPoss=0;
+  if(carrierB&&Math.hypot(carrierB.x-ballX,carrierB.z-ballZ)<1.9)teamPoss=1;
+  if(teamPoss!==-1){
+    lastPossession=teamPoss;
+    if(teamPoss===0)possessionA+=dt;else possessionB+=dt;
+    possTime+=dt;
+    if(possTime>2){updatePossession();possTime=0;}
+  }
+
+  // IA de los dos equipos: perseguidor, apoyos y defensa.
+  for(const p of players){
+    const dir=p.team===0?1:-1;
+    const chaser=nearestPlayer(p.team);
+    if(p===chaser){
+      moveToward(p,ballX-dir*.7,ballZ,7.8,dt);
+    }else{
+      const homeX=(p.team===0?[-34,-23,-23,-8,-8,3]:[34,23,23,8,8,-3])[p.index];
+      const homeZ=p.index===0?0:(p.index%2===0?13:-13);
+      let tx=homeX+ballX*.2,tz=homeZ+ballZ*.25;
+      if(Math.hypot(ballX-p.x,ballZ-p.z)<9){
+        tx=ballX-dir*3;
+        tz=ballZ+(p.index%2?3:-3);
+      }
+      moveToward(p,tx,tz,5.2,dt);
+    }
+  }
+
+  // Interacciones entre pelota y jugadores.
+  let touching=null,touchDistance=Infinity;
+  for(const p of players){
+    const d=Math.hypot(ballX-p.x,ballZ-p.z);
+    if(d<1.45&&d<touchDistance){touching=p;touchDistance=d;}
+  }
+  if(touching){
+    const dir=touching.team===0?1:-1;
+    const d=Math.max(.1,Math.hypot(ballX-touching.x,ballZ-touching.z));
+    ballVX+=dir*2.2;
+    ballVZ+=(ballZ-touching.z)/d*1.8;
+    ballVX=clamp(ballVX,-12,12);
+    ballVZ=clamp(ballVZ,-6,6);
+
+    // Remate automático cuando el jugador está cerca del arco rival.
+    shotClock-=dt;
+    const goalDist=touching.team===0?HALF_X-ballX:ballX+HALF_X;
+    if(goalDist<26&&goalDist>0&&shotClock<=0&&Math.random()<dt*.85){
+      ballVX=dir*13;
+      ballVZ=clamp(-ballZ*.22+(Math.random()-.5)*4,-5,5);
+      if(touching.team===0)shotsA++;else shotsB++;
+      updateScore();
+      shotClock=1.3;
+    }
+  }
+
+  ballX+=ballVX*dt;
+  ballZ+=ballVZ*dt;
+  ballVX*=Math.pow(.985,dt*60);
+  ballVZ*=Math.pow(.985,dt*60);
+  if(Math.abs(ballVX)<.06)ballVX=0;
+  if(Math.abs(ballVZ)<.06)ballVZ=0;
+
+  if(ballZ>HALF_Z-.7){ballZ=HALF_Z-.7;ballVZ=-Math.abs(ballVZ)*.8;}
+  if(ballZ< -HALF_Z+.7){ballZ=-HALF_Z+.7;ballVZ=Math.abs(ballVZ)*.8;}
+
+  // El verde ataca a la derecha y el rojo a la izquierda.
+  if(ballX>HALF_X-.15&&Math.abs(ballZ)<6.5){scoreGoal(0);return;}
+  if(ballX< -HALF_X+.15&&Math.abs(ballZ)<6.5){scoreGoal(1);return;}
+
+  if(ballX>HALF_X+.5||ballX< -HALF_X-.5){
+    ballX=clamp(ballX,-HALF_X+.5,HALF_X-.5);ballVX*=-.65;
+  }
+
+  ball.position.set(ballX,.58,ballZ);
+  ball.rotation.x+=ballVX*dt*.65;
+  ball.rotation.z-=ballVZ*dt*.65;
+  ballShadow.position.set(ballX,.025,ballZ);
+  for(const p of players)animatePlayer(p,simTime);
+}
+
+function resize(){
+  const w=stadium.clientWidth,h=stadium.clientHeight;
+  if(!w||!h)return;
+  camera.aspect=w/h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w,h,false);
+}
+if('ResizeObserver'in window)new ResizeObserver(resize).observe(stadium);
+else addEventListener('resize',resize);
+resize();
+applyNames();
+updateScore();
+updateClock();
+
+function animate(now){
+  requestAnimationFrame(animate);
+  const dt=Math.min(.05,(now-lastTime)/1000);
+  lastTime=now;simTime=now/1000;
+  update(dt);
+  const focus=clamp(ballX*.18,-9,9);
+  camera.position.x+=(focus-camera.position.x)*.035;
+  camera.lookAt(focus*.4,0,0);
+  renderer.render(scene,camera);
+}
+requestAnimationFrame(animate);
+})();
+</script>
+</body>
+    </html>
