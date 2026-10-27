@@ -2,503 +2,409 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#06130d">
-<title>BOBICH WORLD CUP 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#06140d">
+<meta name="description" content="BAUTIBOBICHBALL: fútbol, minijuegos, torneos, partidos y Bobich World Cup 2026 en 3D.">
+<title>BAUTIBOBICHBALL | Fútbol y juegos</title>
 <style>
+:root{--l:#caff38;--b:#06140d;--p:#10271a;--m:#b1c2b5}
 *{box-sizing:border-box}
-body{margin:0;background:#06130d;color:white;font-family:Arial,sans-serif;overflow-x:hidden}
-button,select{font:inherit}
-button{border:0;border-radius:10px;padding:12px 16px;font-weight:bold;background:#e7ff37;color:#101510;cursor:pointer}
-button:active{transform:scale(.96)}
-button:disabled{opacity:.4}
-header{padding:15px;text-align:center;background:linear-gradient(120deg,#092d1b,#12623b);border-bottom:2px solid #b6f532}
-header h1{font-size:clamp(22px,5vw,38px);margin:0;color:#dfff43}
-header p{margin:7px 0 0;color:#d2e6d8;font-size:12px}
-.screen{display:none;padding:14px;max-width:1000px;margin:auto}
-.screen.active{display:block}
-.panel{background:#10241a;border:1px solid #294b35;border-radius:14px;padding:15px;margin:12px 0}
-h2{margin-top:0;color:#e2ff5b}
-label{display:block;margin:12px 0 6px;color:#c9ddcf}
-select{width:100%;padding:12px;border-radius:9px;background:#f2f7f3;color:#101810}
-.row{display:flex;gap:8px;flex-wrap:wrap}
-.row>*{flex:1}
-.small{font-size:12px;color:#a9c4b2;line-height:1.5}
-.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
-.team-card{background:#183727;border:1px solid #315c40;padding:10px;border-radius:9px;text-align:center}
-.team-card b{display:block;margin-bottom:5px}
-.nav{display:flex;gap:7px;flex-wrap:wrap}
-.nav button{flex:1;min-width:95px;padding:10px 5px}
-table{width:100%;border-collapse:collapse;font-size:12px}
-th,td{padding:8px 4px;border-bottom:1px solid #294b35;text-align:center}
-th{color:#e2ff5b}
-td:first-child,th:first-child{text-align:left}
-#gameWrap{position:relative;width:100%;height:min(65vh,570px);min-height:340px;background:#06150c;border-radius:14px;overflow:hidden;border:1px solid #416447}
-#game{width:100%;height:100%;display:block;touch-action:none}
-#hud{position:absolute;left:0;right:0;top:0;padding:10px;display:flex;justify-content:space-between;gap:8px;pointer-events:none;text-shadow:0 2px 4px #000;font-weight:bold}
-#scoreboard{background:#07150ddd;border:1px solid #ffffff55;border-radius:10px;padding:9px 13px;text-align:center}
-#clock{background:#07150ddd;border-radius:8px;padding:9px}
-#notice{position:absolute;top:65px;left:50%;transform:translateX(-50%);background:#07150de8;padding:10px 15px;border-radius:10px;display:none;text-align:center;max-width:90%;font-weight:bold}
-#controls{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;user-select:none}
-#stick{width:145px;height:125px;position:relative;flex-shrink:0}
-.dir{position:absolute;width:45px;height:40px;padding:0;background:#ffffff24;color:white;border:1px solid #ffffff66;border-radius:9px;font-size:21px;touch-action:none}
-#up{top:0;left:50px}#down{bottom:0;left:50px}#left{top:42px;left:3px}#right{top:42px;right:3px}
-.actions{display:flex;gap:10px;align-items:center}
-.action{width:78px;height:72px;border-radius:50%;background:#e3ff36;color:#14210e;border:3px solid #ffffff66;padding:5px}
-.action.secondary{background:#f4f7f3}
-#kickInfo{text-align:center;color:#a9c4b2;font-size:12px;margin-top:7px}
-.fixture{display:flex;justify-content:space-between;gap:8px;padding:10px 0;border-bottom:1px solid #294b35;font-size:13px}
-.fixture span:nth-child(2){font-weight:bold;color:#e2ff5b;white-space:nowrap}
-#champion{font-size:25px;text-align:center;color:#e2ff5b;padding:20px}
-@media(max-width:420px){.screen{padding:9px}#gameWrap{height:54vh;min-height:310px}#controls{gap:4px}#stick{transform:scale(.85);transform-origin:left center;width:125px}.action{width:65px;height:65px}.actions{gap:5px}}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--b);color:#f4f8f3;font:16px system-ui,Arial}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font:inherit}
+.top{height:5px;background:linear-gradient(90deg,var(--l),#27d995,#00a6ff)}
+nav{position:sticky;top:0;z-index:10;background:#06140df2;backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:16px 5%;border-bottom:1px solid #ffffff20;gap:15px}
+.brand{font-weight:1000;letter-spacing:-1px;white-space:nowrap}
+.brand span,h1 span{color:var(--l)}
+.links{display:flex;gap:18px;font-size:12px;font-weight:900;text-transform:uppercase}
+.links a:hover{color:var(--l)}
+.btn{display:inline-block;background:var(--l);color:#07130b;border:0;border-radius:8px;padding:12px 16px;font-weight:950;text-align:center}
+.secondary{background:transparent;color:white;border:1px solid #ffffff55}
+.hero{padding:65px 7%;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:25px;background:radial-gradient(ellipse at 75% 35%,#12613d77,transparent 42%),linear-gradient(130deg,#06140d,#0b2a19)}
+.kicker{color:var(--l);font-size:11px;letter-spacing:3px;font-weight:950;text-transform:uppercase}
+.hero h1{font-size:clamp(48px,8vw,94px);line-height:.88;letter-spacing:-4px;margin:22px 0;text-transform:uppercase}
+.hero h1 span{display:block}
+.hero p,.muted{color:var(--m);line-height:1.75}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}
+.art{min-height:300px;display:grid;place-items:center;position:relative}
+.ball{font-size:clamp(130px,20vw,220px);filter:drop-shadow(0 25px 22px #0008);animation:bob 3s ease-in-out infinite}
+.ring{position:absolute;width:min(40vw,350px);aspect-ratio:1;border:1px dashed #caff3877;border-radius:50%;animation:spin 24s linear infinite}
+.stamp{position:absolute;bottom:10px;right:0;background:var(--l);color:#08150b;padding:14px;font-size:11px;font-weight:1000;transform:rotate(-4deg)}
+@keyframes bob{50%{transform:translateY(-13px) rotate(7deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ticker{background:var(--l);color:#08150b;text-align:center;padding:12px;font-size:11px;font-weight:1000;letter-spacing:2px}
+section{padding:65px 7%}
+.head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:25px}
+.head h2{font-size:clamp(30px,5vw,48px);line-height:1;margin:10px 0;text-transform:uppercase;letter-spacing:-2px}
+.head p{max-width:390px;color:var(--m);font-size:14px;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card,.panel{background:linear-gradient(145deg,#10271a,#0a1a11);border:1px solid #244532;border-radius:14px;padding:22px}
+.card{transition:transform .2s,border-color .2s;min-width:0}
+.card:hover{transform:translateY(-4px);border-color:#caff3888}
+.card h3{margin:13px 0 8px}
+.card p,.panel p{color:var(--m);font-size:13px;line-height:1.6}
+.emoji{font-size:36px}
+.badge{display:inline-block;padding:5px 8px;background:#caff3816;color:var(--l);border-radius:5px;font-size:10px;font-weight:900;letter-spacing:1px}
+.small{margin-top:8px;border:1px solid #caff3877;color:var(--l);padding:10px 13px;border-radius:7px;background:transparent;font-size:12px;font-weight:900}
+.result{display:none;margin-top:13px;padding:12px;border-radius:8px;background:#07150d;border:1px solid #335a3c;font-size:13px;line-height:1.6}
+.result.show{display:block}
+.goal{height:125px;border:4px solid white;border-bottom:0;border-radius:8px 8px 0 0;position:relative;display:grid;place-items:center;font-size:38px}
+.score{font-weight:900;color:var(--l)}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.answer{padding:11px;border:1px solid #244532;border-radius:7px;background:#ffffff08;color:white;text-align:left}
+.answer:hover{border-color:var(--l)}
+.matches{display:grid;gap:12px}
+.match{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;background:#10271a;border:1px solid #244532;border-radius:12px;padding:17px}
+.team{font-weight:900;display:flex;align-items:center;gap:8px}
+.right{justify-content:flex-end;text-align:right}
+.crest{display:grid;place-items:center;width:35px;height:35px;border-radius:8px;background:#ffffff10;font-size:20px}
+.scoreline{font-size:23px;font-weight:1000}
+.meta{grid-column:1/-1;text-align:center;color:var(--m);font-size:11px}
+.progress{height:7px;background:#ffffff15;border-radius:9px;margin:15px 0;overflow:hidden}
+.progress span{display:block;height:100%;background:var(--l)}
+.foot{display:flex;justify-content:space-between;gap:10px;color:var(--m);font-size:11px}
+.tablewrap{overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:400px}
+td,th{text-align:left;padding:13px 10px;border-bottom:1px solid #ffffff15;font-size:13px}
+th{color:var(--l);font-size:10px;text-transform:uppercase;letter-spacing:1px}
+.footer{border-top:1px solid #ffffff20;padding:25px 5%;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--m);font-size:12px}
+.notice{color:var(--m);font-size:12px;margin-top:15px}
+.featured{border-color:#caff3877;background:radial-gradient(ellipse at top right,#28633388,transparent 60%),linear-gradient(145deg,#132f20,#08150d)}
+.featured .emoji{font-size:43px}
+.featured .small{display:inline-block}
+@media(max-width:800px){
+ .links{display:none}
+ .hero{grid-template-columns:1fr;padding:50px 6%}
+ .art{min-height:240px}
+ .ring{width:260px}
+ .grid{grid-template-columns:1fr}
+ .head{display:block}
+ .head p{margin-bottom:0}
+ .match{gap:7px;padding:12px}
+ .team{font-size:12px;gap:5px}
+ .crest{width:28px;height:28px}
+ .scoreline{font-size:18px}
+ section{padding:52px 6%}
+}
 </style>
 </head>
 <body>
-<header>
-<h1>🏆 BOBICH WORLD CUP 2026</h1>
-<p>TORNEO INTERNACIONAL · FÚTBOL 3D · EDICIÓN JUGABLE</p>
+<div class="top"></div>
+
+<nav>
+<a class="brand" href="#inicio">BAUTI<span>BOBICH</span>BALL.</a>
+<div class="links">
+<a href="#juegos">Minijuegos</a>
+<a href="#partidos">Partidos</a>
+<a href="#torneos">Torneos</a>
+<a href="#tabla">Tabla</a>
+</div>
+<a class="btn" href="#juegos">¡JUGAR! ⚽</a>
+</nav>
+
+<header class="hero" id="inicio">
+<div>
+<div class="kicker">La casa del fútbol · Temporada 2026</div>
+<h1>EL FÚTBOL<span>SE JUEGA.</span></h1>
+<p>Bienvenido a BAUTIBOBICHBALL, tu estadio digital. Jugá minijuegos, poné a prueba tus conocimientos, revisá partidos y seguí torneos en un espacio creado para vivir la pasión futbolera.</p>
+<div class="actions">
+<a class="btn" href="#juegos">Explorar minijuegos ↗</a>
+<a class="btn secondary" href="#torneos">Ver torneos</a>
+</div>
+</div>
+<div class="art">
+<div class="ring"></div>
+<div class="ball">⚽</div>
+<div class="stamp">90 MINUTOS · UNA PASIÓN</div>
+</div>
 </header>
 
-<section id="setup" class="screen active">
-<div class="panel">
-<h2>⚽ Elegí tu selección</h2>
-<p class="small">Elegí un país, jugá sus partidos y tratá de levantar la copa. Cada partido dura 90 segundos de juego acelerado.</p>
-<label for="teamSelect">Tu selección</label>
-<select id="teamSelect"></select>
-<label for="difficulty">Dificultad</label>
-<select id="difficulty">
-<option value="easy">Fácil</option>
-<option value="normal" selected>Normal</option>
-<option value="hard">Difícil</option>
-</select>
-<button style="width:100%;margin-top:15px" onclick="startTournament()">COMENZAR EL MUNDIAL</button>
+<div class="ticker">⚽ BAUTIBOBICHBALL ✦ JUGÁ · COMPETÍ · DISFRUTÁ ✦ FÚTBOL SIN LÍMITES ✦</div>
+
+<section id="juegos">
+<div class="head">
+<div><div class="kicker">Centro de entretenimiento</div><h2>Minijuegos</h2></div>
+<p>Elegí un desafío y jugá directamente desde esta página. No necesitás instalar nada.</p>
 </div>
-<div class="panel">
-<h2>🌎 El torneo</h2>
-<div class="row">
-<div class="team-card"><b>48</b>Selecciones</div>
-<div class="team-card"><b>12</b>Grupos</div>
-<div class="team-card"><b>32</b>Clasificados</div>
-<div class="team-card"><b>3D</b>Estadio</div>
+
+<div class="grid">
+<article class="card">
+<div class="emoji">🥅</div><span class="badge">HABILIDAD</span>
+<h3>Penales</h3>
+<p>Elegí un rincón y tratá de convertir. Tenés cinco disparos para superar al arquero.</p>
+<button class="small" onclick="startPens()">Jugar penales →</button>
+<div class="result" id="pens">
+<div class="goal" id="goal">🧤</div>
+<p id="pmsg">Elegí dónde patear.</p>
+<div>
+<button class="small" onclick="shoot('Izquierda')">← Izquierda</button>
+<button class="small" onclick="shoot('Centro')">Centro</button>
+<button class="small" onclick="shoot('Derecha')">Derecha →</button>
 </div>
-<p class="small">Incluye fase de grupos, octavos previos (dieciseisavos), octavos, cuartos, semifinales y final. Los rivales que no controlás juegan automáticamente.</p>
+<p class="score" id="pscore">Goles: 0 · Tiros: 0/5</p>
+</div>
+</article>
+
+<article class="card">
+<div class="emoji">🧠</div><span class="badge">CONOCIMIENTO</span>
+<h3>Trivia futbolera</h3>
+<p>Contestá preguntas de fútbol y sumá puntos. ¿Cuánto sabés del deporte?</p>
+<button class="small" onclick="startQuiz()">Jugar trivia →</button>
+<div class="result" id="quiz">
+<div class="muted" id="qcount"></div>
+<h3 id="question"></h3>
+<div class="answers" id="answers"></div>
+<p class="score" id="qmsg"></p>
+<button class="small" id="next" onclick="nextQ()" style="display:none">Siguiente →</button>
+</div>
+</article>
+
+<article class="card">
+<div class="emoji">⚡</div><span class="badge">REFLEJOS</span>
+<h3>Desafío de reflejos</h3>
+<p>Esperá la señal verde y tocá el botón tan rápido como puedas. ¡No te adelantes!</p>
+<button class="small" onclick="reflexStart()">Probar reflejos →</button>
+<div class="result show" id="reflex">
+<p id="rmsg">¿Listo para poner a prueba tus reflejos?</p>
+<button class="small" id="rbtn" onclick="reflexTap()">Empezar</button>
+</div>
+</article>
+</div>
+<p class="notice">Los minijuegos funcionan en tu navegador. Los resultados se calculan en tu dispositivo.</p>
+</section>
+
+<section id="partidos" style="background:#081a10">
+<div class="head">
+<div><div class="kicker">Agenda de la comunidad</div><h2>Partidos destacados</h2></div>
+<p>Los marcadores de ejemplo son ilustrativos; no son resultados en vivo.</p>
+</div>
+<div class="matches">
+<div class="match">
+<div class="team"><span class="crest">🇦🇷</span> Argentina</div>
+<div class="scoreline">2 — 1</div>
+<div class="team right">Brasil <span class="crest">🇧🇷</span></div>
+<div class="meta">AMISTOSO · Ejemplo ilustrativo · Finalizado</div>
+</div>
+<div class="match">
+<div class="team"><span class="crest">🔵</span> Equipo Azul</div>
+<div class="scoreline">— : —</div>
+<div class="team right">Equipo Rojo <span class="crest">🔴</span></div>
+<div class="meta">LIGA BAUTI · Próximo partido · Fecha por anunciar</div>
+</div>
+<div class="match">
+<div class="team"><span class="crest">⭐</span> All-Stars</div>
+<div class="scoreline">— : —</div>
+<div class="team right">Leyendas <span class="crest">🏆</span></div>
+<div class="meta">PARTIDO ESPECIAL · Horario por anunciar</div>
+</div>
 </div>
 </section>
 
-<section id="tournament" class="screen">
-<div class="panel">
-<div class="nav">
-<button onclick="showTab('next')">⚽ Próximo partido</button>
-<button onclick="showTab('table')">📊 Grupos</button>
-<button onclick="showTab('fixtures')">📅 Resultados</button>
+<section id="torneos">
+<div class="head">
+<div><div class="kicker">Camino a la gloria</div><h2>Torneos</h2></div>
+<p>Elegí una competencia y preparate para jugar.</p>
 </div>
+
+<div class="grid">
+<article class="card featured">
+<div class="emoji">🌎</div>
+<span class="badge">NUEVO · JUGABLE</span>
+<h3>Bobich World Cup 2026</h3>
+<p>¡Elegí tu selección, jugá el Mundial y luchá por la copa! Incluye grupos, eliminatorias, controles táctiles y un estadio 3D.</p>
+<a class="btn small" href="bobich-world-cup-2026.html">🏆 JUGAR MUNDIAL 3D →</a>
+</article>
+
+<article class="card">
+<div class="emoji">🎮</div>
+<span class="badge">SIMULADOR</span>
+<h3>Simulador de fútbol</h3>
+<p>Entrá al simulador de partidos para controlar jugadores y probar el juego de fútbol.</p>
+<a class="btn small" href="simulador.html">ABRIR SIMULADOR →</a>
+</article>
+
+<article class="card">
+<div class="emoji">🏆</div>
+<span class="badge">TORNEO PRINCIPAL</span>
+<h3>Copa Bautibobich</h3>
+<p>Competencia de eliminación directa: ganá cada ronda para llegar a la final.</p>
+<div class="progress"><span style="width:35%"></span></div>
+<div class="foot"><span>Eliminatorias</span><span>Preparando</span></div>
+</article>
+
+<article class="card">
+<div class="emoji">📊</div>
+<span class="badge">LIGA</span>
+<h3>Liga de Campeones</h3>
+<p>Formato todos contra todos, puntos por victoria y tabla de clasificación.</p>
+<div class="progress"><span style="width:15%"></span></div>
+<div class="foot"><span>Formato liga</span><span>Por iniciar</span></div>
+</article>
+
+<article class="card">
+<div class="emoji">⚡</div>
+<span class="badge">DESAFÍO RÁPIDO</span>
+<h3>Copa Relámpago</h3>
+<p>Partidos cortos y una final para decidir al campeón del día.</p>
+<div class="progress"><span style="width:0%"></span></div>
+<div class="foot"><span>Partido corto</span><span>Abierta</span></div>
+</article>
 </div>
-<div id="tab-next" class="panel">
-<h2 id="roundTitle">Tu torneo</h2>
-<p id="nextInfo" class="small"></p>
-<button id="playBtn" style="width:100%" onclick="beginMatch()">JUGAR PARTIDO</button>
+<p class="notice">El Mundial 3D y el simulador se abren como páginas separadas, pero siguen formando parte de BAUTIBOBICHBALL.</p>
+</section>
+
+<section id="tabla" style="background:#081a10">
+<div class="head">
+<div><div class="kicker">Temporada de demostración</div><h2>Tabla de posiciones</h2></div>
+<p>Tabla ficticia de muestra; estos datos no se actualizan automáticamente.</p>
 </div>
-<div id="tab-table" class="panel" style="display:none">
-<h2>Tabla de posiciones</h2>
-<label for="groupSelect">Elegir grupo</label>
-<select id="groupSelect" onchange="renderTable()"></select>
-<div id="tableContent"></div>
-</div>
-<div id="tab-fixtures" class="panel" style="display:none">
-<h2>Partidos y resultados</h2>
-<div id="fixtureContent"></div>
-</div>
-<div id="tab-game" class="panel" style="display:none">
-<h2>Partido en vivo</h2>
-<div id="gameWrap">
-<canvas id="game"></canvas>
-<div id="hud">
-<div id="scoreboard"><span id="nameA">LOCAL</span><br><span id="score">0 - 0</span><br><span id="nameB">VISITANTE</span></div>
-<div id="clock">90:00</div>
-</div>
-<div id="notice"></div>
-</div>
-<div id="controls">
-<div id="stick">
-<button class="dir" id="up" data-dir="up">▲</button>
-<button class="dir" id="down" data-dir="down">▼</button>
-<button class="dir" id="left" data-dir="left">◀</button>
-<button class="dir" id="right" data-dir="right">▶</button>
-</div>
-<div class="actions">
-<button class="action secondary" id="passBtn">PASE</button>
-<button class="action" id="shootBtn">⚽<br>TIRO</button>
-</div>
-</div>
-<div id="kickInfo">Flechas o WASD para moverte. PASE para acercar la pelota. TIRO para disparar.</div>
-</div>
-<div id="tab-result" class="panel" style="display:none">
-<h2>🏁 Final del partido</h2>
-<div id="matchResult" style="text-align:center;font-size:22px;padding:12px"></div>
-<p id="resultDescription" class="small"></p>
-<button onclick="continueTournament()" style="width:100%">CONTINUAR TORNEO</button>
+<div class="panel tablewrap">
+<table>
+<thead><tr><th>#</th><th>Equipo</th><th>Pts</th><th>PJ</th><th>DG</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>🟢 Los Verdes</td><td>9</td><td>3</td><td>+6</td></tr>
+<tr><td>2</td><td>🔵 Los Azules</td><td>6</td><td>3</td><td>+2</td></tr>
+<tr><td>3</td><td>🔴 Los Rojos</td><td>3</td><td>3</td><td>-1</td></tr>
+<tr><td>4</td><td>🟡 Los Dorados</td><td>0</td><td>3</td><td>-7</td></tr>
+</tbody>
+</table>
 </div>
 </section>
 
-<section id="end" class="screen">
-<div class="panel">
-<h2>🏆 Mundial terminado</h2>
-<div id="champion"></div>
-<p id="endText" class="small"></p>
-<button onclick="location.reload()" style="width:100%">JUGAR OTRO MUNDIAL</button>
+<section>
+<div class="panel" style="text-align:center">
+<div class="kicker">Tu estadio digital</div>
+<h2>El partido no termina acá.</h2>
+<p>Jugá, practicá y compartí la pasión por el fútbol con BAUTIBOBICHBALL.</p>
+<a class="btn" href="#juegos">Elegir un minijuego ↑</a>
 </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<footer class="footer">
+<div>© 2026 <strong>BAUTIBOBICHBALL</strong> · Hecho con pasión futbolera.</div>
+<div>Minijuegos · Torneos · Partidos · Clasificación</div>
+</footer>
+
 <script>
-const countries=[
-["Argentina","🇦🇷"],["Brasil","🇧🇷"],["Francia","🇫🇷"],["España","🇪🇸"],
-["Inglaterra","🏴"],["Portugal","🇵🇹"],["Alemania","🇩🇪"],["Países Bajos","🇳🇱"],
-["Uruguay","🇺🇾"],["Colombia","🇨🇴"],["México","🇲🇽"],["Estados Unidos","🇺🇸"],
-["Canadá","🇨🇦"],["Japón","🇯🇵"],["Corea del Sur","🇰🇷"],["Marruecos","🇲🇦"],
-["Senegal","🇸🇳"],["Croacia","🇭🇷"],["Bélgica","🇧🇪"],["Suiza","🇨🇭"],
-["Italia","🇮🇹"],["Chile","🇨🇱"],["Ecuador","🇪🇨"],["Paraguay","🇵🇾"],
-["Australia","🇦🇺"],["Arabia Saudita","🇸🇦"],["Irán","🇮🇷"],["Qatar","🇶🇦"],
-["Nigeria","🇳🇬"],["Ghana","🇬🇭"],["Costa de Marfil","🇨🇮"],["Camerún","🇨🇲"],
-["Egipto","🇪🇬"],["Túnez","🇹🇳"],["Sudáfrica","🇿🇦"],["Nueva Zelanda","🇳🇿"],
-["Polonia","🇵🇱"],["Dinamarca","🇩🇰"],["Austria","🇦🇹"],["Turquía","🇹🇷"],
-["Ucrania","🇺🇦"],["Serbia","🇷🇸"],["Grecia","🇬🇷"],["Noruega","🇳🇴"],
-["Suecia","🇸🇪"],["Costa Rica","🇨🇷"],["Panamá","🇵🇦"],["Jamaica","🇯🇲"]
+let shots=0,goals=0,active=false;
+
+function startPens(){
+ shots=goals=0;active=true;
+ document.getElementById('pens').classList.add('show');
+ document.getElementById('goal').textContent='🧤';
+ document.getElementById('pmsg').textContent='Elegí dónde patear.';
+ document.getElementById('pscore').textContent='Goles: 0 · Tiros: 0/5';
+}
+function shoot(side){
+ if(!active||shots>=5)return;
+ shots++;
+ let save=['Izquierda','Centro','Derecha'][Math.floor(Math.random()*3)];
+ let goal=side!==save;
+ if(goal)goals++;
+ document.getElementById('goal').textContent=goal?'🥅':'🧤';
+ document.getElementById('pmsg').textContent=goal?'¡GOOOOL! Elegiste '+side+'.':'¡Atajó el arquero! Elegiste '+side+'.';
+ document.getElementById('pscore').textContent='Goles: '+goals+' · Tiros: '+shots+'/5';
+ if(shots===5){
+  active=false;
+  document.getElementById('pmsg').textContent+=' Resultado final: '+goals+'/5 goles.';
+ }
+}
+
+const qs=[
+ {q:'¿Cuántos jugadores por equipo hay en cancha?',a:['9','10','11','12'],c:2},
+ {q:'¿Qué tarjeta significa expulsión?',a:['Verde','Amarilla','Azul','Roja'],c:3},
+ {q:'¿Cuánto dura un partido reglamentario sin añadido?',a:['60 min','80 min','90 min','100 min'],c:2},
+ {q:'¿Quién puede usar las manos en su propia área?',a:['Cualquier defensor','El arquero','El capitán','El delantero'],c:1},
+ {q:'¿Cuántos puntos da una victoria en la mayoría de las ligas?',a:['1','2','3','5'],c:2}
 ];
-const colors=[0x75d834,0x29a6ff,0xff4e55,0xffcc36,0xeeeeee,0x9b62ff];
-const $=id=>document.getElementById(id);
-const teamSelect=$("teamSelect");
-countries.forEach((c,i)=>{let o=document.createElement("option");o.value=i;o.textContent=c[1]+" "+c[0];teamSelect.appendChild(o)});
-teamSelect.value="0";
-let userTeam=0,difficulty="normal",groups=[],teamData=[],fixtures=[],groupRound=0;
-let phase="group",knockoutRound=0,currentFixture=null,champion=null,gameRunning=false;
-let renderer,scene,camera,fieldGroup,playerA=[],playerB=[],ball;
-let ballVX=0,ballVZ=0,gameScoreA=0,gameScoreB=0,secondsLeft=90;
-let controlled=null,keys={},moveTouch={},kickCooldown=0,goalCooldown=0,noticeTimer=null;
-let lastFrame=0,gameClock=0,animFrame=null,matchResolved=false;
-const GROUP_NAMES=Array.from({length:12},(_,i)=>String.fromCharCode(65+i));
-function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function teamName(i){return countries[i][0]}
-function teamFlag(i){return countries[i][1]}
-function showScreen(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));$(id).classList.add("active")}
-function showTab(tab){["next","table","fixtures","game","result"].forEach(t=>$("tab-"+t).style.display=t===tab?"block":"none");if(tab==="table")renderTable();if(tab==="fixtures")renderFixtures();if(tab==="next")renderNext()}
-function startTournament(){
- if(typeof THREE==="undefined"){alert("No se pudo cargar el motor 3D. Revisá tu conexión a internet y recargá la página.");return}
- userTeam=Number(teamSelect.value);difficulty=$("difficulty").value;
- teamData=countries.map((c,i)=>({id:i,name:c[0],flag:c[1],pj:0,gf:0,gc:0,pts:0,w:0,d:0,l:0}));
- groups=[];fixtures=[];groupRound=0;phase="group";knockoutRound=0;champion=null;
- let ids=shuffle(countries.map((_,i)=>i));
- for(let g=0;g<12;g++){
-  let group={name:GROUP_NAMES[g],teams:ids.slice(g*4,g*4+4),matches:[]};
-  groups.push(group);
-  const t=group.teams;
-  const rounds=[[[t[0],t[1]],[t[2],t[3]]],[[t[0],t[2]],[t[1],t[3]]],[[t[0],t[3]],[t[1],t[2]]]];
-  rounds.forEach((matches,r)=>matches.forEach(pair=>{
-   let f={id:fixtures.length,phase:"group",round:r,group:g,a:pair[0],b:pair[1],played:false,sa:null,sb:null};
-   fixtures.push(f);group.matches.push(f);
-  }));
- }
- $("groupSelect").innerHTML=groups.map(g=>`<option value="${g.name}">Grupo ${g.name}</option>`).join("");
- showScreen("tournament");showTab("next");renderTable();
+let qi=0,pts=0,answered=false;
+
+function startQuiz(){
+ qi=pts=0;
+ document.getElementById('quiz').classList.add('show');
+ renderQ();
 }
-function getUserFixture(){
- if(phase==="group")return fixtures.find(f=>f.phase==="group"&&f.round===groupRound&&!f.played&&(f.a===userTeam||f.b===userTeam));
- return fixtures.find(f=>f.phase==="knockout"&&f.round===knockoutRound&&!f.played&&(f.a===userTeam||f.b===userTeam));
-}
-function renderNext(){
- if(champion!==null){showScreen("end");$("champion").textContent=teamFlag(champion)+" "+teamName(champion);$("endText").textContent=champion===userTeam?"¡Ganaste el Bobich World Cup 2026!":"El campeón fue "+teamName(champion)+". ¡Volvé a intentarlo!";return}
- const f=getUserFixture();
- if(!f){
-  $("roundTitle").textContent="Preparando la siguiente ronda…";
-  $("nextInfo").textContent="No hay un partido pendiente para tu selección en esta fase.";
-  $("playBtn").disabled=true;return;
- }
- $("playBtn").disabled=false;
- $("roundTitle").textContent=phase==="group"?"Fase de grupos · Grupo "+GROUP_NAMES[f.group]:roundName(knockoutRound);
- $("nextInfo").textContent=teamFlag(userTeam)+" "+teamName(userTeam)+" contra "+teamName(f.a===userTeam?f.b:f.a)+". ¡Prepará el partido!";
-}
-function roundName(r){return ["Dieciseisavos de final","Octavos de final","Cuartos de final","Semifinal","Final"][r]||"Eliminatorias"}
-function standings(group){
- return group.teams.map(id=>teamData[id]).slice().sort((a,b)=>b.pts-a.pts||(b.gf-b.gc)-(a.gf-a.gc)||b.gf-a.gf||a.id-b.id)
-}
-function renderTable(){
- const g=groups.find(x=>x.name===$("groupSelect").value)||groups[0];if(!g)return;
- const rows=standings(g);
- $("tableContent").innerHTML=`<table><thead><tr><th>Selección</th><th>PJ</th><th>DG</th><th>PTS</th></tr></thead><tbody>${rows.map(t=>`<tr><td>${t.flag} ${t.name}${t.id===userTeam?" ★":""}</td><td>${t.pj}</td><td>${t.gf-t.gc}</td><td><b>${t.pts}</b></td></tr>`).join("")}</tbody></table><p class="small">★ Tu selección. Clasifican los dos primeros de cada grupo y los ocho mejores terceros.</p>`;
-}
-function renderFixtures(){
- const sorted=fixtures.slice().sort((a,b)=>a.phase===b.phase?a.round-b.round:a.phase==="group"?-1:1);
- $("fixtureContent").innerHTML=sorted.map(f=>`<div class="fixture"><span>${f.phase==="group"?"Grupo "+GROUP_NAMES[f.group]:roundName(f.round)}</span><span>${teamName(f.a)} ${f.played?f.sa+" - "+f.sb:"vs"} ${teamName(f.b)}</span></div>`).join("");
-}
-function recordResult(f,sa,sb){
- if(f.played)return;
- f.played=true;f.sa=sa;f.sb=sb;
- const a=teamData[f.a],b=teamData[f.b];
- a.pj++;b.pj++;a.gf+=sa;a.gc+=sb;b.gf+=sb;b.gc+=sa;
- if(sa>sb){a.pts+=3;a.w++;b.l++}
- else if(sb>sa){b.pts+=3;b.w++;a.l++}
- else{a.pts++;b.pts++;a.d++;b.d++}
-}
-function simulatedScore(a,b){
- let rating=difficulty==="easy"?0.25:difficulty==="hard"?-0.25:0;
- const skillA=Math.random()+rating,skillB=Math.random();
- let sa=Math.random()<0.25+skillA*.24?1:0;
- let sb=Math.random()<0.20+skillB*.24?1:0;
- if(Math.random()<.18)sa++;
- if(Math.random()<.12)sb++;
- return [Math.min(sa,4),Math.min(sb,4)];
-}
-function simulateGroupRound(){
- fixtures.filter(f=>f.phase==="group"&&f.round===groupRound&&!f.played).forEach(f=>{const [a,b]=simulatedScore(f.a,f.b);recordResult(f,a,b)});
-}
-function beginMatch(){
- let f=getUserFixture();if(!f)return;
- currentFixture={...f,originalA:f.a,originalB:f.b};
- // El usuario siempre juega con el equipo A en pantalla.
- if(currentFixture.b===userTeam){[currentFixture.a,currentFixture.b]=[currentFixture.b,currentFixture.a]}
- gameScoreA=0;gameScoreB=0;secondsLeft=90;gameClock=0;matchResolved=false;
- $("nameA").textContent=teamFlag(currentFixture.a)+" "+teamName(currentFixture.a);
- $("nameB").textContent=teamFlag(currentFixture.b)+" "+teamName(currentFixture.b);
- updateScore();$("clock").textContent="90:00";
- $("notice").style.display="none";
- showTab("game");init3D();gameRunning=true;lastFrame=performance.now();
- if(animFrame)cancelAnimationFrame(animFrame);animFrame=requestAnimationFrame(loop);
-}
-function mat(color,rough=.8){return new THREE.MeshStandardMaterial({color,roughness:rough})}
-function addBox(parent,w,h,d,color,x,y,z,material=null){
- const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),material||mat(color));m.position.set(x,y,z);parent.add(m);return m;
-}
-function makePlayer(team,x,z,isKeeper=false){
- const g=new THREE.Group();g.position.set(x,0,z);scene.add(g);
- const jersey=team===0?0x39d66f:0x38a5ff;
- const skin=0xdca477;
- addBox(g,.45,.62,.27,jersey,0,1.05,0);
- addBox(g,.34,.32,.32,skin,0,1.55,0);
- addBox(g,.17,.12,.12,0x171717,0,1.72,0);
- for(let side of [-1,1]){
-  addBox(g,.14,.52,.16,0x20252a,side*.13,.48,0);
-  addBox(g,.22,.12,.28,0xffffff,side*.13,.16,-.06);
- }
- g.userData={team,isKeeper,speed:isKeeper?4:5+Math.random()*1.4,homeX:x,homeZ:z,phase:Math.random()*6};
- return g;
-}
-function init3D(){
- const canvas=$("game");
- if(renderer){renderer.dispose();renderer=null}
- renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false});
- renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.7));
- renderer.setClearColor(0x142c1b);
- scene=new THREE.Scene();scene.background=new THREE.Color(0x142c1b);
- scene.fog=new THREE.Fog(0x142c1b,42,100);
- camera=new THREE.PerspectiveCamera(48,1,.1,180);
- camera.position.set(0,26,35);camera.lookAt(0,0,0);
- scene.add(new THREE.HemisphereLight(0xffffff,0x355333,2));
- let light=new THREE.DirectionalLight(0xffffff,2.1);light.position.set(-10,25,12);scene.add(light);
- // Estadio y cancha
- addBox(scene,112,.8,72,0x17221a,0,-.65,0);
- addBox(scene,100,.1,60,0x137c35,0,-.18,0);
- for(let i=0;i<10;i++)addBox(scene,10,.015,60,i%2?0x16813a:0x147735,-45+i*10,-.12,0);
- const lineMat=new THREE.MeshBasicMaterial({color:0xffffff});
- function line(w,d,x,z){let m=new THREE.Mesh(new THREE.BoxGeometry(w,.025,d),lineMat);m.position.set(x,-.055,z);scene.add(m)}
- line(100,.14,0,-29.5);line(100,.14,0,29.5);line(.14,59, -49.5,0);line(.14,59,49.5,0);line(.14,59,0,0);
- let circle=new THREE.Mesh(new THREE.RingGeometry(8.7,8.85,64),lineMat);circle.rotation.x=-Math.PI/2;circle.position.y=-.045;scene.add(circle);
- addBox(scene,1,.03,18,0xffffff,-42,-.05,0);addBox(scene,1,.03,18,0xffffff,42,-.05,0);
- // Porterías
- for(const x of [-51,51]){
-  for(const z of [-7,7])addBox(scene,.35,4,.35,0xffffff,x,1.9,z);
-  addBox(scene,.35,.35,14,0xffffff,x,3.7,0);
-  addBox(scene,3.5,3,.2,0xcbd7d1,x+(x<0?-1.4:1.4),1.5,0);
- }
- playerA=[];playerB=[];
- const formation=[[-29,0],[-20,-14],[-20,14],[-9,-7],[-9,7],[-3,0]];
- const formationB=[[29,0],[20,-14],[20,14],[9,-7],[9,7],[3,0]];
- formation.forEach((p,i)=>playerA.push(makePlayer(0,p[0],p[1],i===0)));
- formationB.forEach((p,i)=>playerB.push(makePlayer(1,p[0],p[1],i===0)));
- controlled=playerA[5];
- ball=new THREE.Mesh(new THREE.SphereGeometry(.48,16,12),mat(0xffffff,.45));
- ball.position.set(0,.5,0);scene.add(ball);
- // detalles de público simplificados
- for(let i=0;i<160;i++){
-  const ang=Math.random()*Math.PI*2,r=34+Math.random()*7;
-  const m=new THREE.Mesh(new THREE.BoxGeometry(.5,.8,.5),mat([0xe9e9e9,0xffd337,0x42b6ff,0xf24b55][i%4]));
-  m.position.set(Math.cos(ang)*r,.3,Math.sin(ang)*r);scene.add(m);
- }
- resizeRenderer();
-}
-function resizeRenderer(){
- if(!renderer||!camera)return;
- const w=$("gameWrap").clientWidth,h=$("gameWrap").clientHeight;
- renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();
-}
-window.addEventListener("resize",resizeRenderer);
-function updateScore(){$("score").textContent=gameScoreA+" - "+gameScoreB}
-function showNotice(msg){
- $("notice").textContent=msg;$("notice").style.display="block";
- clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>{$("notice").style.display="none"},1500);
-}
-function resetBall(scoredTeam){
- ball.position.set(scoredTeam===0?-3:3,.5,0);ballVX=0;ballVZ=0;
- playerA.forEach((p,i)=>{p.position.x=p.userData.homeX;p.position.z=p.userData.homeZ});
- playerB.forEach((p,i)=>{p.position.x=p.userData.homeX;p.position.z=p.userData.homeZ});
-}
-function goal(team){
- if(goalCooldown>0||!gameRunning)return;
- goalCooldown=1.8;
- if(team===0)gameScoreA++;else gameScoreB++;
- updateScore();showNotice("⚽ GOOOOOL · "+teamName(team===0?currentFixture.a:currentFixture.b));
- resetBall(team);
-}
-function loop(now){
- if(!gameRunning)return;
- const dt=Math.min((now-lastFrame)/1000,.04);lastFrame=now;
- gameClock+=dt;secondsLeft-=dt*1.5;
- kickCooldown=Math.max(0,kickCooldown-dt);goalCooldown=Math.max(0,goalCooldown-dt);
- if(secondsLeft<=0){secondsLeft=0;finishMatch();return}
- $("clock").textContent=Math.floor(secondsLeft)+":00";
- updateGame(dt);
- renderer.render(scene,camera);
- animFrame=requestAnimationFrame(loop);
-}
-function updateGame(dt){
- let dx=0,dz=0;
- if(keys.ArrowUp||keys.w||moveTouch.up)dz-=1;
- if(keys.ArrowDown||keys.s||moveTouch.down)dz+=1;
- if(keys.ArrowLeft||keys.a||moveTouch.left)dx-=1;
- if(keys.ArrowRight||keys.d||moveTouch.right)dx+=1;
- const len=Math.hypot(dx,dz)||1;
- controlled.position.x=THREE.MathUtils.clamp(controlled.position.x+dx/len*controlled.userData.speed*dt,-46,46);
- controlled.position.z=THREE.MathUtils.clamp(controlled.position.z+dz/len*controlled.userData.speed*dt,-26,26);
- // El equipo rival presiona la pelota; los compañeros se mueven y buscan espacios.
- [...playerA.slice(0,-1),...playerB.slice(0,-1)].forEach(p=>{
-  const team=p.userData.team;
-  const tx=ball.position.x+(team===0?-4:4);
-  const tz=ball.position.z+(p.userData.homeZ>0?3:-3);
-  p.position.x+=THREE.MathUtils.clamp(tx-p.position.x,-p.userData.speed*dt,p.userData.speed*dt);
-  p.position.z+=THREE.MathUtils.clamp(tz-p.position.z,-p.userData.speed*dt,p.userData.speed*dt);
-  p.position.x=THREE.MathUtils.clamp(p.position.x,-47,47);
-  p.position.z=THREE.MathUtils.clamp(p.position.z,-27,27);
- });
- // La pelota se desplaza con fricción y rebota en las bandas.
- ball.position.x+=ballVX*dt;ball.position.z+=ballVZ*dt;
- ballVX*=Math.pow(.985,dt*60);ballVZ*=Math.pow(.985,dt*60);
- if(Math.abs(ball.position.z)>28){ball.position.z=Math.sign(ball.position.z)*28;ballVZ*=-.65}
- if(ball.position.x>49&&Math.abs(ball.position.z)<7.2)goal(0);
- if(ball.position.x< -49&&Math.abs(ball.position.z)<7.2)goal(1);
- if(ball.position.x>50||ball.position.x< -50){ball.position.x=Math.sign(ball.position.x)*49;ballVX*=-.5}
- // La pelota queda cerca del jugador cuando éste se aproxima.
- const dist=Math.hypot(controlled.position.x-ball.position.x,controlled.position.z-ball.position.z);
- if(dist<1.7&&Math.hypot(ballVX,ballVZ)<5){
-  ball.position.x+=(controlled.position.x-ball.position.x)*.045;
-  ball.position.z+=(controlled.position.z-ball.position.z)*.045;
- }
- ball.position.y=.48+Math.abs(Math.sin(gameClock*9))*Math.min(.18,Math.hypot(ballVX,ballVZ)*.025);
- // Cámara sigue la pelota sin perder la cancha.
- camera.position.x+=(ball.position.x*.22-camera.position.x)*dt*.6;
- camera.position.z+=(ball.position.z*.3+32-camera.position.z)*dt*.6;
- camera.lookAt(ball.position.x*.25,0,0);
-}
-function shoot(){
- if(!gameRunning||kickCooldown>0)return;
- const dist=Math.hypot(controlled.position.x-ball.position.x,controlled.position.z-ball.position.z);
- if(dist>9){showNotice("Acercate a la pelota para tirar");return}
- const direction=controlled.position.x<0?1:1;
- const targetX=direction>0?51:-51;
- let vx=(targetX-ball.position.x)*.65;
- let vz=(Math.random()-.5)*5+(ball.position.z*.03);
- if(Math.abs(ball.position.x)>38)vz+=(Math.random()-.5)*8;
- ballVX=THREE.MathUtils.clamp(vx,18,39);ballVZ=vz;
- if(controlled.position.x>ball.position.x)ballVX=-Math.abs(ballVX);
- kickCooldown=.65;
-}
-function passBall(){
- if(!gameRunning||kickCooldown>0)return;
- const dist=Math.hypot(controlled.position.x-ball.position.x,controlled.position.z-ball.position.z);
- if(dist>10){showNotice("Acercate a la pelota para pasar");return}
- const teammates=playerA.filter(p=>p!==controlled).sort((a,b)=>Math.hypot(a.position.x-ball.position.x,a.position.z-ball.position.z)-Math.hypot(b.position.x-ball.position.x,b.position.z-ball.position.z));
- let target=teammates[0];
- const tx=target?target.position.x:controlled.position.x+8;
- const tz=target?target.position.z:controlled.position.z;
- const dx=tx-ball.position.x,dz=tz-ball.position.z,l=Math.hypot(dx,dz)||1;
- ballVX=dx/l*17;ballVZ=dz/l*17;kickCooldown=.5;
-}
-function finishMatch(){
- if(matchResolved)return;
- gameRunning=false;matchResolved=true;
- if(animFrame)cancelAnimationFrame(animFrame);
- const f=fixtures.find(x=>x.id===currentFixture.id);
- let sa=gameScoreA,sb=gameScoreB;
- // Los partidos eliminatorios no pueden terminar empatados.
- if(f.phase==="knockout"&&sa===sb){if(Math.random()<.5)sa++;else sb++}
- // El marcador de juego está orientado para que el usuario sea el equipo A.
- const originalSa=currentFixture.originalA===userTeam?sa:sb;
- const originalSb=currentFixture.originalA===userTeam?sb:sa;
- recordResult(f,originalSa,originalSb);
- if(f.phase==="knockout"){
-  f.winner=originalSa>originalSb?f.a:f.b;
-  f.loser=f.winner===f.a?f.b:f.a;
- }
- $("matchResult").textContent=teamFlag(userTeam)+" "+teamName(userTeam)+" "+(userTeam===f.a?originalSa:originalSb)+" - "+(userTeam===f.a?originalSb:originalSa)+" "+teamFlag(f.a===userTeam?f.b:f.a);
- $("resultDescription").textContent=f.phase==="group"?"El resultado quedó registrado en la tabla del grupo.":"Resultado registrado en la fase eliminatoria.";
- showTab("result");renderTable();renderFixtures();
-}
-function simulateRemainingGroup(){
- fixtures.filter(f=>f.phase==="group"&&f.round===groupRound&&!f.played).forEach(f=>{
-  const [a,b]=simulatedScore(f.a,f.b);recordResult(f,a,b);
+function renderQ(){
+ answered=false;
+ let q=qs[qi];
+ document.getElementById('qcount').textContent='PREGUNTA '+(qi+1)+' DE '+qs.length+' · PUNTOS: '+pts;
+ document.getElementById('question').textContent=q.q;
+ document.getElementById('qmsg').textContent='';
+ document.getElementById('next').style.display='none';
+ document.getElementById('next').onclick=nextQ;
+ let el=document.getElementById('answers');
+ el.innerHTML='';
+ q.a.forEach((a,i)=>{
+  let b=document.createElement('button');
+  b.className='answer';b.textContent=a;
+  b.onclick=()=>answerQ(i);
+  el.appendChild(b);
  });
 }
-function qualifyForKnockouts(){
- const topTwo=[],thirds=[];
- groups.forEach(g=>{let s=standings(g);topTwo.push(s[0].id,s[1].id);thirds.push(s[2])});
- thirds.sort((a,b)=>b.pts-a.pts||(b.gf-b.gc)-(a.gf-a.gc)||b.gf-a.gf);
- const qualifiers=shuffle(topTwo.concat(thirds.slice(0,8).map(t=>t.id)));
- fixtures.push(...Array.from({length:16},(_,i)=>({id:fixtures.length+i,phase:"knockout",round:0,a:qualifiers[i*2],b:qualifiers[i*2+1],played:false,sa:null,sb:null})));
- phase="knockout";knockoutRound=0;
-}
-function simulateKnockoutRound(){
- const round=fixtures.filter(f=>f.phase==="knockout"&&f.round===knockoutRound);
- round.forEach(f=>{
-  if(!f.played){
-   let [a,b]=simulatedScore(f.a,f.b);
-   if(a===b){if(Math.random()<.5)a++;else b++}
-   recordResult(f,a,b);f.winner=a>b?f.a:f.b;f.loser=f.winner===f.a?f.b:f.a;
-  }
+function answerQ(i){
+ if(answered)return;
+ answered=true;
+ let q=qs[qi];
+ document.querySelectorAll('#answers button').forEach((b,j)=>{
+  b.disabled=true;
+  if(j===q.c)b.style.borderColor='#caff38';
  });
- const winners=round.map(f=>f.winner).filter(x=>x!==undefined);
- if(winners.length===1){champion=winners[0];return}
- if(winners.length===0)return;
- const nextRound=knockoutRound+1;
- for(let i=0;i<winners.length;i+=2){
-  fixtures.push({id:fixtures.length,phase:"knockout",round:nextRound,a:winners[i],b:winners[i+1],played:false,sa:null,sb:null});
- }
- knockoutRound=nextRound;
-}
-function continueTournament(){
- if(phase==="group"){
-  simulateRemainingGroup();
-  groupRound++;
-  if(groupRound>=3){
-   qualifyForKnockouts();
-   showNotice("¡Fase de grupos terminada!");
-  }
+ if(i===q.c){
+  pts+=10;
+  document.getElementById('qmsg').textContent='¡Correcto! +10 puntos.';
  }else{
-  simulateKnockoutRound();
+  document.getElementById('qmsg').textContent='La respuesta correcta es '+q.a[q.c]+'.';
  }
- if(champion!==null){renderNext();return}
- showTab("next");renderNext();renderTable();renderFixtures();
+ document.getElementById('qcount').textContent='PREGUNTA '+(qi+1)+' DE '+qs.length+' · PUNTOS: '+pts;
+ document.getElementById('next').style.display='inline-block';
+ document.getElementById('next').textContent=qi===qs.length-1?'Ver resultado →':'Siguiente →';
 }
-function renderTabRefresh(){renderNext();renderTable();renderFixtures()}
-function keyDown(e){let k=e.key.length===1?e.key.toLowerCase():e.key;keys[k]=true;if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"," "].includes(e.key))e.preventDefault()}
-function keyUp(e){let k=e.key.length===1?e.key.toLowerCase():e.key;keys[k]=false}
-window.addEventListener("keydown",keyDown,{passive:false});window.addEventListener("keyup",keyUp);
-document.querySelectorAll(".dir").forEach(btn=>{
- const d=btn.dataset.dir;
- const on=e=>{e.preventDefault();moveTouch[d]=true};
- const off=e=>{e.preventDefault();moveTouch[d]=false};
- btn.addEventListener("pointerdown",on);btn.addEventListener("pointerup",off);
- btn.addEventListener("pointercancel",off);btn.addEventListener("pointerleave",off);
-});
-$("shootBtn").addEventListener("pointerdown",e=>{e.preventDefault();shoot()});
-$("passBtn").addEventListener("pointerdown",e=>{e.preventDefault();passBall()});
+function nextQ(){
+ if(qi<qs.length-1){qi++;renderQ()}
+ else{
+  document.getElementById('question').textContent='¡Trivia terminada!';
+  document.getElementById('answers').innerHTML='';
+  document.getElementById('qmsg').textContent='Puntuación final: '+pts+' de 50 puntos.';
+  document.getElementById('next').textContent='Volver a jugar ↻';
+  document.getElementById('next').onclick=startQuiz;
+ }
+}
+
+let mode='idle',start=0,timer;
+function reflexStart(){
+ let s=document.getElementById('rmsg'),b=document.getElementById('rbtn');
+ if(mode==='wait'){
+  clearTimeout(timer);mode='early';
+  s.textContent='¡Te adelantaste! Intentá otra vez.';
+  b.textContent='Intentar otra vez';b.style.background='';
+  return;
+ }
+ mode='wait';s.textContent='Esperá a que aparezca ¡AHORA!';
+ b.textContent='Esperando…';b.style.background='#a43b3b';
+ timer=setTimeout(()=>{
+  if(mode!=='wait')return;
+  mode='go';start=performance.now();
+  s.textContent='¡AHORA! ¡TOCÁ YA!';
+  b.textContent='¡AHORA!';b.style.background='#caff38';
+ },1200+Math.random()*2400);
+}
+function reflexTap(){
+ let s=document.getElementById('rmsg'),b=document.getElementById('rbtn');
+ if(mode==='idle'||mode==='early'||mode==='done'){reflexStart();return}
+ if(mode==='wait'){
+  clearTimeout(timer);mode='early';
+  s.textContent='¡Muy pronto! Esperá la señal.';
+  b.textContent='Intentar otra vez';b.style.background='';
+  return;
+ }
+ if(mode==='go'){
+  let ms=Math.round(performance.now()-start);
+  mode='done';
+  s.textContent='Tu tiempo: '+ms+' ms. '+(ms<250?'¡Reflejos rapidísimos!':'¡Buen intento, probá otra vez.');
+  b.textContent='Jugar otra vez';b.style.background='';
+ }
+}
 </script>
 </body>
 </html>
