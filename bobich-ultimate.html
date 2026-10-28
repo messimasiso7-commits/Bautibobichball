@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07120e">
+<title>BOBICH ULTIMATE | BAUTIBOBICHBALL</title>
+<style>
+:root{--bg:#06100c;--panel:#101e17;--panel2:#17291f;--green:#65ff91;--lime:#b9ff61;--muted:#a8b9ad;--gold:#ffd66b;--line:#294334}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#173c28 0,#07120d 48%,#040806 100%);color:#f3fff6;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+button,input,select{font:inherit}
+button{cursor:pointer;touch-action:manipulation}
+header{padding:22px 16px 18px;text-align:center;background:linear-gradient(130deg,#102b1d,#07100b);border-bottom:1px solid var(--line)}
+.logo{font-weight:1000;font-size:clamp(25px,6vw,44px);letter-spacing:-1.5px}
+.logo span{color:var(--green)}
+header p{color:var(--muted);margin:7px 0 0}
+.wrap{max-width:1100px;margin:auto;padding:15px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:10px 0 16px}
+.stat,.panel{background:linear-gradient(145deg,#14251b,#0c1711);border:1px solid var(--line);border-radius:16px}
+.stat{padding:12px 8px;text-align:center}
+.stat strong{display:block;font-size:22px;color:var(--green)}
+.stat span{font-size:12px;color:var(--muted)}
+nav{display:flex;gap:8px;overflow-x:auto;padding:4px 0 13px;scrollbar-width:thin}
+nav button{flex:0 0 auto;border:1px solid var(--line);background:#102017;color:#eaffef;padding:10px 13px;border-radius:12px;font-weight:800}
+nav button.active,nav button:hover{background:var(--green);color:#06100b;border-color:var(--green)}
+.panel{padding:16px;margin:0 0 14px}
+h2{font-size:22px;margin:0 0 5px}
+h3{font-size:16px;margin:0 0 8px}
+.sub{color:var(--muted);font-size:13px;margin:0 0 15px}
+.page{display:none}.page.active{display:block}
+.btn{border:0;border-radius:11px;padding:11px 14px;background:var(--green);color:#06100b;font-weight:900}
+.btn.secondary{background:#203a2a;color:#edfff1;border:1px solid #355c41}
+.btn.gold{background:var(--gold);color:#211800}
+.btn.danger{background:#482323;color:#ffe4e4;border:1px solid #754343}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
+.card{position:relative;min-width:0;overflow:hidden;border-radius:15px;padding:11px 9px;text-align:center;background:linear-gradient(160deg,#214832,#0c1b12);border:1px solid #426d4c}
+.card .rating{font-size:28px;font-weight:1000;color:var(--gold);line-height:1.1}
+.card .emoji{font-size:37px;margin:5px 0}
+.card .name{font-weight:900;font-size:14px}
+.card .meta{font-size:11px;color:#c6dacb;margin:4px 0}
+.card .rarity{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--lime);font-weight:900}
+.card button{width:100%;margin-top:8px;font-size:12px;padding:8px}
+.raro{border-color:#8a78ff;background:linear-gradient(160deg,#35235d,#11101f)}
+.epico{border-color:#ff82de;background:linear-gradient(160deg,#61234d,#1d101d)}
+.legendario{border-color:#ffd66b;background:linear-gradient(160deg,#61481b,#1e170b)}
+.comun{border-color:#53735c}
+.field{background:repeating-linear-gradient(0deg,#14532d 0,#14532d 38px,#176335 39px,#176335 76px);border:2px solid #65bd78;border-radius:16px;padding:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:15px;min-height:310px}
+.slot{border:1px dashed #c6ffd1a6;border-radius:12px;min-height:83px;display:flex;align-items:center;justify-content:center;text-align:center;padding:5px;font-size:12px;background:#082b1680}
+.slot button{display:block;background:#e6ffe9;color:#0b2815;border:0;border-radius:7px;padding:5px;font-size:11px;margin:4px auto 0}
+.slot.filled{background:#c4ffd9;color:#10321b;border-style:solid;font-weight:900}
+.formrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.formrow label{display:grid;gap:5px;color:var(--muted);font-size:12px;flex:1;min-width:130px}
+input,select{width:100%;padding:10px;border:1px solid #355440;background:#07130c;color:white;border-radius:10px}
+.packarea{display:grid;place-items:center;min-height:220px;border:1px dashed #426b4c;border-radius:15px;background:radial-gradient(ellipse,#23472c,#0a150e)}
+.pack{width:125px;height:175px;border-radius:15px;border:3px solid var(--gold);background:linear-gradient(145deg,#f9d977,#a65a14 45%,#291608);display:grid;place-items:center;text-align:center;color:#201400;font-weight:1000;font-size:20px;box-shadow:0 0 30px #ffd66b35;transform:rotate(-5deg)}
+.pack.opening{animation:openpack .75s ease-in-out}
+@keyframes openpack{0%{transform:rotate(-5deg) scale(1)}45%{transform:rotate(8deg) scale(1.15);filter:brightness(1.8)}100%{transform:rotate(0) scale(.95)}}
+.shirtwrap{display:grid;place-items:center;background:#0a170e;border-radius:14px;padding:18px}
+#shirtSvg{width:min(100%,280px);height:auto}
+.badge{display:inline-block;padding:5px 9px;border-radius:20px;background:#1b3824;color:var(--lime);font-size:11px;font-weight:900}
+.progress{height:10px;background:#27372c;border-radius:20px;overflow:hidden;margin:9px 0}
+.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--lime));transition:width .3s}
+.list{display:grid;gap:9px}
+.rowitem{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:11px;background:#0b1710;border:1px solid var(--line);border-radius:12px}
+.rowitem small{color:var(--muted);display:block}
+.notice{padding:11px;border-radius:11px;background:#142b1b;color:#d9ffe0;font-size:13px;margin-top:10px}
+footer{text-align:center;color:#779080;font-size:12px;padding:25px 12px}
+@media(min-width:720px){.wrap{padding:22px}.panel{padding:20px}.field{min-height:370px;gap:22px}.slot{min-height:90px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">BOBICH <span>ULTIMATE</span></div>
+  <p>Tu equipo. Tus cromos. Tu historia.</p>
+</header>
+
+<main class="wrap">
+  <div class="stats">
+    <div class="stat"><strong id="coins">500</strong><span>MONEDAS</span></div>
+    <div class="stat"><strong id="xp">0</strong><span>EXPERIENCIA XP</span></div>
+    <div class="stat"><strong id="owned">0</strong><span>CROMOS</span></div>
+  </div>
+
+  <nav id="nav">
+    <button class="active" data-page="team">⚽ Ultimate Team</button>
+    <button data-page="packs">🎁 Sobres</button>
+    <button data-page="career">🏆 Carrera</button>
+    <button data-page="album">📚 Álbum</button>
+    <button data-page="shirts">👕 Camisetas</button>
+    <button data-page="profile">⭐ Perfil</button>
+  </nav>
+
+  <section class="page active" id="team">
+    <div class="panel">
+      <h2>⚽ Ultimate Team</h2>
+      <p class="sub">Armá tu once ideal usando los cromos que conseguiste.</p>
+      <div class="formrow">
+        <label>Formación
+          <select id="formation">
+            <option value="4-3-3">4-3-3</option>
+            <option value="4-4-2">4-4-2</option>
+            <option value="3-5-2">3-5-2</option>
+          </select>
+        </label>
+        <label>Nombre del equipo
+          <input id="teamName" maxlength="24" placeholder="Mis Galácticos">
+        </label>
+      </div>
+      <div class="actions">
+        <button class="btn" onclick="autoTeam()">✨ Armar equipo</button>
+        <button class="btn secondary" onclick="clearTeam()">Vaciar equipo</button>
+      </div>
+      <h3 style="margin-top:18px">Tu cancha</h3>
+      <div class="field" id="field"></div>
+      <div class="rowitem" style="margin-top:10px">
+        <div><strong>Valoración del equipo</strong><small>Basada en los cromos colocados</small></div>
+        <strong id="teamRating">0 ⭐</strong>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>Tu colección para elegir</h3>
+      <p class="sub">Tocá “Agregar” en un cromo para colocarlo en el próximo espacio libre.</p>
+      <div class="grid" id="teamCards"></div>
+    </div>
+  </section>
+
+  <section class="page" id="packs">
+    <div class="panel">
+      <h2>🎁 Sobres animados</h2>
+      <p class="sub">Abrí sobres virtuales para descubrir cromos. Cada sobre cuesta monedas ficticias.</p>
+      <div class="packarea">
+        <div id="pack" class="pack">BOBICH<br>PACK<br>★</div>
+      </div>
+      <div class="actions" style="justify-content:center">
+        <button class="btn gold" onclick="openPack('normal')">Sobre clásico · 100 🪙</button>
+        <button class="btn" onclick="openPack('premium')">Sobre premium · 250 🪙</button>
+      </div>
+      <div id="packResult" class="notice" aria-live="polite">Tu próximo cromo te está esperando.</div>
+    </div>
+    <div class="panel">
+      <h3>Últimos cromos descubiertos</h3>
+      <div id="recentCards" class="grid"></div>
+    </div>
+  </section>
+
+  <section class="page" id="career">
+    <div class="panel">
+      <h2>🏆 Modo carrera</h2>
+      <p class="sub">Elegí un club, conseguí jugadores y avanzá por temporadas simuladas.</p>
+      <div class="formrow">
+        <label>Nombre de tu entrenador
+          <input id="coachName" maxlength="24" placeholder="Entrenador Bobich">
+        </label>
+        <label>Club actual
+          <select id="clubSelect">
+            <option>Bobich FC</option><option>Atlético Verde</option>
+            <option>Estrellas del Sur</option><option>Deportivo Mundial</option>
+          </select>
+        </label>
+      </div>
+      <div class="rowitem" style="margin-top:12px">
+        <div><strong id="careerClub">Bobich FC</strong><small>Temporada <span id="season">1</span></small></div>
+        <span class="badge" id="record">0 V · 0 E · 0 D</span>
+      </div>
+      <div class="actions">
+        <button class="btn" onclick="playSeasonMatch()">▶ Simular partido</button>
+        <button class="btn gold" onclick="finishSeason()">🏁 Finalizar temporada</button>
+      </div>
+      <div id="careerResult" class="notice">¡Tu carrera empieza ahora!</div>
+    </div>
+    <div class="panel">
+      <h3>Mercado de fichajes</h3>
+      <p class="sub">Los precios y los clubes son ficticios dentro del juego.</p>
+      <div class="list" id="market"></div>
+    </div>
+    <div class="panel">
+      <h3>Plantel del club</h3>
+      <div id="careerSquad" class="list"></div>
+    </div>
+  </section>
+
+  <section class="page" id="album">
+    <div class="panel">
+      <h2>📚 Álbum avanzado</h2>
+      <p class="sub">Completá la colección, conseguí rarezas y reclamá recompensas.</p>
+      <div class="rowitem"><strong>Progreso del álbum</strong><strong id="albumCount">0/18</strong></div>
+      <div class="progress"><div id="albumProgress"></div></div>
+      <div class="rowitem"><div><strong>Recompensa de colección</strong><small>Completá 6 cromos diferentes</small></div><button id="albumReward" class="btn gold" onclick="claimAlbumReward()">Reclamar 200 🪙</button></div>
+      <div id="albumMessage" class="notice">Cada cromo nuevo suma al progreso. Los duplicados no cuentan como nuevos.</div>
+    </div>
+    <div class="panel">
+      <h3>Todos los cromos del álbum</h3>
+      <div class="grid" id="albumGrid"></div>
+    </div>
+  </section>
+
+  <section class="page" id="shirts">
+    <div class="panel">
+      <h2>👕 Creador de camisetas</h2>
+      <p class="sub">Diseñá una equipación personalizada para tu club.</p>
+      <div class="shirtwrap">
+        <svg id="shirtSvg" viewBox="0 0 240 250" role="img" aria-label="Vista previa de la camiseta">
+          <path id="shirtBody" d="M75 35 L98 22 Q120 42 142 22 L165 35 L218 70 L193 108 L168 91 L168 226 L72 226 L72 91 L47 108 L22 70 Z" fill="#20b85a" stroke="#dffff0" stroke-width="4" stroke-linejoin="round"/>
+          <path id="shirtStripe" d="M98 31 L110 29 L110 225 L98 225 Z M130 29 L142 31 L142 225 L130 225 Z" fill="#ffffff"/>
+          <path d="M98 23 Q120 52 142 23" fill="none" stroke="#eaffef" stroke-width="5"/>
+          <text id="shirtNumber" x="120" y="147" text-anchor="middle" font-size="42" font-weight="900" fill="#06100b">10</text>
+          <text id="shirtText" x="120" y="175" text-anchor="middle" font-size="11" font-weight="900" fill="#06100b">BOBICH FC</text>
+        </svg>
+      </div>
+      <div class="formrow" style="margin-top:15px">
+        <label>Nombre del club<input id="shirtClub" maxlength="14" value="BOBICH FC" oninput="updateShirt()"></label>
+        <label>Número<input id="shirtNum" type="number" min="1" max="99" value="10" oninput="updateShirt()"></label>
+      </div>
+      <div class="formrow" style="margin-top:10px">
+        <label>Color principal<input id="shirtColor" type="color" value="#20b85a" oninput="updateShirt()"></label>
+        <label>Color de franjas<input id="stripeColor" type="color" value="#ffffff" oninput="updateShirt()"></label>
+      </div>
+      <div class="formrow" style="margin-top:10px">
+        <label>Estilo
+          <select id="shirtStyle" onchange="updateShirt()">
+            <option value="stripes">Franjas</option><option value="plain">Lisa</option><option value="middle">Franja central</option>
+          </select>
+        </label>
+      </div>
+      <div class="actions">
+        <button class="btn" onclick="saveShirt()">💾 Guardar equipación</button>
+        <button class="btn secondary" onclick="resetShirt()">Restablecer</button>
+      </div>
+      <div id="shirtMessage" class="notice">La vista previa cambia mientras diseñás.</div>
+    </div>
+    <div class="panel">
+      <h3>Tus diseños guardados</h3>
+      <div class="list" id="savedShirts"></div>
+    </div>
+  </section>
+
+  <section class="page" id="profile">
+    <div class="panel">
+      <h2>⭐ Perfil y logros</h2>
+      <p class="sub">Tu progreso se guarda en este dispositivo.</p>
+      <label>Nombre de jugador
+        <input id="playerName" maxlength="24" placeholder="Jugador Bobich">
+      </label>
+      <div class="actions">
+        <button class="btn" onclick="saveProfile()">Guardar perfil</button>
+        <button class="btn secondary" onclick="exportSave()">Exportar progreso</button>
+        <button class="btn secondary" onclick="importSave()">Importar progreso</button>
+      </div>
+      <div class="rowitem" style="margin-top:14px"><div><strong id="profileName">Jugador Bobich</strong><small>Nivel de jugador</small></div><strong id="level">Nivel 1</strong></div>
+      <div class="progress"><div id="xpProgress"></div></div>
+      <p class="sub" id="xpLabel">0 XP para el siguiente nivel</p>
+    </div>
+    <div class="panel">
+      <h3>📊 Tus récords</h3>
+      <div class="grid">
+        <div class="stat"><strong id="statPacks">0</strong><span>SOBRES ABIERTOS</span></div>
+        <div class="stat"><strong id="statMatches">0</strong><span>PARTIDOS</span></div>
+        <div class="stat"><strong id="statWins">0</strong><span>VICTORIAS</span></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>🏅 Insignias y logros</h3>
+      <div class="list" id="achievements"></div>
+    </div>
+    <div class="panel">
+      <h3>⚙️ Datos del juego</h3>
+      <p class="sub">El progreso se almacena en el navegador. Borrar los datos del navegador puede borrarlo también.</p>
+      <button class="btn danger" onclick="resetAll()">Reiniciar todo el progreso</button>
+    </div>
+  </section>
+</main>
+<footer>BOBICH ULTIMATE · Un proyecto de BAUTIBOBICHBALL<br>Juego de aficionados. Cromos, monedas y fichajes ficticios.</footer>
+
+<script>
+"use strict";
+const CATALOG = [
+ {id:1,name:"Leo Rayo",pos:"DEL",rating:91,rarity:"legendario",emoji:"🐐"},
+ {id:2,name:"Cristal Ronaldo",pos:"DEL",rating:90,rarity:"legendario",emoji:"🚀"},
+ {id:3,name:"Kylian Veloz",pos:"DEL",rating:89,rarity:"epico",emoji:"⚡"},
+ {id:4,name:"Nico Muro",pos:"DEF",rating:86,rarity:"raro",emoji:"🧱"},
+ {id:5,name:"Mateo Mago",pos:"MED",rating:87,rarity:"epico",emoji:"🎩"},
+ {id:6,name:"Dibu Ataja",pos:"POR",rating:88,rarity:"epico",emoji:"🧤"},
+ {id:7,name:"Luka Cerebro",pos:"MED",rating:85,rarity:"raro",emoji:"🧠"},
+ {id:8,name:"Ney Rápido",pos:"DEL",rating:86,rarity:"raro",emoji:"🌟"},
+ {id:9,name:"Erling Tanque",pos:"DEL",rating:88,rarity:"epico",emoji:"💪"},
+ {id:10,name:"Virgil Muro",pos:"DEF",rating:85,rarity:"raro",emoji:"🛡️"},
+ {id:11,name:"Kevin Pase",pos:"MED",rating:87,rarity:"epico",emoji:"🎯"},
+ {id:12,name:"Iker Reflejo",pos:"POR",rating:82,rarity:"raro",emoji:"🧤"},
+ {id:13,name:"Fede Motor",pos:"MED",rating:84,rarity:"raro",emoji:"🔋"},
+ {id:14,name:"Ángel Veloz",pos:"DEL",rating:80,rarity:"comun",emoji:"💨"},
+ {id:15,name:"Pablo Pase",pos:"MED",rating:78,rarity:"comun",emoji:"🎮"},
+ {id:16,name:"Tomi Defensa",pos:"DEF",rating:77,rarity:"comun",emoji:"🧱"},
+ {id:17,name:"Santi Gol",pos:"DEL",rating:76,rarity:"comun",emoji:"⚽"},
+ {id:18,name:"Fran Portero",pos:"POR",rating:75,rarity:"comun",emoji:"🧤"}
+];
+const MARKET = [
+ {id:101,name:"Delantero Estrella",pos:"DEL",rating:87,price:350,emoji:"⚡"},
+ {id:102,name:"Mediocampista Pro",pos:"MED",rating:84,price:250,emoji:"🎯"},
+ {id:103,name:"Defensor de Hierro",pos:"DEF",rating:83,price:220,emoji:"🛡️"},
+ {id:104,name:"Arquero Muro",pos:"POR",rating:85,price:300,emoji:"🧤"}
+];
+const DEFAULT = {
+ coins:500,xp:0,collection:[],team:[],teamName:"Mis Galácticos",
+ packs:0,matches:0,wins:0,draws:0,losses:0,season:1,careerClub:"Bobich FC",
+ coachName:"",playerName:"",albumReward:false,careerSquad:[],
+ shirts:[],shirt:{club:"BOBICH FC",num:10,color:"#20b85a",stripe:"#ffffff",style:"stripes"},
+ recent:[],careerResult:"¡Tu carrera empieza ahora!"
+};
+let state = loadState();
+function loadState(){
+ try{
+  const saved=JSON.parse(localStorage.getItem("bobichUltimateSave")||"null");
+  return saved?{...structuredClone(DEFAULT),...saved}:structuredClone(DEFAULT);
+ }catch(e){return structuredClone(DEFAULT)}
+}
+function saveState(){localStorage.setItem("bobichUltimateSave",JSON.stringify(state));renderAll()}
+function player(id){return CATALOG.find(c=>c.id===id)}
+function ownedCards(){return state.collection.map(player).filter(Boolean)}
+function rarityName(r){return ({comun:"Común",raro:"Raro",epico:"Épico",legendario:"Legendario"})[r]||r}
+function cardHTML(c,buttonText,action){
+ return `<div class="card ${c.rarity||'comun'}">
+ <div class="rarity">${rarityName(c.rarity||"comun")}</div>
+ <div class="rating">${c.rating}</div><div class="emoji">${c.emoji||"⚽"}</div>
+ <div class="name">${escapeHTML(c.name)}</div><div class="meta">${c.pos} · Valor ${c.rating}</div>
+ ${buttonText?`<button class="btn secondary" onclick="${action}">${buttonText}</button>`:""}
+ </div>`;
+}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function addXP(n){state.xp+=n}
+function setPage(id){
+ document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));
+ document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll("#nav button").forEach(b=>b.addEventListener("click",()=>setPage(b.dataset.page)));
+document.getElementById("teamName").addEventListener("change",e=>{state.teamName=e.target.value.slice(0,24);saveState()});
+document.getElementById("formation").addEventListener("change",renderField);
+document.getElementById("clubSelect").addEventListener("change",e=>{state.careerClub=e.target.value;saveState()});
+
+function renderTeamCards(){
+ const el=document.getElementById("teamCards");
+ const cards=ownedCards();
+ el.innerHTML=cards.length?cards.map(c=>cardHTML(c,"Agregar",`addToTeam(${c.id})`)).join(""):'<p class="sub">Todavía no tenés cromos. Abrí un sobre para conseguirlos.</p>';
+}
+function renderField(){
+ const field=document.getElementById("field");
+ const formation=document.getElementById("formation").value;
+ const count=formation==="4-4-2"?10:formation==="3-5-2"?10:10;
+ const slots=Array.from({length:count},(_,i)=>{
+  const id=state.team[i],c=id?player(id):null;
+  return `<div class="slot ${c?'filled':''}">${c?`${c.emoji} ${escapeHTML(c.name)}<br>${c.rating} · ${c.pos}<button onclick="removeFromTeam(${i})">Quitar</button>`:`Espacio ${i+1}<br>Vacío`}</div>`;
+ });
+ field.innerHTML=slots.join("");
+ const selected=state.team.map(player).filter(Boolean);
+ const rating=selected.length?Math.round(selected.reduce((a,c)=>a+c.rating,0)/selected.length):0;
+ document.getElementById("teamRating").textContent=rating+" ⭐";
+}
+function addToTeam(id){
+ if(state.team.includes(id)){alert("Ese cromo ya está en tu equipo.");return}
+ if(state.team.length>=10){alert("Tu equipo ya tiene 10 cromos. Quitá uno para cambiarlo.");return}
+ state.team.push(id);addXP(5);saveState();
+}
+function removeFromTeam(index){state.team.splice(index,1);saveState()}
+function clearTeam(){state.team=[];saveState()}
+function autoTeam(){
+ const best=ownedCards().sort((a,b)=>b.rating-a.rating).slice(0,10);
+ state.team=best.map(c=>c.id);saveState();
+ if(!best.length)alert("Primero abrí un sobre para conseguir cromos.");
+}
+
+function openPack(type){
+ const cost=type==="premium"?250:100;
+ if(state.coins<cost){document.getElementById("packResult").textContent="No tenés suficientes monedas. Jugá partidos para ganar más.";return}
+ state.coins-=cost;
+ const pack=document.getElementById("pack");
+ pack.classList.remove("opening");void pack.offsetWidth;pack.classList.add("opening");
+ const pool=CATALOG.filter(c=>type==="premium"?c.rating>=82:true);
+ const chosen=pool[Math.floor(Math.random()*pool.length)];
+ state.collection.push(chosen.id);state.packs++;state.recent.unshift(chosen.id);state.recent=state.recent.slice(0,6);
+ addXP(type==="premium"?30:15);
+ document.getElementById("packResult").innerHTML=`¡Nuevo cromo! <strong>${escapeHTML(chosen.name)}</strong> · ${rarityName(chosen.rarity)} · ${chosen.rating} de valoración.`;
+ saveState();
+}
+function renderRecent(){
+ const ids=state.recent;
+ document.getElementById("recentCards").innerHTML=ids.length?ids.map(id=>cardHTML(player(id))).join(""):'<p class="sub">Todavía no abriste sobres.</p>';
+}
+
+function playSeasonMatch(){
+ const own=ownedCards().length?Math.min(95,Math.round(ownedCards().reduce((a,c)=>a+c.rating,0)/ownedCards().length)):65;
+ const rival=65+Math.floor(Math.random()*26);
+ const a=Math.floor(Math.random()*(own/22+2)),b=Math.floor(Math.random()*(rival/22+2));
+ state.matches++;
+ let msg;
+ if(a>b){state.wins++;state.coins+=100;state.xp+=40;msg=`¡Victoria ${a}-${b}! Ganaste 100 monedas y 40 XP.`}
+ else if(a===b){state.draws++;state.coins+=40;state.xp+=20;msg=`Empate ${a}-${b}. Ganaste 40 monedas y 20 XP.`}
+ else{state.losses++;state.coins+=20;state.xp+=10;msg=`Derrota ${a}-${b}. Ganaste 20 monedas y 10 XP por jugar.`}
+ state.careerResult=msg;saveState();
+}
+function finishSeason(){
+ if(state.matches===0){alert("Jugá al menos un partido antes de finalizar la temporada.");return}
+ state.season++;state.coins+=150;state.xp+=75;
+ state.careerResult=`Temporada finalizada. Recompensa: 150 monedas y 75 XP. ¡Arranca la temporada ${state.season}!`;
+ saveState();
+}
+function signPlayer(id){
+ const p=MARKET.find(x=>x.id===id);
+ if(!p)return;
+ if(state.careerSquad.includes(id)){alert("Ese jugador ya está en tu plantel.");return}
+ if(state.coins<p.price){alert("No tenés monedas suficientes para ese fichaje.");return}
+ state.coins-=p.price;state.careerSquad.push(id);addXP(15);saveState();
+}
+function renderMarket(){
+ document.getElementById("market").innerHTML=MARKET.map(p=>`<div class="rowitem"><div><strong>${p.emoji} ${p.name}</strong><small>${p.pos} · ${p.rating} de valoración · ${p.price} monedas</small></div><button class="btn" onclick="signPlayer(${p.id})" ${state.careerSquad.includes(p.id)?"disabled":""}>${state.careerSquad.includes(p.id)?"Fichado":"Fichar"}</button></div>`).join("");
+ document.getElementById("careerSquad").innerHTML=state.careerSquad.length?state.careerSquad.map(id=>{const p=MARKET.find(x=>x.id===id);return `<div class="rowitem"><div><strong>${p.emoji} ${p.name}</strong><small>${p.pos} · ${p.rating} de valoración</small></div><span class="badge">EN PLANTEL</span></div>`}).join(""):'<p class="sub">Todavía no hiciste fichajes.</p>';
+}
+
+function renderAlbum(){
+ const el=document.getElementById("albumGrid");
+ el.innerHTML=CATALOG.map(c=>{
+  const count=state.collection.filter(id=>id===c.id).length;
+  return `<div class="card ${count?c.rarity:'comun'}" style="${count?'':'opacity:.48;filter:grayscale(1)'}">
+   <div class="rarity">${count?rarityName(c.rarity):"Sin descubrir"}</div>
+   <div class="rating">${count?c.rating:"??"}</div><div class="emoji">${count?c.emoji:"❔"}</div>
+   <div class="name">${count?escapeHTML(c.name):"Cromo oculto"}</div>
+   <div class="meta">${count?c.pos+" · Copias: "+count:"Abrí sobres para descubrirlo"}</div>
+  </div>`;
+ }).join("");
+ const unique=new Set(state.collection).size;
+ document.getElementById("albumCount").textContent=unique+"/"+CATALOG.length;
+ document.getElementById("albumProgress").style.width=(unique/CATALOG.length*100)+"%";
+ document.getElementById("albumReward").disabled=unique<6||state.albumReward;
+ document.getElementById("albumReward").textContent=state.albumReward?"Recompensa reclamada":"Reclamar 200 🪙";
+}
+function claimAlbumReward(){
+ if(new Set(state.collection).size<6||state.albumReward)return;
+ state.albumReward=true;state.coins+=200;addXP(100);
+ document.getElementById("albumMessage").textContent="¡Recompensa reclamada! Ganaste 200 monedas y 100 XP.";
+ saveState();
+}
+
+function updateShirt(){
+ const color=document.getElementById("shirtColor").value;
+ const stripe=document.getElementById("stripeColor").value;
+ const style=document.getElementById("shirtStyle").value;
+ document.getElementById("shirtBody").setAttribute("fill",color);
+ document.getElementById("shirtStripe").setAttribute("fill",stripe);
+ document.getElementById("shirtStripe").style.display=style==="plain"?"none":"";
+ if(style==="middle"){
+  document.getElementById("shirtStripe").setAttribute("d","M110 29 L130 29 L130 225 L110 225 Z");
+ }
+ if(style==="stripes"){
+  document.getElementById("shirtStripe").setAttribute("d","M98 31 L110 29 L110 225 L98 225 Z M130 29 L142 31 L142 225 L130 225 Z");
+ }
+ document.getElementById("shirtNumber").textContent=document.getElementById("shirtNum").value||"10";
+ document.getElementById("shirtText").textContent=(document.getElementById("shirtClub").value||"MI CLUB").toUpperCase().slice(0,14);
+ document.getElementById("shirtNumber").setAttribute("fill",contrast(color));
+ document.getElementById("shirtText").setAttribute("fill",contrast(color));
+}
+function contrast(hex){
+ const v=hex.replace("#","");const r=parseInt(v.slice(0,2),16),g=parseInt(v.slice(2,4),16),b=parseInt(v.slice(4,6),16);
+ return (r*299+g*587+b*114)/1000>145?"#07120b":"#ffffff";
+}
+function saveShirt(){
+ state.shirt={club:document.getElementById("shirtClub").value.slice(0,14),num:document.getElementById("shirtNum").value,color:document.getElementById("shirtColor").value,stripe:document.getElementById("stripeColor").value,style:document.getElementById("shirtStyle").value};
+ state.shirts.unshift({...state.shirt});state.shirts=state.shirts.slice(0,10);addXP(10);
+ document.getElementById("shirtMessage").textContent="¡Equipación guardada!";
+ saveState();
+}
+function resetShirt(){
+ document.getElementById("shirtClub").value="BOBICH FC";document.getElementById("shirtNum").value=10;
+ document.getElementById("shirtColor").value="#20b85a";document.getElementById("stripeColor").value="#ffffff";document.getElementById("shirtStyle").value="stripes";updateShirt();
+}
+function loadShirt(s){
+ document.getElementById("shirtClub").value=s.club;document.getElementById("shirtNum").value=s.num;
+ document.getElementById("shirtColor").value=s.color;document.getElementById("stripeColor").value=s.stripe;document.getElementById("shirtStyle").value=s.style;updateShirt();
+ setPage("shirts");
+}
+function renderShirts(){
+ document.getElementById("savedShirts").innerHTML=state.shirts.length?state.shirts.map((s,i)=>`<div class="rowitem"><div><strong>👕 ${escapeHTML(s.club)}</strong><small>Número ${s.num} · ${s.style==="plain"?"Lisa":s.style==="middle"?"Franja central":"Franjas"}</small></div><button class="btn secondary" onclick="loadShirt(state.shirts[${i}])">Editar</button></div>`).join(""):'<p class="sub">Todavía no guardaste camisetas.</p>';
+}
+
+function saveProfile(){
+ state.playerName=(document.getElementById("playerName").value.trim()||"Jugador Bobich").slice(0,24);
+ state.coachName=(document.getElementById("coachName").value.trim()||"Entrenador Bobich").slice(0,24);
+ state.careerClub=document.getElementById("clubSelect").value;
+ addXP(5);saveState();
+}
+function exportSave(){
+ const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob);const a=document.createElement("a");
+ a.href=url;a.download="bobich-ultimate-progreso.json";a.click();URL.revokeObjectURL(url);
+}
+function importSave(){
+ const input=document.createElement("input");input.type="file";input.accept=".json,application/json";
+ input.onchange=()=>{
+  const file=input.files&&input.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=()=>{
+   try{
+    const parsed=JSON.parse(reader.result);
+    if(!parsed||typeof parsed!=="object"||!Array.isArray(parsed.collection))throw new Error("Archivo inválido");
+    state={...structuredClone(DEFAULT),...parsed};saveState();alert("¡Progreso importado!");
+   }catch(e){alert("No se pudo importar. Elegí un archivo de progreso válido.");}
+  };reader.readAsText(file);
+ };input.click();
+}
+function resetAll(){
+ if(!confirm("¿Seguro que querés borrar TODO tu progreso de Bobich Ultimate en este dispositivo?"))return;
+ state=structuredClone(DEFAULT);saveState();alert("Progreso reiniciado.");
+}
+const ACHIEVEMENTS=[
+ {name:"Primer sobre",desc:"Abrí tu primer sobre.",test:()=>state.packs>=1},
+ {name:"Coleccionista",desc:"Conseguí 5 cromos diferentes.",test:()=>new Set(state.collection).size>=5},
+ {name:"Álbum en marcha",desc:"Conseguí 10 cromos diferentes.",test:()=>new Set(state.collection).size>=10},
+ {name:"Once armado",desc:"Armá tu equipo con 10 cromos.",test:()=>state.team.length>=10},
+ {name:"Debutante",desc:"Jugá tu primer partido de carrera.",test:()=>state.matches>=1},
+ {name:"Ganador",desc:"Ganale a un rival en modo carrera.",test:()=>state.wins>=1},
+ {name:"Diseñador",desc:"Guardá tu primera camiseta.",test:()=>state.shirts.length>=1},
+ {name:"Veterano",desc:"Alcanzá 500 XP.",test:()=>state.xp>=500},
+ {name:"Mercado activo",desc:"Fichá un jugador.",test:()=>state.careerSquad.length>=1}
+];
+function renderProfile(){
+ const level=Math.floor(state.xp/100)+1;
+ document.getElementById("playerName").value=state.playerName||"";
+ document.getElementById("profileName").textContent=state.playerName||"Jugador Bobich";
+ document.getElementById("level").textContent="Nivel "+level;
+ document.getElementById("xpProgress").style.width=(state.xp%100)+"%";
+ document.getElementById("xpLabel").textContent=(100-state.xp%100)+" XP para el siguiente nivel";
+ document.getElementById("statPacks").textContent=state.packs;
+ document.getElementById("statMatches").textContent=state.matches;
+ document.getElementById("statWins").textContent=state.wins;
+ document.getElementById("achievements").innerHTML=ACHIEVEMENTS.map(a=>`<div class="rowitem"><div><strong>${a.test()?"🏅":"🔒"} ${a.name}</strong><small>${a.desc}</small></div><span class="badge">${a.test()?"DESBLOQUEADO":"BLOQUEADO"}</span></div>`).join("");
+}
+function renderAll(){
+ document.getElementById("coins").textContent=state.coins;
+ document.getElementById("xp").textContent=state.xp;
+ document.getElementById("owned").textContent=state.collection.length;
+ document.getElementById("teamName").value=state.teamName||"";
+ document.getElementById("coachName").value=state.coachName||"";
+ document.getElementById("clubSelect").value=state.careerClub||"Bobich FC";
+ document.getElementById("careerClub").textContent=state.careerClub||"Bobich FC";
+ document.getElementById("season").textContent=state.season;
+ document.getElementById("record").textContent=`${state.wins} V · ${state.draws} E · ${state.losses} D`;
+ document.getElementById("careerResult").textContent=state.careerResult;
+ renderTeamCards();renderField();renderRecent();renderMarket();renderAlbum();renderShirts();renderProfile();
+}
+function init(){
+ document.getElementById("teamName").value=state.teamName||"";
+ document.getElementById("clubSelect").value=state.careerClub||"Bobich FC";
+ document.getElementById("shirtClub").value=state.shirt.club;
+ document.getElementById("shirtNum").value=state.shirt.num;
+ document.getElementById("shirtColor").value=state.shirt.color;
+ document.getElementById("stripeColor").value=state.shirt.stripe;
+ document.getElementById("shirtStyle").value=state.shirt.style;
+ updateShirt();renderAll();
+}
+init();
+</script>
+</body>
+  </html>
