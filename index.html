@@ -4,75 +4,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#07130e">
+<meta name="theme-color" content="#06110b">
 <meta name="description" content="BAUTIBOBICHBALL: fútbol, cromos, Ultimate Team, juegos, torneos y trofeos.">
 <title>BAUTIBOBICHBALL | Fútbol Total</title>
 
 <style>
 :root{
-  --bg:#06110b;
-  --panel:#0d2015;
-  --panel2:#132b1b;
-  --green:#caff38;
-  --green2:#7ed957;
-  --white:#f4f8f1;
-  --muted:#aab9ad;
-  --line:#294634;
-  --gold:#ffd166;
-  --blue:#65c7ff;
-  --red:#ff6c6c;
+  --bg:#06110b;--panel:#0d2015;--panel2:#132b1b;
+  --green:#caff38;--green2:#7ed957;--white:#f4f8f1;
+  --muted:#aab9ad;--line:#294634;--gold:#ffd166;
+  --blue:#65c7ff;--red:#ff6c6c;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
 body{
-  margin:0;background:
-  radial-gradient(ellipse at top,#173d25 0%,transparent 42%),
-  var(--bg);
-  color:var(--white);
-  font-family:Arial,Helvetica,sans-serif;
+  margin:0;background:radial-gradient(ellipse at top,#173d25 0%,transparent 42%),var(--bg);
+  color:var(--white);font-family:Arial,Helvetica,sans-serif;
 }
+body.intro-open{overflow:hidden}
 button,input,select,textarea{font:inherit}
 button,a{touch-action:manipulation}
 a{color:var(--green);text-decoration:none}
 a:hover{text-decoration:underline}
 button{
-  border:0;border-radius:11px;padding:11px 15px;
-  font-weight:800;cursor:pointer;
-  background:var(--green);color:#10200d;
+  border:0;border-radius:11px;padding:11px 15px;font-weight:800;
+  cursor:pointer;background:var(--green);color:#10200d;
   transition:transform .15s,filter .15s;
 }
 button:hover{filter:brightness(1.08);transform:translateY(-1px)}
 button:disabled{opacity:.5;cursor:not-allowed;transform:none}
 input,select,textarea{
-  width:100%;padding:12px;border-radius:10px;
-  border:1px solid var(--line);background:#08170e;
-  color:var(--white);margin:5px 0 12px;
+  width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);
+  background:#08170e;color:var(--white);margin:5px 0 12px;
 }
 label{font-size:.9rem;color:var(--muted)}
 small,.muted{color:var(--muted)}
 img{max-width:100%}
 .topline{
-  background:var(--green);color:#10200d;text-align:center;
-  padding:7px 10px;font-size:.8rem;font-weight:900;letter-spacing:1px;
+  background:var(--green);color:#10200d;text-align:center;padding:7px 10px;
+  font-size:.8rem;font-weight:900;letter-spacing:1px;
 }
 header{
-  padding:20px 16px 14px;text-align:center;
-  border-bottom:1px solid var(--line);
+  padding:20px 16px 14px;text-align:center;border-bottom:1px solid var(--line);
 }
 .logo{
-  display:inline-block;font-size:clamp(1.65rem,6vw,3rem);
-  font-weight:1000;letter-spacing:-1.5px;
-  color:var(--green);text-shadow:0 0 25px #caff3833;
+  display:inline-block;font-size:clamp(1.65rem,6vw,3rem);font-weight:1000;
+  letter-spacing:-1.5px;color:var(--green);text-shadow:0 0 25px #caff3833;
 }
 header p{margin:8px 0;color:var(--muted)}
 nav{
-  position:sticky;top:0;z-index:20;background:#06110bee;
-  backdrop-filter:blur(12px);border-bottom:1px solid var(--line);
-  display:flex;gap:7px;padding:10px;overflow-x:auto;
+  position:sticky;top:0;z-index:20;background:#06110bee;backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);display:flex;gap:7px;padding:10px;overflow-x:auto;
 }
 nav a{
-  flex:0 0 auto;padding:9px 12px;border-radius:9px;
-  background:#102319;color:var(--white);font-size:.82rem;font-weight:800;
+  flex:0 0 auto;padding:9px 12px;border-radius:9px;background:#102319;
+  color:var(--white);font-size:.82rem;font-weight:800;
 }
 nav a:hover{background:var(--green);color:#10200d;text-decoration:none}
 main{width:min(1200px,100%);margin:auto;padding:12px}
@@ -82,14 +68,11 @@ section{margin:20px 0 30px;scroll-margin-top:85px}
 .section-head p{margin:0;color:var(--muted);line-height:1.5}
 .hero{
   padding:25px 17px;border:1px solid var(--line);border-radius:22px;
-  background:
-  linear-gradient(120deg,#102c1bfa,#08160df5),
-  repeating-linear-gradient(45deg,#ffffff08 0 2px,transparent 2px 12px);
-  overflow:hidden;position:relative;
+  background:linear-gradient(120deg,#102c1bfa,#08160df5);overflow:hidden;position:relative;
 }
 .hero:after{
   content:"⚽";position:absolute;right:8px;bottom:-28px;
-  font-size:clamp(100px,24vw,220px);opacity:.08;
+  font-size:clamp(100px,24vw,220px);opacity:.08;pointer-events:none;
 }
 .hero h1{font-size:clamp(2rem,7vw,4rem);line-height:1.02;margin:8px 0 15px}
 .hero h1 span{color:var(--green)}
@@ -100,22 +83,20 @@ section{margin:20px 0 30px;scroll-margin-top:85px}
 .blue-button{background:var(--blue)}
 .danger-button{background:#ff7777}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,235px),1fr));gap:13px}
-.grid.small-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,155px),1fr))}
+.grid.small-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,155px),1fr));gap:10px}
 .card{
-  min-width:0;border:1px solid var(--line);border-radius:16px;
-  padding:15px;background:linear-gradient(150deg,var(--panel2),var(--panel));
+  min-width:0;border:1px solid var(--line);border-radius:16px;padding:15px;
+  background:linear-gradient(150deg,var(--panel2),var(--panel));
 }
 .card h3{margin:5px 0 9px}
 .card p{color:var(--muted);line-height:1.5}
 .card .emoji{font-size:2rem}
 .card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .card-actions button{flex:1}
-.panel{
-  background:#0a1b10;border:1px solid var(--line);border-radius:16px;padding:15px;
-}
+.panel{background:#0a1b10;border:1px solid var(--line);border-radius:16px;padding:15px}
 .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .stat{padding:14px;border:1px solid var(--line);border-radius:13px;background:#0d2115}
-.stat strong{display:block;font-size:1.6rem;color:var(--green)}
+.stat strong{display:block;font-size:1.6rem;color:var(--green);overflow-wrap:anywhere}
 .stat span{font-size:.8rem;color:var(--muted)}
 .pill{
   display:inline-block;border:1px solid var(--line);border-radius:99px;
@@ -124,11 +105,11 @@ section{margin:20px 0 30px;scroll-margin-top:85px}
 .progress{height:10px;background:#23392a;border-radius:99px;overflow:hidden;margin:8px 0}
 .progress div{height:100%;width:0;background:linear-gradient(90deg,var(--green2),var(--green));transition:width .3s}
 .notice{padding:12px;border-radius:10px;background:#152b1d;border:1px solid var(--line);margin:10px 0}
-.status{min-height:24px;color:var(--green);font-weight:700;margin:8px 0}
+.status{min-height:24px;color:var(--green);font-weight:700;margin:8px 0;overflow-wrap:anywhere}
 .player-card{
-  min-height:215px;position:relative;overflow:hidden;text-align:center;
-  padding:13px;border-radius:15px;border:2px solid #d5e4c8;
-  color:#12200e;background:linear-gradient(145deg,#f4f4ce,#94c36a);
+  min-height:215px;position:relative;overflow:hidden;text-align:center;padding:13px;
+  border-radius:15px;border:2px solid #d5e4c8;color:#12200e;
+  background:linear-gradient(145deg,#f4f4ce,#94c36a);
 }
 .player-card.gold{background:linear-gradient(145deg,#fff3b0,#d9a42f);border-color:#ffe8a0}
 .player-card.blue{background:linear-gradient(145deg,#c6f0ff,#54a9df);border-color:#a4e4ff}
@@ -136,15 +117,14 @@ section{margin:20px 0 30px;scroll-margin-top:85px}
 .player-card .rating{font-size:2rem;font-weight:1000}
 .player-card .position{font-size:.8rem;font-weight:900}
 .player-card .player-emoji{font-size:3rem;margin:9px 0}
-.player-card .player-name{font-weight:1000;font-size:1rem}
+.player-card .player-name{font-weight:1000;font-size:1rem;overflow-wrap:anywhere}
 .player-card .player-country{font-size:.8rem}
 .player-card .player-stats{font-size:.78rem;font-weight:900;margin-top:9px}
 .player-card .rarity{position:absolute;top:7px;right:7px;font-size:.65rem;font-weight:900}
-.empty{color:var(--muted);padding:15px;border:1px dashed var(--line);border-radius:12px;text-align:center}
 .slot{
-  min-height:155px;display:flex;flex-direction:column;align-items:center;
+  min-width:0;min-height:155px;display:flex;flex-direction:column;align-items:center;
   justify-content:center;gap:7px;border:1px dashed #50715a;border-radius:14px;
-  padding:10px;text-align:center;background:#0a1b10;
+  padding:10px;text-align:center;background:#0a1b10;overflow:hidden;
 }
 .slot .slot-icon{font-size:2rem}
 .pack-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
@@ -166,10 +146,12 @@ section{margin:20px 0 30px;scroll-margin-top:85px}
 }
 .trophy-3d{
   font-size:5rem;transform:rotateY(-18deg) rotateX(7deg);
-  filter:drop-shadow(0 10px 10px #0009);
-  animation:floatTrophy 3s ease-in-out infinite;
+  filter:drop-shadow(0 10px 10px #0009);animation:floatTrophy 3s ease-in-out infinite;
 }
-@keyframes floatTrophy{0%,100%{transform:translateY(0) rotateY(-18deg) rotateX(7deg)}50%{transform:translateY(-10px) rotateY(18deg) rotateX(0)}}
+@keyframes floatTrophy{
+  0%,100%{transform:translateY(0) rotateY(-18deg) rotateX(7deg)}
+  50%{transform:translateY(-10px) rotateY(18deg) rotateX(0)}
+}
 .table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;min-width:390px}
 th,td{padding:11px 9px;border-bottom:1px solid var(--line);text-align:left;font-size:.88rem}
@@ -177,15 +159,84 @@ th{color:var(--green)}
 footer{border-top:1px solid var(--line);padding:25px 15px;text-align:center;color:var(--muted)}
 hr{border:0;border-top:1px solid var(--line);margin:17px 0}
 .hidden{display:none!important}
+
+/* INTRO CINEMATOGRÁFICA */
+#bb-intro{
+  position:fixed;inset:0;z-index:9999;display:flex;align-items:center;
+  justify-content:center;padding:22px;overflow-y:auto;text-align:center;
+  background:radial-gradient(ellipse at 50% 85%,#286c32 0%,transparent 42%),
+  linear-gradient(180deg,#020704 0%,#0b2112 60%,#061008 100%);
+  opacity:1;visibility:visible;transition:opacity .8s ease,visibility .8s ease;
+}
+#bb-intro.bb-intro-hidden{opacity:0;visibility:hidden;pointer-events:none}
+.bb-intro-lights{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at 0% 0%,#eaffc533,transparent 35%),
+  radial-gradient(ellipse at 100% 0%,#eaffc533,transparent 35%);
+  animation:bbLights 3s ease-in-out infinite alternate;
+}
+.bb-intro-content{position:relative;z-index:2;max-width:700px;animation:bbIntroAppear 1.2s ease both}
+.bb-intro-tag{
+  display:inline-block;color:#caff38;border:1px solid #caff3866;
+  border-radius:99px;padding:8px 14px;letter-spacing:3px;font-size:.72rem;font-weight:900;
+}
+.bb-intro-logo{
+  margin:20px 0 10px;color:#caff38;font-size:clamp(2.3rem,10vw,5.5rem);
+  font-weight:1000;line-height:.95;letter-spacing:-2px;
+  text-shadow:0 0 18px #caff3855,0 0 55px #6dbd3655;
+}
+.bb-intro-ball{
+  margin:24px auto;font-size:clamp(4rem,16vw,7rem);
+  filter:drop-shadow(0 12px 22px #000b);animation:bbBall 3s ease-in-out infinite;
+}
+.bb-intro-subtitle{color:#f4f8f1;font-size:clamp(1rem,3vw,1.35rem);font-weight:800;letter-spacing:2px}
+.bb-intro-description{max-width:500px;margin:14px auto 24px;color:#b9cabb;line-height:1.7}
+#bb-enter{
+  padding:15px 24px;border-radius:12px;background:#caff38;color:#10200d;
+  font-weight:1000;letter-spacing:1px;box-shadow:0 0 30px #caff3833;
+}
+.bb-intro-footer{margin-top:24px;color:#77917c;font-size:.7rem;letter-spacing:2px}
+.bb-intro-line{
+  width:min(280px,70%);height:3px;margin:20px auto;border-radius:9px;
+  background:linear-gradient(90deg,transparent,#caff38,transparent);
+}
+@keyframes bbLights{from{opacity:.45}to{opacity:1}}
+@keyframes bbBall{0%,100%{transform:translateY(0) rotate(-12deg)}50%{transform:translateY(-14px) rotate(12deg)}}
+@keyframes bbIntroAppear{
+  from{opacity:0;transform:translateY(20px) scale(.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
 @media(min-width:750px){
-  main{padding:20px}
-  .hero{padding:42px}
+  main{padding:20px}.hero{padding:42px}
   .stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
 }
 </style>
 </head>
 
-<body>
+<body class="intro-open">
+
+<!-- INTRO DE BIENVENIDA -->
+<div id="bb-intro" role="dialog" aria-modal="true" aria-label="Bienvenida a BAUTIBOBICHBALL">
+  <div class="bb-intro-lights"></div>
+  <div class="bb-intro-content">
+    <div class="bb-intro-tag">PRESENTA</div>
+    <div class="bb-intro-logo">BAUTIBOBICH<br>BALL</div>
+    <div class="bb-intro-ball">⚽</div>
+    <div class="bb-intro-subtitle">EL FÚTBOL ES TUYO</div>
+    <div class="bb-intro-line"></div>
+    <p class="bb-intro-description">
+      Bienvenido al universo futbolero. Creá tu club,
+      coleccioná cromos, armá tu Ultimate Team, superá desafíos
+      y escribí tu propia historia.
+    </p>
+    <button id="bb-enter" type="button">⚽ ENTRAR AL UNIVERSO</button>
+    <div class="bb-intro-footer">JUGÁ · COLECCIONÁ · COMPETÍ</div>
+  </div>
+</div>
+
 <div class="topline">⚽ EL UNIVERSO FUTBOLERO • TEMPORADA BAUTIBOBICH</div>
 
 <header>
@@ -194,20 +245,15 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
 </header>
 
 <nav aria-label="Navegación principal">
-  <a href="#inicio">Inicio</a>
-  <a href="#perfil">Perfil</a>
-  <a href="#juegos">Juegos</a>
-  <a href="#album">Álbum</a>
-  <a href="#sobres">Sobres</a>
-  <a href="#ultimate">Ultimate Team</a>
-  <a href="#creadores">Crear</a>
-  <a href="#torneos">Torneos</a>
-  <a href="#museo">Trofeos</a>
-  <a href="#premios">Premios</a>
+  <a href="#inicio">Inicio</a><a href="#perfil">Perfil</a>
+  <a href="#juegos">Juegos</a><a href="#album">Álbum</a>
+  <a href="#sobres">Sobres</a><a href="#ultimate">Ultimate Team</a>
+  <a href="#creadores">Crear</a><a href="#torneos">Torneos</a>
+  <a href="#museo">Trofeos</a><a href="#misiones">Misiones</a>
+  <a href="#partidos">Partidos</a><a href="#premios">Premios</a>
 </nav>
 
 <main>
-  <!-- 1. INICIO -->
   <section id="inicio" class="hero">
     <span class="pill">TU UNIVERSO FUTBOLERO</span>
     <h1>EL FÚTBOL<br><span>LO CREÁS VOS.</span></h1>
@@ -225,12 +271,8 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
     </div>
   </section>
 
-  <!-- 2. PERFIL Y PROGRESO -->
   <section id="perfil">
-    <div class="section-head">
-      <h2>👤 Tu perfil futbolero</h2>
-      <p>Tu progreso se guarda en este navegador.</p>
-    </div>
+    <div class="section-head"><h2>👤 Tu perfil futbolero</h2><p>Tu progreso se guarda en este navegador.</p></div>
     <div class="grid">
       <div class="card">
         <h3>⚽ Tu identidad</h3>
@@ -245,27 +287,22 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
         <h3>📈 Tu progreso</h3>
         <p>Nivel <strong id="levelText">1</strong> · <span id="xpText">0 XP</span></p>
         <div class="progress"><div id="xpBar"></div></div>
-        <p id="xpNext" class="muted">Te faltan XP para el siguiente nivel.</p>
+        <p id="xpNext" class="muted"></p>
         <hr>
         <p>Monedas: <strong id="coinText">0</strong> 🪙</p>
         <p>Partidas jugadas: <strong id="gamesPlayed">0</strong></p>
         <p>Victorias: <strong id="winsCount">0</strong></p>
       </div>
     </div>
-    <div class="notice">💾 Consejo: si borrás los datos del navegador o cambiás de dispositivo, el progreso local puede perderse. Todavía no hay cuentas online ni sincronización entre usuarios.</div>
+    <div class="notice">💾 El progreso se guarda en este navegador. Si borrás los datos o cambiás de dispositivo, puede perderse. No hay cuentas online ni sincronización entre usuarios todavía.</div>
   </section>
 
-  <!-- 3. JUEGOS -->
   <section id="juegos">
-    <div class="section-head">
-      <h2>🎮 Zona de juegos</h2>
-      <p>Jugá, conseguí recompensas y aumentá tu experiencia.</p>
-    </div>
+    <div class="section-head"><h2>🎮 Zona de juegos</h2><p>Jugá, conseguí recompensas y aumentá tu experiencia.</p></div>
     <div class="grid">
       <div class="card">
-        <div class="emoji">🥅</div>
-        <h3>Desafío de penales</h3>
-        <p>Tenés cinco disparos. Elegí dónde patear e intentá superar al arquero.</p>
+        <div class="emoji">🥅</div><h3>Desafío de penales</h3>
+        <p>Tenés cinco disparos. Elegí dónde patear.</p>
         <div class="stats">
           <div class="stat"><strong id="penGoals">0</strong><span>Goles</span></div>
           <div class="stat"><strong id="penShots">0/5</strong><span>Disparos</span></div>
@@ -280,9 +317,8 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
       </div>
 
       <div class="card">
-        <div class="emoji">🧠</div>
-        <h3>Trivia futbolera</h3>
-        <p>Contestá preguntas de fútbol para ganar monedas y XP.</p>
+        <div class="emoji">🧠</div><h3>Trivia futbolera</h3>
+        <p>Contestá preguntas para ganar monedas y XP.</p>
         <p id="quizQuestion">Presioná comenzar para jugar.</p>
         <div id="quizAnswers" class="grid small-grid"></div>
         <p id="quizStatus" class="status"></p>
@@ -291,9 +327,8 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
       </div>
 
       <div class="card">
-        <div class="emoji">⚡</div>
-        <h3>Desafío de reflejos</h3>
-        <p>Esperá a que aparezca la señal verde y tocá lo más rápido posible.</p>
+        <div class="emoji">⚡</div><h3>Desafío de reflejos</h3>
+        <p>Esperá la señal verde y tocá lo más rápido posible.</p>
         <div class="panel" style="text-align:center">
           <div id="reflexLight" style="font-size:2.6rem">🔴</div>
           <p id="reflexStatus">Preparado para empezar.</p>
@@ -302,8 +337,7 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
       </div>
 
       <div class="card">
-        <div class="emoji">🎯</div>
-        <h3>Desafío de precisión</h3>
+        <div class="emoji">🎯</div><h3>Desafío de precisión</h3>
         <p>Elegí un objetivo y sumá puntos. Tenés cinco intentos.</p>
         <div class="grid small-grid">
           <button onclick="targetShot(1)">🎯 Objetivo 1</button>
@@ -316,12 +350,8 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
     </div>
   </section>
 
-  <!-- 4. ALBUM DE CROMOS -->
   <section id="album">
-    <div class="section-head">
-      <h2>🃏 Álbum de cromos</h2>
-      <p>Completá tu colección con jugadores ficticios de ejemplo. Podés conseguir cromos abriendo sobres.</p>
-    </div>
+    <div class="section-head"><h2>🃏 Álbum de cromos</h2><p>Conseguí cartas de ejemplo y completá tu colección.</p></div>
     <div class="panel">
       <div class="stats">
         <div class="stat"><strong id="albumOwned">0</strong><span>Cromos distintos</span></div>
@@ -336,45 +366,19 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
     <div id="customGrid" class="grid small-grid"></div>
   </section>
 
-  <!-- 5. SOBRES -->
   <section id="sobres">
-    <div class="section-head">
-      <h2>🎁 Sobres animados</h2>
-      <p>Usá monedas para abrir sobres y conseguir cromos. Cada sobre revela una carta al azar.</p>
-    </div>
+    <div class="section-head"><h2>🎁 Sobres animados</h2><p>Gastá monedas para conseguir cromos al azar.</p></div>
     <div class="grid">
-      <div class="card">
-        <span class="pill">ECONÓMICO</span>
-        <h3>📦 Sobre básico</h3>
-        <p>Un cromo de colección.</p>
-        <strong>🪙 50 monedas</strong>
-        <button style="width:100%;margin-top:12px" onclick="openPack('basic')">Abrir sobre</button>
-      </div>
-      <div class="card">
-        <span class="pill">RECOMENDADO</span>
-        <h3>✨ Sobre premium</h3>
-        <p>Dos cromos y una posibilidad de rareza especial.</p>
-        <strong>🪙 120 monedas</strong>
-        <button class="gold-button" style="width:100%;margin-top:12px" onclick="openPack('premium')">Abrir premium</button>
-      </div>
-      <div class="card">
-        <span class="pill">ESPECIAL</span>
-        <h3>💎 Sobre leyenda</h3>
-        <p>Tres cromos, con posibilidad de una carta de leyenda.</p>
-        <strong>🪙 250 monedas</strong>
-        <button class="blue-button" style="width:100%;margin-top:12px" onclick="openPack('legend')">Abrir leyenda</button>
-      </div>
+      <div class="card"><span class="pill">ECONÓMICO</span><h3>📦 Sobre básico</h3><p>Un cromo.</p><strong>🪙 50 monedas</strong><button style="width:100%;margin-top:12px" onclick="openPack('basic')">Abrir sobre</button></div>
+      <div class="card"><span class="pill">PREMIUM</span><h3>✨ Sobre premium</h3><p>Dos cromos y posibilidad de rareza especial.</p><strong>🪙 120 monedas</strong><button class="gold-button" style="width:100%;margin-top:12px" onclick="openPack('premium')">Abrir premium</button></div>
+      <div class="card"><span class="pill">ESPECIAL</span><h3>💎 Sobre leyenda</h3><p>Tres cromos con posibilidad de carta de leyenda.</p><strong>🪙 250 monedas</strong><button class="blue-button" style="width:100%;margin-top:12px" onclick="openPack('legend')">Abrir leyenda</button></div>
     </div>
     <div id="packArea" style="margin-top:15px"></div>
     <p id="packStatus" class="status"></p>
   </section>
 
-  <!-- 6. ULTIMATE TEAM -->
   <section id="ultimate">
-    <div class="section-head">
-      <h2>🏟️ Ultimate Team</h2>
-      <p>Armá tu equipo ideal con los cromos de tu colección. Elegí un puesto y asignale un jugador.</p>
-    </div>
+    <div class="section-head"><h2>🏟️ Ultimate Team</h2><p>Armá tu equipo con los cromos que hayas conseguido.</p></div>
     <div class="panel">
       <div class="stats">
         <div class="stat"><strong id="teamRating">0</strong><span>Media del equipo</span></div>
@@ -391,10 +395,8 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
       <h3>Elegir jugador</h3>
       <label for="teamSlotSelect">Puesto</label>
       <select id="teamSlotSelect">
-        <option value="POR">POR · Arquero</option>
-        <option value="DEF">DEF · Defensa</option>
-        <option value="MED">MED · Mediocampista</option>
-        <option value="DEL">DEL · Delantero</option>
+        <option value="POR">POR · Arquero</option><option value="DEF">DEF · Defensa</option>
+        <option value="MED">MED · Mediocampista</option><option value="DEL">DEL · Delantero</option>
         <option value="CAP">CAP · Capitán</option>
       </select>
       <label for="teamPlayerSelect">Cromo disponible</label>
@@ -405,12 +407,8 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
     </div>
   </section>
 
-  <!-- 7. CREADORES -->
   <section id="creadores">
-    <div class="section-head">
-      <h2>🎨 Taller de creación</h2>
-      <p>Creá cromos personalizados y diseñá tu propio club.</p>
-    </div>
+    <div class="section-head"><h2>🎨 Taller de creación</h2><p>Creá cromos personalizados y diseñá tu propio club.</p></div>
     <div class="grid">
       <div class="card">
         <h3>🃏 Crear un cromo</h3>
@@ -420,9 +418,7 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
           <label for="stickerCountry">País o equipo</label>
           <input id="stickerCountry" maxlength="28" required placeholder="Tu selección">
           <label for="stickerPosition">Posición</label>
-          <select id="stickerPosition">
-            <option>DEL</option><option>MED</option><option>DEF</option><option>POR</option>
-          </select>
+          <select id="stickerPosition"><option>DEL</option><option>MED</option><option>DEF</option><option>POR</option></select>
           <label for="stickerRating">Media (50–99)</label>
           <input id="stickerRating" type="number" min="50" max="99" value="85" required>
           <label for="stickerImage">Foto opcional</label>
@@ -432,7 +428,6 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
         </form>
         <p id="stickerStatus" class="status"></p>
       </div>
-
       <div class="card">
         <h3>🛡️ Crear un club</h3>
         <form id="clubForm">
@@ -453,117 +448,56 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
     <div id="clubGrid" class="grid"></div>
   </section>
 
-  <!-- 8. TORNEOS Y SIMULADORES -->
   <section id="torneos">
-    <div class="section-head">
-      <h2>🏆 Torneos y simuladores</h2>
-      <p>Entrá a los otros modos de BAUTIBOBICHBALL sin reemplazar sus archivos.</p>
-    </div>
+    <div class="section-head"><h2>🏆 Torneos y simuladores</h2><p>Accedé a los otros modos del proyecto.</p></div>
     <div class="grid">
-      <div class="card">
-        <div class="emoji">🌎</div>
-        <h3>Mundial 2026</h3>
-        <p>Accedé a la sección mundialista del proyecto.</p>
-        <a href="bobich-world-cup-2026.html"><button style="width:100%">Abrir Mundial</button></a>
-      </div>
-      <div class="card">
-        <div class="emoji">🎮</div>
-        <h3>Simulador de fútbol</h3>
-        <p>Entrá al simulador que ya tenés en el repositorio.</p>
-        <a href="simulador.html"><button style="width:100%">Abrir simulador</button></a>
-      </div>
-      <div class="card">
-        <div class="emoji">🥇</div>
-        <h3>Balón de Oro</h3>
-        <p>Visitá la página de premios de tu proyecto.</p>
-        <a href="bobich-ballon-dor.html"><button class="gold-button" style="width:100%">Ir a los premios</button></a>
-      </div>
+      <div class="card"><div class="emoji">🌎</div><h3>Mundial 2026</h3><p>Visitá tu sección mundialista.</p><a href="bobich-world-cup-2026.html"><button style="width:100%">Abrir Mundial</button></a></div>
+      <div class="card"><div class="emoji">🎮</div><h3>Simulador de fútbol</h3><p>Entrá al simulador existente.</p><a href="simulador.html"><button style="width:100%">Abrir simulador</button></a></div>
+      <div class="card"><div class="emoji">🥇</div><h3>Balón de Oro</h3><p>Visitá la página independiente de premios.</p><a href="bobich-ballon-dor.html"><button class="gold-button" style="width:100%">Ir a los premios</button></a></div>
     </div>
     <div class="grid" style="margin-top:14px">
-      <div class="card"><span class="pill">TORNEO</span><h3>🌎 Copa Bautibobich</h3><p>Competencia principal del universo.</p><button onclick="joinTournament('Copa Bautibobich')">Participar</button></div>
+      <div class="card"><span class="pill">TORNEO</span><h3>🌎 Copa Bautibobich</h3><p>Competencia principal.</p><button onclick="joinTournament('Copa Bautibobich')">Participar</button></div>
       <div class="card"><span class="pill">RÁPIDO</span><h3>⚡ Copa Relámpago</h3><p>Desafío de partidas rápidas.</p><button onclick="joinTournament('Copa Relámpago')">Participar</button></div>
-      <div class="card"><span class="pill">LEYENDAS</span><h3>👑 Copa de Leyendas</h3><p>Un torneo especial de colección.</p><button onclick="joinTournament('Copa de Leyendas')">Participar</button></div>
+      <div class="card"><span class="pill">LEYENDAS</span><h3>👑 Copa de Leyendas</h3><p>Torneo especial de colección.</p><button onclick="joinTournament('Copa de Leyendas')">Participar</button></div>
     </div>
     <p id="tournamentStatus" class="status"></p>
   </section>
 
-  <!-- 9. MUSEO DE TROFEOS -->
   <section id="museo">
-    <div class="section-head">
-      <h2>🏛️ Museo de trofeos 3D</h2>
-      <p>Una galería de trofeos estilizados con efecto de profundidad y animación.</p>
-    </div>
+    <div class="section-head"><h2>🏛️ Museo de trofeos 3D</h2><p>Galería decorativa con profundidad y animación.</p></div>
     <div class="grid">
-      <div class="card">
-        <div class="trophy-stage"><div class="trophy-3d">🏆</div></div>
-        <h3>Balón de Oro</h3><p>El premio individual más prestigioso de tu museo.</p>
-      </div>
-      <div class="card">
-        <div class="trophy-stage"><div class="trophy-3d">🌎</div></div>
-        <h3>Copa del Mundo</h3><p>El gran trofeo del fútbol internacional.</p>
-      </div>
-      <div class="card">
-        <div class="trophy-stage"><div class="trophy-3d">⭐</div></div>
-        <h3>Champions League</h3><p>Un homenaje a la competición europea.</p>
-      </div>
-      <div class="card">
-        <div class="trophy-stage"><div class="trophy-3d">🥇</div></div>
-        <h3>Copa América</h3><p>El trofeo del fútbol sudamericano.</p>
-      </div>
-      <div class="card">
-        <div class="trophy-stage"><div class="trophy-3d">🏅</div></div>
-        <h3>Eurocopa</h3><p>Un lugar para las grandes selecciones europeas.</p>
-      </div>
-      <div class="card">
-        <div class="trophy-stage"><div class="trophy-3d">👑</div></div>
-        <h3>Trofeo de Leyenda</h3><p>Un reconocimiento especial de BAUTIBOBICHBALL.</p>
-      </div>
+      <div class="card"><div class="trophy-stage"><div class="trophy-3d">🏆</div></div><h3>Balón de Oro</h3><p>El gran premio individual.</p></div>
+      <div class="card"><div class="trophy-stage"><div class="trophy-3d">🌎</div></div><h3>Copa del Mundo</h3><p>El trofeo internacional.</p></div>
+      <div class="card"><div class="trophy-stage"><div class="trophy-3d">⭐</div></div><h3>Champions League</h3><p>Un homenaje al fútbol europeo.</p></div>
+      <div class="card"><div class="trophy-stage"><div class="trophy-3d">🥇</div></div><h3>Copa América</h3><p>El fútbol sudamericano.</p></div>
+      <div class="card"><div class="trophy-stage"><div class="trophy-3d">🏅</div></div><h3>Eurocopa</h3><p>Las selecciones europeas.</p></div>
+      <div class="card"><div class="trophy-stage"><div class="trophy-3d">👑</div></div><h3>Trofeo de Leyenda</h3><p>Un premio especial del sitio.</p></div>
     </div>
-    <p class="muted">Estos son diseños decorativos estilizados, no modelos 3D oficiales ni réplicas exactas.</p>
+    <p class="muted">Son representaciones decorativas con emojis y animación CSS, no modelos 3D oficiales.</p>
   </section>
 
-  <!-- 10. MISIONES -->
   <section id="misiones">
-    <div class="section-head">
-      <h2>🎯 Misiones y recompensas</h2>
-      <p>Completá actividades del sitio para reclamar recompensas una sola vez.</p>
-    </div>
+    <div class="section-head"><h2>🎯 Misiones y recompensas</h2><p>Completá actividades y reclamá cada recompensa una sola vez.</p></div>
     <div id="missionsGrid" class="grid"></div>
   </section>
 
-  <!-- 11. TABLA -->
   <section id="tabla">
-    <div class="section-head">
-      <h2>📊 Tabla de clubes</h2>
-      <p>Tabla de ejemplo para la presentación. No representa resultados oficiales en directo.</p>
-    </div>
+    <div class="section-head"><h2>📊 Tabla de clubes</h2><p>Tabla ficticia de demostración; no muestra resultados oficiales en directo.</p></div>
     <div class="panel table-wrap">
-      <table>
-        <thead><tr><th>#</th><th>Club</th><th>Pts</th><th>PJ</th></tr></thead>
-        <tbody id="standingsBody"></tbody>
-      </table>
+      <table><thead><tr><th>#</th><th>Club</th><th>Pts</th><th>PJ</th></tr></thead><tbody id="standingsBody"></tbody></table>
     </div>
   </section>
 
-  <!-- 12. PARTIDOS -->
   <section id="partidos">
-    <div class="section-head">
-      <h2>⚽ Partidos y resultados</h2>
-      <p>Resultados de demostración, no marcadores oficiales en vivo.</p>
-    </div>
+    <div class="section-head"><h2>⚽ Partidos y resultados</h2><p>Resultados de demostración, no marcadores oficiales en vivo.</p></div>
     <div id="matchesGrid" class="grid"></div>
     <button class="secondary" onclick="renderMatches()">Actualizar partidos de ejemplo</button>
   </section>
 
-  <!-- 13. BALÓN DE ORO -->
   <section id="premios">
-    <div class="section-head">
-      <h2>🥇 Balón de Oro BAUTIBOBICH</h2>
-      <p>Entrá al espacio de premios y ceremonia.</p>
-    </div>
+    <div class="section-head"><h2>🥇 Balón de Oro BAUTIBOBICH</h2><p>Visitá el espacio de candidatos y ceremonia.</p></div>
     <div class="card">
-      <div class="emoji">👑</div>
-      <h3>La noche de las leyendas</h3>
+      <div class="emoji">👑</div><h3>La noche de las leyendas</h3>
       <p>Consultá el sistema de candidatos y premios de la página independiente.</p>
       <a href="bobich-ballon-dor.html"><button class="gold-button">Abrir Balón de Oro</button></a>
     </div>
@@ -572,7 +506,7 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
 
 <footer>
   <strong style="color:var(--green)">BAUTIBOBICHBALL</strong>
-  <p>Proyecto futbolero independiente · Diseño adaptable para Android y computadora.</p>
+  <p>Proyecto futbolero independiente · Adaptado para Android y computadora.</p>
   <p>Los jugadores, resultados y estadísticas de ejemplo son ficticios.</p>
   <a href="#inicio">Volver arriba ↑</a>
 </footer>
@@ -580,82 +514,60 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
 <script>
 "use strict";
 
-/* ==========================================================
-   1. DATOS Y GUARDADO LOCAL
-   ========================================================== */
-const SAVE_KEY = "bautibobichball_universe_v4";
+/* INTRO: se muestra una vez por sesión */
+(function initIntro(){
+  const intro=document.getElementById("bb-intro");
+  const enter=document.getElementById("bb-enter");
+  let seen=false;
+  try{seen=sessionStorage.getItem("bb_intro_seen")==="yes"}catch(e){}
+  if(seen){
+    intro.classList.add("bb-intro-hidden");
+    document.body.classList.remove("intro-open");
+  }
+  enter.addEventListener("click",()=>{
+    intro.classList.add("bb-intro-hidden");
+    document.body.classList.remove("intro-open");
+    try{sessionStorage.setItem("bb_intro_seen","yes")}catch(e){}
+  });
+})();
 
-const defaultData = {
-  username:"Jugador",
-  favoriteClub:"",
-  coins:300,
-  xp:0,
-  games:0,
-  wins:0,
-  owned:[],
-  customStickers:[],
-  clubs:[],
-  team:{},
-  teamName:"Tu XI",
-  missionsClaimed:[],
-  tournaments:[],
-  quizWins:0,
-  penaltyWins:0,
-  reflexWins:0,
-  targetWins:0,
-  packsOpened:0
+/* DATOS Y GUARDADO LOCAL */
+const SAVE_KEY="bautibobichball_universe_v4";
+const defaultData={
+  username:"Jugador",favoriteClub:"",coins:300,xp:0,games:0,wins:0,
+  owned:[],customStickers:[],clubs:[],team:{},teamName:"Tu XI",
+  missionsClaimed:[],tournaments:[],quizWins:0,penaltyWins:0,
+  reflexWins:0,targetWins:0,packsOpened:0
 };
-
 function loadData(){
   try{
-    const saved = JSON.parse(localStorage.getItem(SAVE_KEY) || "null");
-    return saved ? {...structuredClone(defaultData),...saved} : structuredClone(defaultData);
-  }catch(e){
-    return JSON.parse(JSON.stringify(defaultData));
-  }
+    const saved=JSON.parse(localStorage.getItem(SAVE_KEY)||"null");
+    return saved?{...JSON.parse(JSON.stringify(defaultData)),...saved}:JSON.parse(JSON.stringify(defaultData));
+  }catch(e){return JSON.parse(JSON.stringify(defaultData))}
 }
-
-let data = loadData();
-
+let data=loadData();
 function saveData(){
-  try{
-    localStorage.setItem(SAVE_KEY,JSON.stringify(data));
-  }catch(e){
-    alert("El navegador no pudo guardar más datos. Probá usar imágenes más pequeñas.");
-  }
+  try{localStorage.setItem(SAVE_KEY,JSON.stringify(data))}
+  catch(e){alert("No se pudo guardar. Probá usar una imagen más pequeña o borrar cromos personalizados.")}
   updateUI();
 }
-
 function escapeHTML(value){
-  return String(value ?? "").replace(/[&<>"']/g,char=>({
+  return String(value??"").replace(/[&<>"']/g,char=>({
     "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
   }[char]));
 }
-function makeId(){
-  return "id_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,8);
-}
-function award(xp=0,coins=0){
-  data.xp += xp;
-  data.coins += coins;
-  saveData();
-}
+function makeId(){return "id_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,8)}
+function award(xp=0,coins=0){data.xp+=xp;data.coins+=coins;saveData()}
 function getLevel(){return Math.floor(data.xp/250)+1}
 function xpProgress(){return data.xp%250}
 function allCards(){return [...baseCards,...data.customStickers]}
-function ownedCards(){
-  return data.owned.map(id=>allCards().find(card=>card.id===id)).filter(Boolean);
-}
+function ownedCards(){return data.owned.map(id=>allCards().find(c=>c.id===id)).filter(Boolean)}
 function addOwned(card){
-  if(!data.owned.includes(card.id)){
-    data.owned.push(card.id);
-    return true;
-  }
+  if(!data.owned.includes(card.id)){data.owned.push(card.id);return true}
   return false;
 }
 
-/* ==========================================================
-   2. PERFIL Y ESTADÍSTICAS
-   ========================================================== */
+/* PERFIL */
 function saveProfile(){
   data.username=document.getElementById("username").value.trim().slice(0,22)||"Jugador";
   data.favoriteClub=document.getElementById("favoriteClub").value.trim().slice(0,35);
@@ -678,58 +590,49 @@ function updateUI(){
   document.getElementById("username").value=data.username;
   document.getElementById("favoriteClub").value=data.favoriteClub;
   document.getElementById("teamName").value=data.teamName;
-  renderAlbum();
-  renderTeam();
-  renderMissions();
+  renderAlbum();renderTeam();renderMissions();
 }
 document.getElementById("username").value=data.username;
 document.getElementById("favoriteClub").value=data.favoriteClub;
 
-/* ==========================================================
-   3. CROMOS DE EJEMPLO
-   ========================================================== */
+/* CROMOS DE EJEMPLO */
 const baseCards=[
- {id:"c1",name:"Leo Relámpago",country:"Argentina",position:"DEL",rating:95,rarity:"gold",emoji:"⚡"},
- {id:"c2",name:"Cristiano Titan",country:"Portugal",position:"DEL",rating:94,rarity:"gold",emoji:"🚀"},
- {id:"c3",name:"Kylian Veloz",country:"Francia",position:"DEL",rating:92,rarity:"blue",emoji:"💨"},
- {id:"c4",name:"Ney Flash",country:"Brasil",position:"MED",rating:90,rarity:"special",emoji:"🎩"},
- {id:"c5",name:"Haaland Goleador",country:"Noruega",position:"DEL",rating:91,rarity:"gold",emoji:"🎯"},
- {id:"c6",name:"Luka Maestro",country:"Croacia",position:"MED",rating:89,rarity:"blue",emoji:"🪄"},
- {id:"c7",name:"Emi Muralla",country:"Argentina",position:"POR",rating:90,rarity:"blue",emoji:"🧤"},
- {id:"c8",name:"Virgil Fortaleza",country:"Países Bajos",position:"DEF",rating:89,rarity:"blue",emoji:"🛡️"},
- {id:"c9",name:"Jude Motor",country:"Inglaterra",position:"MED",rating:91,rarity:"gold",emoji:"⚙️"},
- {id:"c10",name:"Vinícius Turbo",country:"Brasil",position:"DEL",rating:91,rarity:"gold",emoji:"🔥"},
- {id:"c11",name:"Take Samurai",country:"Japón",position:"MED",rating:85,rarity:"normal",emoji:"🌟"},
- {id:"c12",name:"Achraf Viento",country:"Marruecos",position:"DEF",rating:87,rarity:"normal",emoji:"🌪️"}
+{id:"c1",name:"Leo Relámpago",country:"Argentina",position:"DEL",rating:95,rarity:"gold",emoji:"⚡"},
+{id:"c2",name:"Cristiano Titan",country:"Portugal",position:"DEL",rating:94,rarity:"gold",emoji:"🚀"},
+{id:"c3",name:"Kylian Veloz",country:"Francia",position:"DEL",rating:92,rarity:"blue",emoji:"💨"},
+{id:"c4",name:"Ney Flash",country:"Brasil",position:"MED",rating:90,rarity:"special",emoji:"🎩"},
+{id:"c5",name:"Haaland Goleador",country:"Noruega",position:"DEL",rating:91,rarity:"gold",emoji:"🎯"},
+{id:"c6",name:"Luka Maestro",country:"Croacia",position:"MED",rating:89,rarity:"blue",emoji:"🪄"},
+{id:"c7",name:"Emi Muralla",country:"Argentina",position:"POR",rating:90,rarity:"blue",emoji:"🧤"},
+{id:"c8",name:"Virgil Fortaleza",country:"Países Bajos",position:"DEF",rating:89,rarity:"blue",emoji:"🛡️"},
+{id:"c9",name:"Jude Motor",country:"Inglaterra",position:"MED",rating:91,rarity:"gold",emoji:"⚙️"},
+{id:"c10",name:"Vinícius Turbo",country:"Brasil",position:"DEL",rating:91,rarity:"gold",emoji:"🔥"},
+{id:"c11",name:"Take Samurai",country:"Japón",position:"MED",rating:85,rarity:"normal",emoji:"🌟"},
+{id:"c12",name:"Achraf Viento",country:"Marruecos",position:"DEF",rating:87,rarity:"normal",emoji:"🌪️"}
 ];
-
 function cardHTML(card,owned=false){
   const rarity=card.rarity||"normal";
   const image=card.image
-    ? `<img src="${card.image}" alt="" style="width:65px;height:65px;object-fit:cover;border-radius:50%;margin:6px auto">`
-    : `<div class="player-emoji">${escapeHTML(card.emoji||"⚽")}</div>`;
+    ?`<img src="${card.image}" alt="" style="width:65px;height:65px;object-fit:cover;border-radius:50%;margin:6px auto">`
+    :`<div class="player-emoji">${escapeHTML(card.emoji||"⚽")}</div>`;
   return `<div class="player-card ${rarity}">
     <span class="rarity">${escapeHTML(rarity.toUpperCase())}</span>
     <div class="rating">${Number(card.rating)||75}</div>
-    <div class="position">${escapeHTML(card.position||"MED")}</div>
-    ${image}
+    <div class="position">${escapeHTML(card.position||"MED")}</div>${image}
     <div class="player-name">${escapeHTML(card.name)}</div>
     <div class="player-country">${escapeHTML(card.country||"Club creado")}</div>
     <div class="player-stats">RIT ${Math.min(99,(Number(card.rating)||75)+1)} · TEC ${Number(card.rating)||75}</div>
     ${owned?"<div style='font-size:.7rem;font-weight:900;margin-top:5px'>EN TU COLECCIÓN</div>":""}
   </div>`;
 }
-
 function renderAlbum(){
-  const grid=document.getElementById("albumGrid");
-  grid.innerHTML=baseCards.map(card=>
+  document.getElementById("albumGrid").innerHTML=baseCards.map(card=>
     `<div>${cardHTML(card,data.owned.includes(card.id))}
     <button style="width:100%;margin-top:7px" onclick="claimStarter('${card.id}')">${data.owned.includes(card.id)?"Cromo obtenido":"Conseguir cromo"}</button></div>`
   ).join("");
-  const customGrid=document.getElementById("customGrid");
-  customGrid.innerHTML=data.customStickers.length
-    ? data.customStickers.map(card=>`<div>${cardHTML(card,data.owned.includes(card.id))}</div>`).join("")
-    : `<div class="empty">Todavía no creaste cromos personalizados.</div>`;
+  document.getElementById("customGrid").innerHTML=data.customStickers.length
+    ?data.customStickers.map(card=>`<div>${cardHTML(card,data.owned.includes(card.id))}</div>`).join("")
+    :'<div class="empty">Todavía no creaste cromos personalizados.</div>';
   const count=baseCards.filter(c=>data.owned.includes(c.id)).length;
   document.getElementById("albumOwned").textContent=count;
   document.getElementById("albumTotal").textContent=baseCards.length;
@@ -746,14 +649,12 @@ function claimStarter(id){
     award(10,5);
     document.getElementById("packStatus").textContent="¡Conseguiste a "+card.name+"!";
   }else{
-    document.getElementById("packStatus").textContent="Ya tenés ese cromo. Podés conseguir más con sobres.";
+    document.getElementById("packStatus").textContent="Ya tenés ese cromo. Podés abrir sobres para buscar otros.";
   }
   saveData();
 }
 
-/* ==========================================================
-   4. SOBRES ANIMADOS
-   ========================================================== */
+/* SOBRES */
 let packBusy=false;
 function openPack(type){
   if(packBusy)return;
@@ -764,58 +665,46 @@ function openPack(type){
     document.getElementById("packStatus").textContent="No tenés suficientes monedas. Jugá para conseguir más.";
     return;
   }
-  data.coins-=cost;
-  data.packsOpened++;
-  packBusy=true;
+  data.coins-=cost;data.packsOpened++;packBusy=true;
   const area=document.getElementById("packArea");
-  area.innerHTML=`<div class="pack opening"><div class="pack-icon">🎁</div><strong>ABRIENDO SOBRE...</strong><span>Preparando tus cromos</span></div>`;
+  area.innerHTML='<div class="pack opening"><div class="pack-icon">🎁</div><strong>ABRIENDO SOBRE...</strong><span>Preparando tus cromos</span></div>';
   document.getElementById("packStatus").textContent="¡El sobre se está abriendo!";
   saveData();
   setTimeout(()=>{
-    const count=amounts[type];
     const results=[];
-    for(let i=0;i<count;i++){
-      let card=allCards()[Math.floor(Math.random()*allCards().length)];
+    for(let i=0;i<amounts[type];i++){
+      let pool=allCards();
+      let card=pool[Math.floor(Math.random()*pool.length)];
       if(type==="legend"&&Math.random()<.55){
-        const special=allCards().filter(c=>c.rating>=90);
+        const special=pool.filter(c=>c.rating>=90);
         if(special.length)card=special[Math.floor(Math.random()*special.length)];
       }
       const already=data.owned.includes(card.id);
-      addOwned(card);
-      results.push({card,already});
+      addOwned(card);results.push({card,already});
     }
-    award(15*count,20*count);
-    area.innerHTML=`<h3>✨ ¡Sobre abierto!</h3><div class="grid small-grid">${results.map((r,i)=>`<div class="reveal" style="animation-delay:${i*.15}s">${cardHTML(r.card,true)}<p class="status">${r.already?"Repetido":"¡Nuevo cromo!"}</p></div>`).join("")}</div>`;
-    document.getElementById("packStatus").textContent="Recompensa: "+(15*count)+" XP y "+(20*count)+" monedas extra.";
-    packBusy=false;
-    saveData();
+    award(15*amounts[type],20*amounts[type]);
+    area.innerHTML='<h3>✨ ¡Sobre abierto!</h3><div class="grid small-grid">'+
+      results.map((r,i)=>`<div class="reveal" style="animation-delay:${i*.15}s">${cardHTML(r.card,true)}<p class="status">${r.already?"Cromo repetido":"¡Nuevo cromo!"}</p></div>`).join("")+'</div>';
+    document.getElementById("packStatus").textContent="¡Recompensas añadidas a tu progreso!";
+    packBusy=false;saveData();
   },1100);
 }
 
-/* ==========================================================
-   5. ULTIMATE TEAM
-   ========================================================== */
+/* ULTIMATE TEAM */
 const positions=[
- {id:"POR",label:"🧤 Arquero"},
- {id:"DEF",label:"🛡️ Defensa"},
- {id:"MED",label:"🎯 Mediocampista"},
- {id:"DEL",label:"⚽ Delantero"},
- {id:"CAP",label:"👑 Capitán"}
+{id:"POR",label:"🧤 Arquero"},{id:"DEF",label:"🛡️ Defensa"},
+{id:"MED",label:"🎯 Mediocampista"},{id:"DEL",label:"⚽ Delantero"},
+{id:"CAP",label:"👑 Capitán"}
 ];
 function renderTeam(){
-  const grid=document.getElementById("teamGrid");
-  grid.innerHTML=positions.map(pos=>{
-    const id=data.team[pos.id];
-    const card=allCards().find(c=>c.id===id);
-    return `<div class="slot">
-      <span class="pill">${pos.label}</span>
-      ${card?cardHTML(card,true):`<div class="slot-icon">➕</div><strong>Vacío</strong>`}
-      <button class="secondary" onclick="selectTeamSlot('${pos.id}')">Elegir</button>
-    </div>`;
+  document.getElementById("teamGrid").innerHTML=positions.map(pos=>{
+    const card=allCards().find(c=>c.id===data.team[pos.id]&&data.owned.includes(c.id));
+    return `<div class="slot"><span class="pill">${pos.label}</span>
+      ${card?cardHTML(card,true):'<div class="slot-icon">➕</div><strong>Vacío</strong>'}
+      <button class="secondary" onclick="selectTeamSlot('${pos.id}')">Elegir</button></div>`;
   }).join("");
-  const cards=positions.map(p=>allCards().find(c=>c.id===data.team[p.id])).filter(Boolean);
-  const rating=cards.length?Math.round(cards.reduce((s,c)=>s+c.rating,0)/cards.length):0;
-  document.getElementById("teamRating").textContent=rating;
+  const cards=positions.map(p=>allCards().find(c=>c.id===data.team[p.id]&&data.owned.includes(c.id))).filter(Boolean);
+  document.getElementById("teamRating").textContent=cards.length?Math.round(cards.reduce((s,c)=>s+c.rating,0)/cards.length):0;
   document.getElementById("teamPlayers").textContent=cards.length+"/5";
   document.getElementById("teamChem").textContent=Math.round(cards.length/5*100)+"%";
   document.getElementById("teamNameText").textContent=data.teamName||"Tu XI";
@@ -827,7 +716,7 @@ function renderTeamSelect(){
   const cards=ownedCards();
   select.innerHTML=cards.length
     ?cards.map(c=>`<option value="${escapeHTML(c.id)}">${escapeHTML(c.name)} · ${c.rating} · ${escapeHTML(c.position)}</option>`).join("")
-    :`<option value="">Primero conseguí cromos en el álbum o los sobres</option>`;
+    :'<option value="">Primero conseguí cromos</option>';
 }
 function selectTeamSlot(slot){
   document.getElementById("teamSlotSelect").value=slot;
@@ -838,46 +727,37 @@ function assignPlayer(){
   const slot=document.getElementById("teamSlotSelect").value;
   const id=document.getElementById("teamPlayerSelect").value;
   if(!id||!data.owned.includes(id)){
-    document.getElementById("teamStatus").textContent="Primero conseguí un cromo.";
-    return;
+    document.getElementById("teamStatus").textContent="Primero conseguí un cromo.";return;
   }
-  data.team[slot]=id;
-  data.games++;
-  award(10,5);
+  data.team[slot]=id;data.games++;award(10,5);
   document.getElementById("teamStatus").textContent="¡Jugador asignado al puesto "+slot+"!";
   saveData();
 }
 function clearTeamSlot(){
   const slot=document.getElementById("teamSlotSelect").value;
-  delete data.team[slot];
-  saveData();
+  delete data.team[slot];saveData();
   document.getElementById("teamStatus").textContent="Puesto "+slot+" vacío.";
 }
 function saveTeamName(){
   data.teamName=document.getElementById("teamName").value.trim().slice(0,30)||"Tu XI";
-  saveData();
-  document.getElementById("teamStatus").textContent="Nombre del equipo guardado.";
+  saveData();document.getElementById("teamStatus").textContent="Nombre del equipo guardado.";
 }
 
-/* ==========================================================
-   6. PENALES
-   ========================================================== */
+/* PENALES */
 let penalty={shots:0,goals:0,finished:false};
 function shootPenalty(direction){
   if(penalty.finished)return;
   const options=["Izquierda","Centro","Derecha"];
   const goalie=options[Math.floor(Math.random()*3)];
   const goal=direction!==goalie;
-  penalty.shots++;
-  if(goal)penalty.goals++;
+  penalty.shots++;if(goal)penalty.goals++;
   document.getElementById("penGoals").textContent=penalty.goals;
   document.getElementById("penShots").textContent=penalty.shots+"/5";
   document.getElementById("penStatus").textContent=goal
     ?`⚽ ¡GOL! Pateaste al ${direction.toLowerCase()} y el arquero fue al ${goalie.toLowerCase()}.`
     :`🧤 ¡ATAJADA! El arquero adivinó tu disparo.`;
   if(penalty.shots>=5){
-    penalty.finished=true;
-    data.games++;
+    penalty.finished=true;data.games++;
     if(penalty.goals>=3){data.wins++;data.penaltyWins++;award(50,60)}
     else award(20,20);
     document.getElementById("penStatus").textContent+=` Final: ${penalty.goals}/5 goles.`;
@@ -891,18 +771,16 @@ function resetPenalty(){
   document.getElementById("penStatus").textContent="¡Elegí dónde patear!";
 }
 
-/* ==========================================================
-   7. TRIVIA
-   ========================================================== */
+/* TRIVIA */
 const questions=[
- {q:"¿Cuántos jugadores por equipo están normalmente en el campo?",a:["9","11","12"],correct:1},
- {q:"¿Qué país ganó el Mundial masculino de 2022?",a:["Argentina","Francia","Brasil"],correct:0},
- {q:"¿Qué tarjeta significa expulsión?",a:["Amarilla","Azul","Roja"],correct:2},
- {q:"¿Cuánto dura un partido normal sin tiempo añadido?",a:["80 minutos","90 minutos","100 minutos"],correct:1},
- {q:"¿Qué jugador puede usar las manos dentro de su área?",a:["El arquero","El delantero","El capitán siempre"],correct:0},
- {q:"¿Cuántos puntos da una victoria en una liga habitual?",a:["1","2","3"],correct:2},
- {q:"¿Qué parte del cuerpo no puede usar normalmente un jugador de campo para tocar la pelota?",a:["Cabeza","Pie","Mano"],correct:2},
- {q:"¿Qué torneo enfrenta selecciones nacionales de Europa?",a:["Eurocopa","Copa Libertadores","Champions League"],correct:0}
+{q:"¿Cuántos jugadores por equipo están normalmente en el campo?",a:["9","11","12"],correct:1},
+{q:"¿Qué país ganó el Mundial masculino de 2022?",a:["Argentina","Francia","Brasil"],correct:0},
+{q:"¿Qué tarjeta significa expulsión?",a:["Amarilla","Azul","Roja"],correct:2},
+{q:"¿Cuánto dura un partido normal sin tiempo añadido?",a:["80 minutos","90 minutos","100 minutos"],correct:1},
+{q:"¿Qué jugador puede usar las manos dentro de su área?",a:["El arquero","El delantero","El capitán siempre"],correct:0},
+{q:"¿Cuántos puntos da una victoria en una liga habitual?",a:["1","2","3"],correct:2},
+{q:"¿Qué parte del cuerpo no puede usar normalmente un jugador de campo?",a:["Cabeza","Pie","Mano"],correct:2},
+{q:"¿Qué torneo enfrenta selecciones nacionales de Europa?",a:["Eurocopa","Copa Libertadores","Champions League"],correct:0}
 ];
 let quizIndex=0,quizScore=0,quizActive=false,quizAnswered=false,quizOrder=[];
 function startQuiz(){
@@ -915,22 +793,15 @@ function startQuiz(){
 function renderQuestion(){
   const q=questions[quizOrder[quizIndex]];
   document.getElementById("quizQuestion").textContent=`Pregunta ${quizIndex+1}/${quizOrder.length}: ${q.q}`;
-  document.getElementById("quizAnswers").innerHTML=q.a.map((a,i)=>
-    `<button class="secondary" onclick="answerQuestion(${i})">${escapeHTML(a)}</button>`
-  ).join("");
-  document.getElementById("quizStatus").textContent="";
-  quizAnswered=false;
+  document.getElementById("quizAnswers").innerHTML=q.a.map((a,i)=>`<button class="secondary" onclick="answerQuestion(${i})">${escapeHTML(a)}</button>`).join("");
+  document.getElementById("quizStatus").textContent="";quizAnswered=false;
 }
 function answerQuestion(index){
   if(!quizActive||quizAnswered)return;
   quizAnswered=true;
   const q=questions[quizOrder[quizIndex]];
-  if(index===q.correct){
-    quizScore++;
-    document.getElementById("quizStatus").textContent="✅ ¡Correcto!";
-  }else{
-    document.getElementById("quizStatus").textContent="❌ Respuesta correcta: "+q.a[q.correct];
-  }
+  document.getElementById("quizStatus").textContent=index===q.correct?"✅ ¡Correcto!":"❌ Respuesta correcta: "+q.a[q.correct];
+  if(index===q.correct)quizScore++;
   document.getElementById("quizAnswers").querySelectorAll("button").forEach(b=>b.disabled=true);
   document.getElementById("quizNext").classList.remove("hidden");
   document.getElementById("quizNext").textContent=quizIndex===quizOrder.length-1?"Ver resultado":"Siguiente pregunta";
@@ -939,8 +810,7 @@ function nextQuestion(){
   if(!quizAnswered)return;
   quizIndex++;
   if(quizIndex<quizOrder.length){renderQuestion();return}
-  quizActive=false;
-  data.games++;
+  quizActive=false;data.games++;
   const xp=quizScore*15,coins=quizScore*12;
   if(quizScore>=5){data.wins++;data.quizWins++}
   award(xp,coins);
@@ -951,52 +821,33 @@ function nextQuestion(){
   document.getElementById("quizStart").classList.remove("hidden");
 }
 
-/* ==========================================================
-   8. REFLEJOS
-   ========================================================== */
+/* REFLEJOS */
 let reflexState="idle",reflexTimer=null,reflexStartTime=0;
 function reflexAction(){
   const btn=document.getElementById("reflexButton");
   const light=document.getElementById("reflexLight");
   const status=document.getElementById("reflexStatus");
   if(reflexState==="idle"||reflexState==="done"){
-    reflexState="waiting";
-    btn.textContent="Esperá la señal...";
-    light.textContent="🔴";
-    status.textContent="No toques todavía.";
+    reflexState="waiting";btn.textContent="Esperá la señal...";
+    light.textContent="🔴";status.textContent="No toques todavía.";
     reflexTimer=setTimeout(()=>{
       if(reflexState!=="waiting")return;
-      reflexState="ready";
-      reflexStartTime=performance.now();
-      light.textContent="🟢";
-      status.textContent="¡AHORA!";
-      btn.textContent="¡TOCAR!";
+      reflexState="ready";reflexStartTime=performance.now();
+      light.textContent="🟢";status.textContent="¡AHORA!";btn.textContent="¡TOCAR!";
     },1200+Math.random()*2800);
   }else if(reflexState==="waiting"){
-    clearTimeout(reflexTimer);
-    reflexState="done";
-    light.textContent="🔴";
-    status.textContent="¡Demasiado pronto! Probá otra vez.";
-    btn.textContent="Intentar otra vez";
+    clearTimeout(reflexTimer);reflexState="done";light.textContent="🔴";
+    status.textContent="¡Demasiado pronto! Probá otra vez.";btn.textContent="Intentar otra vez";
   }else if(reflexState==="ready"){
     const ms=Math.round(performance.now()-reflexStartTime);
-    reflexState="done";
-    light.textContent="🏁";
-    status.textContent=`Tu tiempo: ${ms} ms`;
-    btn.textContent="Jugar otra vez";
-    data.games++;
-    if(ms<500){data.wins++;data.reflexWins++;award(40,40)}
-    else award(15,15);
+    reflexState="done";light.textContent="🏁";status.textContent=`Tu tiempo: ${ms} ms`;
+    btn.textContent="Jugar otra vez";data.games++;
+    if(ms<500){data.wins++;data.reflexWins++;award(40,40)}else award(15,15);
     saveData();
-  }else{
-    reflexState="idle";
-    reflexAction();
   }
 }
 
-/* ==========================================================
-   9. PRECISIÓN
-   ========================================================== */
+/* PRECISIÓN */
 let target={shots:0,points:0};
 function targetShot(level){
   if(target.shots>=5)return;
@@ -1009,7 +860,7 @@ function targetShot(level){
     data.games++;
     if(target.points>=60){data.wins++;data.targetWins++;award(35,40)}
     else award(15,15);
-    document.getElementById("targetStatus").textContent+=` Final. Recompensa: ${target.points} puntos.`;
+    document.getElementById("targetStatus").textContent+=` Final. Puntos: ${target.points}.`;
     saveData();
   }
 }
@@ -1018,9 +869,7 @@ function resetTarget(){
   document.getElementById("targetStatus").textContent="Intentos: 0/5 · Puntos: 0";
 }
 
-/* ==========================================================
-   10. CREAR CROMOS
-   ========================================================== */
+/* CREAR CROMOS */
 let pendingStickerImage="";
 function readImage(file,maxSize=480){
   return new Promise((resolve,reject)=>{
@@ -1043,43 +892,34 @@ function readImage(file,maxSize=480){
   });
 }
 document.getElementById("stickerImage").addEventListener("change",async event=>{
-  const file=event.target.files[0];
-  if(!file)return;
+  const file=event.target.files[0];if(!file)return;
   if(file.size>5*1024*1024){
     document.getElementById("stickerStatus").textContent="La imagen supera 5 MB. Elegí una más pequeña.";
-    event.target.value="";
-    return;
+    event.target.value="";return;
   }
   try{
     pendingStickerImage=await readImage(file);
     document.getElementById("stickerPreview").innerHTML=`<img src="${pendingStickerImage}" alt="Vista previa" style="width:75px;height:75px;object-fit:cover;border-radius:50%"><p>Vista previa cargada</p>`;
-  }catch(error){
-    document.getElementById("stickerStatus").textContent=error.message;
-  }
+  }catch(error){document.getElementById("stickerStatus").textContent=error.message}
 });
 document.getElementById("stickerForm").addEventListener("submit",event=>{
   event.preventDefault();
-  const name=document.getElementById("stickerName").value.trim();
-  const country=document.getElementById("stickerCountry").value.trim();
-  const rating=Math.max(50,Math.min(99,Number(document.getElementById("stickerRating").value)||75));
   const card={
-    id:makeId(),name,country,
+    id:makeId(),
+    name:document.getElementById("stickerName").value.trim(),
+    country:document.getElementById("stickerCountry").value.trim(),
     position:document.getElementById("stickerPosition").value,
-    rating,rarity:"special",emoji:"⭐",image:pendingStickerImage
+    rating:Math.max(50,Math.min(99,Number(document.getElementById("stickerRating").value)||75)),
+    rarity:"special",emoji:"⭐",image:pendingStickerImage
   };
-  data.customStickers.push(card);
-  addOwned(card);
-  award(20,15);
-  pendingStickerImage="";
-  event.target.reset();
+  data.customStickers.push(card);addOwned(card);award(20,15);
+  pendingStickerImage="";event.target.reset();
   document.getElementById("stickerPreview").textContent="⚽ Vista previa del cromo";
   document.getElementById("stickerStatus").textContent="¡Cromo creado y agregado a tu colección!";
   saveData();
 });
 
-/* ==========================================================
-   11. CREAR CLUBES
-   ========================================================== */
+/* CREAR CLUBES */
 document.getElementById("clubForm").addEventListener("submit",event=>{
   event.preventDefault();
   data.clubs.push({
@@ -1093,20 +933,14 @@ document.getElementById("clubForm").addEventListener("submit",event=>{
   document.getElementById("clubColor").value="#caff38";
   document.getElementById("clubSecondary").value="#173d25";
   document.getElementById("clubStatus").textContent="¡Tu club fue creado!";
-  award(25,25);
-  renderClubs();
-  saveData();
+  award(25,25);renderClubs();saveData();
 });
 function renderClubs(){
   const grid=document.getElementById("clubGrid");
-  if(!data.clubs.length){
-    grid.innerHTML='<div class="empty">Todavía no creaste un club.</div>';
-    return;
-  }
+  if(!data.clubs.length){grid.innerHTML='<div class="empty">Todavía no creaste un club.</div>';return}
   grid.innerHTML=data.clubs.map(club=>`
     <div class="card" style="background:linear-gradient(140deg,${club.primary}22,${club.secondary})">
-      <div style="font-size:2.6rem">🛡️</div>
-      <h3>${escapeHTML(club.name)}</h3>
+      <div style="font-size:2.6rem">🛡️</div><h3>${escapeHTML(club.name)}</h3>
       <p>📍 ${escapeHTML(club.city)}</p>
       <p><span style="display:inline-block;width:18px;height:18px;border-radius:50%;background:${club.primary}"></span>
       <span style="display:inline-block;width:18px;height:18px;border-radius:50%;background:${club.secondary}"></span></p>
@@ -1115,90 +949,62 @@ function renderClubs(){
 }
 function deleteClub(id){
   if(!confirm("¿Eliminar este club?"))return;
-  data.clubs=data.clubs.filter(c=>c.id!==id);
-  saveData();renderClubs();
+  data.clubs=data.clubs.filter(c=>c.id!==id);saveData();renderClubs();
 }
 
-/* ==========================================================
-   12. TORNEOS
-   ========================================================== */
+/* TORNEOS */
 function joinTournament(name){
   if(data.tournaments.includes(name)){
-    document.getElementById("tournamentStatus").textContent="Ya estás inscripto en "+name+".";
-    return;
+    document.getElementById("tournamentStatus").textContent="Ya estás inscripto en "+name+".";return;
   }
-  data.tournaments.push(name);
-  award(20,20);
+  data.tournaments.push(name);award(20,20);
   document.getElementById("tournamentStatus").textContent="¡Inscripción guardada para "+name+"!";
   saveData();
 }
 
-/* ==========================================================
-   13. MISIONES
-   ========================================================== */
+/* MISIONES */
 const missions=[
- {id:"first_game",title:"Primer partido",desc:"Jugá una partida.",test:()=>data.games>=1,xp:30,coins:40},
- {id:"first_pack",title:"Abridor de sobres",desc:"Abrí tu primer sobre.",test:()=>data.packsOpened>=1,xp:40,coins:40},
- {id:"five_cards",title:"Coleccionista",desc:"Conseguí 5 cromos distintos.",test:()=>data.owned.length>=5,xp:50,coins:60},
- {id:"first_club",title:"Presidente",desc:"Creá tu primer club.",test:()=>data.clubs.length>=1,xp:35,coins:35},
- {id:"team_full",title:"Director técnico",desc:"Completá los 5 puestos de Ultimate Team.",test:()=>positions.every(p=>data.team[p.id]),xp:80,coins:100},
- {id:"trivia_win",title:"Cerebro futbolero",desc:"Respondé correctamente 5 preguntas en una trivia.",test:()=>data.quizWins>=1,xp:50,coins:50},
- {id:"penalty_win",title:"Goleador",desc:"Convertí al menos 3 penales en una tanda.",test:()=>data.penaltyWins>=1,xp:50,coins:50}
+{id:"first_game",title:"Primer partido",desc:"Jugá una partida.",test:()=>data.games>=1,xp:30,coins:40},
+{id:"first_pack",title:"Abridor de sobres",desc:"Abrí tu primer sobre.",test:()=>data.packsOpened>=1,xp:40,coins:40},
+{id:"five_cards",title:"Coleccionista",desc:"Conseguí 5 cromos distintos.",test:()=>data.owned.length>=5,xp:50,coins:60},
+{id:"first_club",title:"Presidente",desc:"Creá tu primer club.",test:()=>data.clubs.length>=1,xp:35,coins:35},
+{id:"team_full",title:"Director técnico",desc:"Completá los 5 puestos de Ultimate Team.",test:()=>positions.every(p=>data.team[p.id]&&data.owned.includes(data.team[p.id])),xp:80,coins:100},
+{id:"trivia_win",title:"Cerebro futbolero",desc:"Respondé correctamente al menos 5 preguntas.",test:()=>data.quizWins>=1,xp:50,coins:50},
+{id:"penalty_win",title:"Goleador",desc:"Convertí al menos 3 penales en una tanda.",test:()=>data.penaltyWins>=1,xp:50,coins:50}
 ];
 function renderMissions(){
-  const grid=document.getElementById("missionsGrid");
-  if(!grid)return;
+  const grid=document.getElementById("missionsGrid");if(!grid)return;
   grid.innerHTML=missions.map(m=>{
-    const claimed=data.missionsClaimed.includes(m.id);
-    const done=m.test();
-    return `<div class="card">
-      <span class="pill">${claimed?"RECLAMADA":done?"COMPLETADA":"EN PROGRESO"}</span>
-      <h3>${escapeHTML(m.title)}</h3>
-      <p>${escapeHTML(m.desc)}</p>
-      <p>🎁 ${m.xp} XP · 🪙 ${m.coins}</p>
-      <button ${(!done||claimed)?"disabled":""} onclick="claimMission('${m.id}')">${claimed?"Recompensa reclamada":done?"Reclamar recompensa":"Todavía no completada"}</button>
-    </div>`;
+    const claimed=data.missionsClaimed.includes(m.id),done=m.test();
+    return `<div class="card"><span class="pill">${claimed?"RECLAMADA":done?"COMPLETADA":"EN PROGRESO"}</span>
+      <h3>${escapeHTML(m.title)}</h3><p>${escapeHTML(m.desc)}</p><p>🎁 ${m.xp} XP · 🪙 ${m.coins}</p>
+      <button ${(!done||claimed)?"disabled":""} onclick="claimMission('${m.id}')">${claimed?"Recompensa reclamada":done?"Reclamar recompensa":"Todavía no completada"}</button></div>`;
   }).join("");
 }
 function claimMission(id){
   const m=missions.find(x=>x.id===id);
   if(!m||data.missionsClaimed.includes(id)||!m.test())return;
-  data.missionsClaimed.push(id);
-  award(m.xp,m.coins);
-  renderMissions();
+  data.missionsClaimed.push(id);award(m.xp,m.coins);renderMissions();
 }
 
-/* ==========================================================
-   14. PARTIDOS Y TABLA DE EJEMPLO
-   ========================================================== */
+/* PARTIDOS Y TABLA FICTICIOS */
 function renderMatches(){
-  const matches=[
-    ["Argentina","Brasil"],["Francia","Portugal"],["España","Inglaterra"],
-    ["Japón","Marruecos"],["Alemania","Uruguay"],["México","Países Bajos"]
-  ];
-  const grid=document.getElementById("matchesGrid");
-  grid.innerHTML=matches.map(([a,b])=>{
+  const matches=[["Argentina","Brasil"],["Francia","Portugal"],["España","Inglaterra"],["Japón","Marruecos"],["Alemania","Uruguay"],["México","Países Bajos"]];
+  document.getElementById("matchesGrid").innerHTML=matches.map(([a,b])=>{
     const sa=Math.floor(Math.random()*5),sb=Math.floor(Math.random()*5);
-    return `<div class="card">
-      <span class="pill">RESULTADO DE EJEMPLO</span>
-      <h3>${escapeHTML(a)} <span style="color:var(--green)">${sa} - ${sb}</span> ${escapeHTML(b)}</h3>
-      <p>${sa===sb?"Empate":sa>sb?"Victoria de "+escapeHTML(a):"Victoria de "+escapeHTML(b)}</p>
-    </div>`;
+    const result=sa===sb?"Empate":sa>sb?"Victoria de "+a:"Victoria de "+b;
+    return `<div class="card"><span class="pill">RESULTADO DE EJEMPLO</span>
+      <h3>${escapeHTML(a)} <span style="color:var(--green)">${sa} - ${sb}</span> ${escapeHTML(b)}</h3><p>${escapeHTML(result)}</p></div>`;
   }).join("");
 }
 function renderStandings(){
-  const clubs=[
-    ["Argentina FC",12,4],["Brasil United",10,4],["Francia Stars",9,4],
-    ["España Total",7,4],["Portugal Elite",6,4],["Japón Pro",4,4]
-  ];
+  const clubs=[["Argentina FC",12,4],["Brasil United",10,4],["Francia Stars",9,4],["España Total",7,4],["Portugal Elite",6,4],["Japón Pro",4,4]];
   document.getElementById("standingsBody").innerHTML=clubs.map((c,i)=>
     `<tr><td>${i+1}</td><td>${escapeHTML(c[0])}</td><td>${c[1]}</td><td>${c[2]}</td></tr>`
   ).join("");
 }
 
-/* ==========================================================
-   15. INICIO
-   ========================================================== */
+/* ARRANQUE */
 renderAlbum();
 renderTeam();
 renderClubs();
