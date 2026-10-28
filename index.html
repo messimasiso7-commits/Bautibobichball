@@ -1,25 +1,29 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#06140d">
-<meta name="description" content="BAUTIBOBICHBALL: fútbol, minijuegos, torneos, partidos y Bobich World Cup 2026 en 3D.">
+<meta name="description" content="BAUTIBOBICHBALL: fútbol, álbum de cromos, creador de clubes, minijuegos y torneos.">
 <title>BAUTIBOBICHBALL | Fútbol y juegos</title>
 <style>
-:root{--l:#caff38;--b:#06140d;--p:#10271a;--m:#b1c2b5}
+:root{--l:#caff38;--b:#06140d;--p:#10271a;--m:#b1c2b5;--line:#244532}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
 body{margin:0;background:var(--b);color:#f4f8f3;font:16px system-ui,Arial}
 a{color:inherit;text-decoration:none}
-button{cursor:pointer;font:inherit}
+button,input,select{font:inherit}
+button,a{touch-action:manipulation}
+button{cursor:pointer}
+button:disabled{opacity:.55;cursor:default}
 .top{height:5px;background:linear-gradient(90deg,var(--l),#27d995,#00a6ff)}
-nav{position:sticky;top:0;z-index:10;background:#06140df2;backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:16px 5%;border-bottom:1px solid #ffffff20;gap:15px}
+nav{position:sticky;top:0;z-index:20;background:#06140df2;backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:14px 5%;border-bottom:1px solid #ffffff20;gap:12px}
 .brand{font-weight:1000;letter-spacing:-1px;white-space:nowrap}
 .brand span,h1 span{color:var(--l)}
-.links{display:flex;gap:18px;font-size:12px;font-weight:900;text-transform:uppercase}
+.links{display:flex;gap:15px;font-size:11px;font-weight:900;text-transform:uppercase;flex-wrap:wrap}
 .links a:hover{color:var(--l)}
-.btn{display:inline-block;background:var(--l);color:#07130b;border:0;border-radius:8px;padding:12px 16px;font-weight:950;text-align:center}
+.btn{display:inline-block;background:var(--l);color:#07130b;border:0;border-radius:8px;padding:12px 15px;font-weight:950;text-align:center}
 .secondary{background:transparent;color:white;border:1px solid #ffffff55}
 .hero{padding:65px 7%;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:25px;background:radial-gradient(ellipse at 75% 35%,#12613d77,transparent 42%),linear-gradient(130deg,#06140d,#0b2a19)}
 .kicker{color:var(--l);font-size:11px;letter-spacing:3px;font-weight:950;text-transform:uppercase}
@@ -27,35 +31,35 @@ nav{position:sticky;top:0;z-index:10;background:#06140df2;backdrop-filter:blur(1
 .hero h1 span{display:block}
 .hero p,.muted{color:var(--m);line-height:1.75}
 .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}
-.art{min-height:300px;display:grid;place-items:center;position:relative}
+.art{min-height:270px;display:grid;place-items:center;position:relative}
 .ball{font-size:clamp(130px,20vw,220px);filter:drop-shadow(0 25px 22px #0008);animation:bob 3s ease-in-out infinite}
 .ring{position:absolute;width:min(40vw,350px);aspect-ratio:1;border:1px dashed #caff3877;border-radius:50%;animation:spin 24s linear infinite}
 .stamp{position:absolute;bottom:10px;right:0;background:var(--l);color:#08150b;padding:14px;font-size:11px;font-weight:1000;transform:rotate(-4deg)}
 @keyframes bob{50%{transform:translateY(-13px) rotate(7deg)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 .ticker{background:var(--l);color:#08150b;text-align:center;padding:12px;font-size:11px;font-weight:1000;letter-spacing:2px}
-section{padding:65px 7%}
+section{padding:60px 7%}
 .head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:25px}
 .head h2{font-size:clamp(30px,5vw,48px);line-height:1;margin:10px 0;text-transform:uppercase;letter-spacing:-2px}
-.head p{max-width:390px;color:var(--m);font-size:14px;line-height:1.6}
+.head p{max-width:410px;color:var(--m);font-size:14px;line-height:1.6}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.card,.panel{background:linear-gradient(145deg,#10271a,#0a1a11);border:1px solid #244532;border-radius:14px;padding:22px}
-.card{transition:transform .2s,border-color .2s;min-width:0}
-.card:hover{transform:translateY(-4px);border-color:#caff3888}
-.card h3{margin:13px 0 8px}
-.card p,.panel p{color:var(--m);font-size:13px;line-height:1.6}
+.card,.panel{background:linear-gradient(145deg,#10271a,#0a1a11);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}
+.card{transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-3px);border-color:#caff3888}
+.card h3{margin:12px 0 8px}
+.card p,.panel p{color:var(--m);font-size:13px;line-height:1.65}
 .emoji{font-size:36px}
 .badge{display:inline-block;padding:5px 8px;background:#caff3816;color:var(--l);border-radius:5px;font-size:10px;font-weight:900;letter-spacing:1px}
 .small{margin-top:8px;border:1px solid #caff3877;color:var(--l);padding:10px 13px;border-radius:7px;background:transparent;font-size:12px;font-weight:900}
 .result{display:none;margin-top:13px;padding:12px;border-radius:8px;background:#07150d;border:1px solid #335a3c;font-size:13px;line-height:1.6}
 .result.show{display:block}
-.goal{height:125px;border:4px solid white;border-bottom:0;border-radius:8px 8px 0 0;position:relative;display:grid;place-items:center;font-size:38px}
+.goal{height:125px;border:4px solid white;border-bottom:0;border-radius:8px 8px 0 0;display:grid;place-items:center;font-size:38px}
 .score{font-weight:900;color:var(--l)}
 .answers{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.answer{padding:11px;border:1px solid #244532;border-radius:7px;background:#ffffff08;color:white;text-align:left}
+.answer{padding:11px;border:1px solid var(--line);border-radius:7px;background:#ffffff08;color:white;text-align:left}
 .answer:hover{border-color:var(--l)}
 .matches{display:grid;gap:12px}
-.match{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;background:#10271a;border:1px solid #244532;border-radius:12px;padding:17px}
+.match{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;background:#10271a;border:1px solid var(--line);border-radius:12px;padding:17px}
 .team{font-weight:900;display:flex;align-items:center;gap:8px}
 .right{justify-content:flex-end;text-align:right}
 .crest{display:grid;place-items:center;width:35px;height:35px;border-radius:8px;background:#ffffff10;font-size:20px}
@@ -69,23 +73,57 @@ table{width:100%;border-collapse:collapse;min-width:400px}
 td,th{text-align:left;padding:13px 10px;border-bottom:1px solid #ffffff15;font-size:13px}
 th{color:var(--l);font-size:10px;text-transform:uppercase;letter-spacing:1px}
 .footer{border-top:1px solid #ffffff20;padding:25px 5%;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--m);font-size:12px}
-.notice{color:var(--m);font-size:12px;margin-top:15px}
+.notice{color:var(--m);font-size:12px;line-height:1.6;margin-top:15px}
 .featured{border-color:#caff3877;background:radial-gradient(ellipse at top right,#28633388,transparent 60%),linear-gradient(145deg,#132f20,#08150d)}
 .featured .emoji{font-size:43px}
-.featured .small{display:inline-block}
-@media(max-width:800px){
- .links{display:none}
- .hero{grid-template-columns:1fr;padding:50px 6%}
- .art{min-height:240px}
- .ring{width:260px}
- .grid{grid-template-columns:1fr}
- .head{display:block}
- .head p{margin-bottom:0}
- .match{gap:7px;padding:12px}
- .team{font-size:12px;gap:5px}
- .crest{width:28px;height:28px}
- .scoreline{font-size:18px}
- section{padding:52px 6%}
+.field{display:grid;gap:7px;margin:12px 0}
+.field label{font-size:12px;font-weight:800;color:#dce8dd}
+.field input,.field select{width:100%;min-width:0;padding:12px;border:1px solid #35543e;border-radius:8px;background:#07150d;color:white}
+.field input[type=color]{height:45px;padding:4px}
+.field input[type=file]{font-size:12px}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 13px}
+.formgrid .full{grid-column:1/-1}
+.sticker-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.sticker{border:1px solid #34503b;border-radius:12px;background:#09180f;overflow:hidden;min-width:0}
+.sticker-art{height:145px;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at top,#3c7947,#0b1d11 75%);border-bottom:1px solid #caff3844}
+.sticker-art img{width:100%;height:100%;object-fit:cover}
+.sticker-art .placeholder{font-size:54px;text-shadow:0 5px 20px #0008}
+.sticker-art .rating{position:absolute;top:7px;left:7px;background:var(--l);color:#07130b;padding:5px;border-radius:5px;font-weight:1000;font-size:11px}
+.sticker-info{padding:10px}
+.sticker-info strong{display:block;font-size:12px;overflow-wrap:anywhere}
+.sticker-info span{display:block;color:var(--m);font-size:10px;margin-top:4px}
+.sticker-info button{width:100%;font-size:10px;padding:8px 4px}
+.rarity{color:var(--l)!important;font-weight:900}
+.sticker.owned{border-color:var(--l);box-shadow:0 0 12px #caff3815}
+.sticker.owned .sticker-art:after{content:"✓ OBTENIDO";position:absolute;bottom:6px;right:6px;background:var(--l);color:#07130b;font-size:9px;font-weight:1000;padding:4px 6px;border-radius:4px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:20px 0}
+.toolbar input,.toolbar select{padding:10px;background:#07150d;color:white;border:1px solid #35543e;border-radius:7px;max-width:100%}
+.preview-wrap{display:flex;justify-content:center;padding:20px 0}
+.sticker.large{width:min(100%,290px);border:2px solid var(--l);box-shadow:0 12px 35px #0008}
+.sticker.large .sticker-art{height:300px}
+.sticker.large .sticker-info{padding:16px}
+.sticker.large .sticker-info strong{font-size:20px}
+.sticker.large .sticker-info span{font-size:12px}
+.club-preview{border:2px solid var(--club,#caff38);border-radius:15px;padding:20px;text-align:center;background:radial-gradient(circle at top,var(--club,#caff38)33,transparent 65%),#08150d}
+.club-emblem{width:105px;height:120px;margin:12px auto;display:grid;place-items:center;clip-path:polygon(5% 0,95% 0,88% 72%,50% 100%,12% 72%);background:var(--club,#caff38);color:#07130b;font-size:45px;font-weight:1000}
+.club-emblem img{width:100%;height:100%;object-fit:cover;clip-path:inherit}
+.club-name{font-size:24px;font-weight:1000;overflow-wrap:anywhere}
+.club-list{display:grid;gap:10px;margin-top:18px}
+.club-row{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--line);border-radius:9px;background:#07150d}
+.club-mini{width:45px;height:50px;display:grid;place-items:center;background:var(--club,#caff38);color:#07130b;clip-path:polygon(5% 0,95% 0,88% 72%,50% 100%,12% 72%);font-size:21px;flex-shrink:0}
+.club-row div:nth-child(2){flex:1;min-width:0}
+.club-row strong,.club-row small{display:block;overflow-wrap:anywhere}
+.club-row small{color:var(--m);font-size:11px;margin-top:4px}
+.empty{padding:24px;text-align:center;color:var(--m);border:1px dashed #35543e;border-radius:10px}
+@media(max-width:950px){.links{gap:9px;font-size:10px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.sticker-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:650px){
+ nav{padding:12px 4%;flex-wrap:wrap}.brand{font-size:14px}.links{order:3;width:100%;overflow:auto;flex-wrap:nowrap;padding:4px 0}.links a{white-space:nowrap}
+ nav>.btn{padding:9px 11px;font-size:12px}
+ .hero{grid-template-columns:1fr;padding:45px 6%}.art{min-height:220px}.ring{width:240px}
+ .grid{grid-template-columns:1fr}.head{display:block}.head p{margin-bottom:0}
+ section{padding:45px 5%}.match{gap:6px;padding:10px}.team{font-size:11px;gap:4px}.crest{width:27px;height:27px}.scoreline{font-size:17px}
+ .sticker-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.sticker-art{height:135px}
+ .formgrid{grid-template-columns:1fr}.formgrid .full{grid-column:auto}
 }
 </style>
 </head>
@@ -95,10 +133,12 @@ th{color:var(--l);font-size:10px;text-transform:uppercase;letter-spacing:1px}
 <nav>
 <a class="brand" href="#inicio">BAUTI<span>BOBICH</span>BALL.</a>
 <div class="links">
-<a href="#juegos">Minijuegos</a>
+<a href="#juegos">Juegos</a>
+<a href="#album">Álbum</a>
+<a href="#creador">Crear cromo</a>
+<a href="#clubes">Clubes</a>
 <a href="#partidos">Partidos</a>
 <a href="#torneos">Torneos</a>
-<a href="#tabla">Tabla</a>
 </div>
 <a class="btn" href="#juegos">¡JUGAR! ⚽</a>
 </nav>
@@ -107,304 +147,539 @@ th{color:var(--l);font-size:10px;text-transform:uppercase;letter-spacing:1px}
 <div>
 <div class="kicker">La casa del fútbol · Temporada 2026</div>
 <h1>EL FÚTBOL<span>SE JUEGA.</span></h1>
-<p>Bienvenido a BAUTIBOBICHBALL, tu estadio digital. Jugá minijuegos, poné a prueba tus conocimientos, revisá partidos y seguí torneos en un espacio creado para vivir la pasión futbolera.</p>
+<p>Tu estadio digital. Jugá minijuegos, coleccioná cromos, creá tus propios futbolistas y diseñá clubes para tu universo futbolero.</p>
 <div class="actions">
-<a class="btn" href="#juegos">Explorar minijuegos ↗</a>
-<a class="btn secondary" href="#torneos">Ver torneos</a>
+<a class="btn" href="#juegos">Explorar juegos ↗</a>
+<a class="btn secondary" href="#album">Abrir álbum ⚽</a>
 </div>
 </div>
-<div class="art">
-<div class="ring"></div>
-<div class="ball">⚽</div>
-<div class="stamp">90 MINUTOS · UNA PASIÓN</div>
-</div>
+<div class="art"><div class="ring"></div><div class="ball">⚽</div><div class="stamp">90 MINUTOS · UNA PASIÓN</div></div>
 </header>
 
-<div class="ticker">⚽ BAUTIBOBICHBALL ✦ JUGÁ · COMPETÍ · DISFRUTÁ ✦ FÚTBOL SIN LÍMITES ✦</div>
+<div class="ticker">⚽ BAUTIBOBICHBALL ✦ JUGÁ · COLECCIONÁ · CREÁ ✦ FÚTBOL SIN LÍMITES ✦</div>
 
 <section id="juegos">
-<div class="head">
-<div><div class="kicker">Centro de entretenimiento</div><h2>Minijuegos</h2></div>
-<p>Elegí un desafío y jugá directamente desde esta página. No necesitás instalar nada.</p>
-</div>
-
+<div class="head"><div><div class="kicker">Centro de entretenimiento</div><h2>Minijuegos</h2></div><p>Desafíos para jugar desde tu celular o computadora.</p></div>
 <div class="grid">
 <article class="card">
-<div class="emoji">🥅</div><span class="badge">HABILIDAD</span>
-<h3>Penales</h3>
-<p>Elegí un rincón y tratá de convertir. Tenés cinco disparos para superar al arquero.</p>
+<div class="emoji">🥅</div><span class="badge">HABILIDAD</span><h3>Penales</h3>
+<p>Elegí un rincón y tratá de convertir. Tenés cinco disparos.</p>
 <button class="small" onclick="startPens()">Jugar penales →</button>
-<div class="result" id="pens">
-<div class="goal" id="goal">🧤</div>
-<p id="pmsg">Elegí dónde patear.</p>
-<div>
+<div class="result" id="pens"><div class="goal" id="goal">🧤</div><p id="pmsg">Elegí dónde patear.</p>
 <button class="small" onclick="shoot('Izquierda')">← Izquierda</button>
 <button class="small" onclick="shoot('Centro')">Centro</button>
 <button class="small" onclick="shoot('Derecha')">Derecha →</button>
-</div>
 <p class="score" id="pscore">Goles: 0 · Tiros: 0/5</p>
-</div>
+<button class="small" onclick="startPens()">Reiniciar ↻</button></div>
 </article>
-
 <article class="card">
-<div class="emoji">🧠</div><span class="badge">CONOCIMIENTO</span>
-<h3>Trivia futbolera</h3>
-<p>Contestá preguntas de fútbol y sumá puntos. ¿Cuánto sabés del deporte?</p>
+<div class="emoji">🧠</div><span class="badge">CONOCIMIENTO</span><h3>Trivia futbolera</h3>
+<p>Contestá preguntas y conseguí hasta 50 puntos.</p>
 <button class="small" onclick="startQuiz()">Jugar trivia →</button>
-<div class="result" id="quiz">
-<div class="muted" id="qcount"></div>
-<h3 id="question"></h3>
-<div class="answers" id="answers"></div>
-<p class="score" id="qmsg"></p>
-<button class="small" id="next" onclick="nextQ()" style="display:none">Siguiente →</button>
-</div>
+<div class="result" id="quiz"><div class="muted" id="qcount"></div><h3 id="question"></h3><div class="answers" id="answers"></div><p class="score" id="qmsg"></p><button class="small" id="next" onclick="nextQ()" style="display:none">Siguiente →</button></div>
 </article>
-
 <article class="card">
-<div class="emoji">⚡</div><span class="badge">REFLEJOS</span>
-<h3>Desafío de reflejos</h3>
-<p>Esperá la señal verde y tocá el botón tan rápido como puedas. ¡No te adelantes!</p>
-<button class="small" onclick="reflexStart()">Probar reflejos →</button>
-<div class="result show" id="reflex">
-<p id="rmsg">¿Listo para poner a prueba tus reflejos?</p>
-<button class="small" id="rbtn" onclick="reflexTap()">Empezar</button>
-</div>
+<div class="emoji">⚡</div><span class="badge">REFLEJOS</span><h3>Desafío de reflejos</h3>
+<p>Esperá la señal verde y tocá el botón tan rápido como puedas.</p>
+<div class="result show" id="reflex"><p id="rmsg">¿Listo para empezar?</p><button class="small" id="rbtn" onclick="reflexTap()">Empezar</button></div>
 </article>
 </div>
-<p class="notice">Los minijuegos funcionan en tu navegador. Los resultados se calculan en tu dispositivo.</p>
 </section>
 
-<section id="partidos" style="background:#081a10">
-<div class="head">
-<div><div class="kicker">Agenda de la comunidad</div><h2>Partidos destacados</h2></div>
-<p>Los marcadores de ejemplo son ilustrativos; no son resultados en vivo.</p>
+<section id="album" style="background:#081a10">
+<div class="head"><div><div class="kicker">Colección futbolera</div><h2>Álbum de cromos</h2></div><p>Desbloqueá cromos, revisá tu colección y completá los espacios. Tus avances se guardan en este navegador.</p></div>
+<div class="panel">
+<div class="foot"><strong id="albumCount">0 de 12 cromos</strong><span id="albumPercent">0% completo</span></div>
+<div class="progress"><span id="albumBar" style="width:0%"></span></div>
+<p>Los cromos de muestra son ilustrativos. Podés crear tus propios cromos con fotos desde tu galería.</p>
+<div class="toolbar">
+<select id="albumFilter" onchange="renderAlbum()"><option value="all">Todos los cromos</option><option value="owned">Mis cromos obtenidos</option><option value="missing">Cromos pendientes</option></select>
+<button class="small" onclick="unlockRandom()">🎁 Obtener cromo aleatorio</button>
 </div>
-<div class="matches">
-<div class="match">
-<div class="team"><span class="crest">🇦🇷</span> Argentina</div>
-<div class="scoreline">2 — 1</div>
-<div class="team right">Brasil <span class="crest">🇧🇷</span></div>
-<div class="meta">AMISTOSO · Ejemplo ilustrativo · Finalizado</div>
-</div>
-<div class="match">
-<div class="team"><span class="crest">🔵</span> Equipo Azul</div>
-<div class="scoreline">— : —</div>
-<div class="team right">Equipo Rojo <span class="crest">🔴</span></div>
-<div class="meta">LIGA BAUTI · Próximo partido · Fecha por anunciar</div>
-</div>
-<div class="match">
-<div class="team"><span class="crest">⭐</span> All-Stars</div>
-<div class="scoreline">— : —</div>
-<div class="team right">Leyendas <span class="crest">🏆</span></div>
-<div class="meta">PARTIDO ESPECIAL · Horario por anunciar</div>
-</div>
+<div class="sticker-grid" id="albumGrid"></div>
+<h3>Mis cromos creados</h3>
+<div class="sticker-grid" id="myStickerGrid"></div>
+<p class="notice">La colección se guarda localmente. No se sincroniza automáticamente entre distintos teléfonos.</p>
 </div>
 </section>
 
-<section id="torneos">
-<div class="head">
-<div><div class="kicker">Camino a la gloria</div><h2>Torneos</h2></div>
-<p>Elegí una competencia y preparate para jugar.</p>
-</div>
-
+<section id="creador">
+<div class="head"><div><div class="kicker">Taller de coleccionistas</div><h2>Creador de cromos</h2></div><p>Elegí una foto, personalizá los datos y creá un cromo para tu álbum.</p></div>
 <div class="grid">
-<article class="card featured">
-<div class="emoji">🌎</div>
-<span class="badge">NUEVO · JUGABLE</span>
-<h3>Bobich World Cup 2026</h3>
-<p>¡Elegí tu selección, jugá el Mundial y luchá por la copa! Incluye grupos, eliminatorias, controles táctiles y un estadio 3D.</p>
-<a class="btn small" href="bobich-world-cup-2026.html">🏆 JUGAR MUNDIAL 3D →</a>
-</article>
-
-<article class="card">
-<div class="emoji">🎮</div>
-<span class="badge">SIMULADOR</span>
-<h3>Simulador de fútbol</h3>
-<p>Entrá al simulador de partidos para controlar jugadores y probar el juego de fútbol.</p>
-<a class="btn small" href="simulador.html">ABRIR SIMULADOR →</a>
-</article>
-
-<article class="card">
-<div class="emoji">🏆</div>
-<span class="badge">TORNEO PRINCIPAL</span>
-<h3>Copa Bautibobich</h3>
-<p>Competencia de eliminación directa: ganá cada ronda para llegar a la final.</p>
-<div class="progress"><span style="width:35%"></span></div>
-<div class="foot"><span>Eliminatorias</span><span>Preparando</span></div>
-</article>
-
-<article class="card">
-<div class="emoji">📊</div>
-<span class="badge">LIGA</span>
-<h3>Liga de Campeones</h3>
-<p>Formato todos contra todos, puntos por victoria y tabla de clasificación.</p>
-<div class="progress"><span style="width:15%"></span></div>
-<div class="foot"><span>Formato liga</span><span>Por iniciar</span></div>
-</article>
-
-<article class="card">
-<div class="emoji">⚡</div>
-<span class="badge">DESAFÍO RÁPIDO</span>
-<h3>Copa Relámpago</h3>
-<p>Partidos cortos y una final para decidir al campeón del día.</p>
-<div class="progress"><span style="width:0%"></span></div>
-<div class="foot"><span>Partido corto</span><span>Abierta</span></div>
-</article>
+<div class="card">
+<form id="stickerForm">
+<div class="field"><label for="playerName">Nombre del jugador</label><input id="playerName" maxlength="45" placeholder="Ej.: Messi" required></div>
+<div class="formgrid">
+<div class="field"><label for="playerPosition">Posición</label><select id="playerPosition"><option>Delantero</option><option>Centrocampista</option><option>Defensor</option><option>Arquero</option></select></div>
+<div class="field"><label for="playerCountry">País</label><input id="playerCountry" maxlength="35" placeholder="Argentina"></div>
+<div class="field"><label for="playerRating">Valoración (1–99)</label><input id="playerRating" type="number" min="1" max="99" value="90" required></div>
+<div class="field"><label for="playerRarity">Rareza</label><select id="playerRarity"><option>Común</option><option>Raro</option><option>Épico</option><option>Legendario</option><option>Ícono</option></select></div>
+<div class="field full"><label for="playerClub">Club o selección</label><input id="playerClub" maxlength="45" placeholder="Tu club"></div>
+<div class="field full"><label for="playerPhoto">Foto del cromo (opcional)</label><input id="playerPhoto" type="file" accept="image/*"><small class="muted">Elegí una imagen de tu celular. Se ajustará para guardarla con menor tamaño.</small></div>
 </div>
-<p class="notice">El Mundial 3D y el simulador se abren como páginas separadas, pero siguen formando parte de BAUTIBOBICHBALL.</p>
-</section>
-
-<section id="tabla" style="background:#081a10">
-<div class="head">
-<div><div class="kicker">Temporada de demostración</div><h2>Tabla de posiciones</h2></div>
-<p>Tabla ficticia de muestra; estos datos no se actualizan automáticamente.</p>
+<button class="btn" type="submit">✨ CREAR MI CROMO</button>
+</form>
+<div id="createMessage" class="notice" role="status"></div>
 </div>
-<div class="panel tablewrap">
-<table>
-<thead><tr><th>#</th><th>Equipo</th><th>Pts</th><th>PJ</th><th>DG</th></tr></thead>
-<tbody>
-<tr><td>1</td><td>🟢 Los Verdes</td><td>9</td><td>3</td><td>+6</td></tr>
-<tr><td>2</td><td>🔵 Los Azules</td><td>6</td><td>3</td><td>+2</td></tr>
-<tr><td>3</td><td>🔴 Los Rojos</td><td>3</td><td>3</td><td>-1</td></tr>
-<tr><td>4</td><td>🟡 Los Dorados</td><td>0</td><td>3</td><td>-7</td></tr>
-</tbody>
-</table>
+<div class="card">
+<span class="badge">VISTA PREVIA</span>
+<div class="preview-wrap"><div id="stickerPreview" class="sticker large">
+<div class="sticker-art"><span class="placeholder" id="previewEmoji">⚽</span><img id="previewPhoto" alt="Vista previa del jugador" hidden><span class="rating" id="previewRating">90</span></div>
+<div class="sticker-info"><span class="rarity" id="previewRarity">★ COMÚN</span><strong id="previewName">TU JUGADOR</strong><span id="previewClub">CLUB / SELECCIÓN</span><span id="previewPosition">DELANTERO · PAÍS</span></div>
+</div></div>
+<p>Tu cromo aparecerá en “Mis cromos creados” y podrás añadirlo a tu álbum.</p>
+</div>
 </div>
 </section>
 
-<section>
-<div class="panel" style="text-align:center">
-<div class="kicker">Tu estadio digital</div>
-<h2>El partido no termina acá.</h2>
-<p>Jugá, practicá y compartí la pasión por el fútbol con BAUTIBOBICHBALL.</p>
-<a class="btn" href="#juegos">Elegir un minijuego ↑</a>
+<section id="clubes" style="background:#081a10">
+<div class="head"><div><div class="kicker">Diseñá tu identidad</div><h2>Creador de clubes</h2></div><p>Creá un equipo, elegí sus colores, diseñá un escudo y guardá todos tus clubes.</p></div>
+<div class="grid">
+<div class="card">
+<form id="clubForm">
+<div class="field"><label for="clubName">Nombre del club</label><input id="clubName" maxlength="45" placeholder="Ej.: Bobich FC" required></div>
+<div class="formgrid">
+<div class="field"><label for="clubCountry">País</label><input id="clubCountry" maxlength="35" placeholder="Argentina"></div>
+<div class="field"><label for="clubCity">Ciudad</label><input id="clubCity" maxlength="35" placeholder="Mi ciudad"></div>
+<div class="field"><label for="clubPrimary">Color principal</label><input id="clubPrimary" type="color" value="#caff38"></div>
+<div class="field"><label for="clubSecondary">Color secundario</label><input id="clubSecondary" type="color" value="#10271a"></div>
+<div class="field full"><label for="clubStadium">Nombre del estadio</label><input id="clubStadium" maxlength="45" placeholder="Estadio Bobich"></div>
+<div class="field full"><label for="clubSymbol">Símbolo del escudo</label><select id="clubSymbol"><option value="🛡️">Escudo</option><option value="🦁">León</option><option value="🐺">Lobo</option><option value="⭐">Estrella</option><option value="🦅">Águila</option><option value="⚽">Balón</option><option value="👑">Corona</option><option value="🔥">Fuego</option></select></div>
+<div class="field full"><label for="clubLogo">Imagen propia para el escudo (opcional)</label><input id="clubLogo" type="file" accept="image/*"></div>
+</div>
+<button class="btn" type="submit">🏆 GUARDAR CLUB</button>
+</form>
+<div id="clubMessage" class="notice" role="status"></div>
+</div>
+<div class="card">
+<span class="badge">VISTA PREVIA DEL CLUB</span>
+<div id="clubPreview" class="club-preview" style="--club:#caff38">
+<div class="club-emblem" id="clubEmblem">🛡️</div>
+<div class="club-name" id="clubPreviewName">TU CLUB FC</div>
+<p id="clubPreviewCountry">País · Ciudad</p>
+<p>🏟️ <strong id="clubPreviewStadium">Tu estadio</strong></p>
+</div>
+<h3>Mis clubes</h3>
+<div class="club-list" id="clubList"></div>
+</div>
 </div>
 </section>
 
-<footer class="footer">
-<div>© 2026 <strong>BAUTIBOBICHBALL</strong> · Hecho con pasión futbolera.</div>
-<div>Minijuegos · Torneos · Partidos · Clasificación</div>
-</footer>
+<section id="partidos">
+<div class="head"><div><div class="kicker">Agenda futbolera</div><h2>Partidos destacados</h2></div><p>Marcadores ilustrativos; no son resultados en vivo.</p></div>
+<div class="matches">
+<div class="match"><div class="team"><span class="crest">🇦🇷</span> Argentina</div><div class="scoreline">2 — 1</div><div class="team right">Brasil <span class="crest">🇧🇷</span></div><div class="meta">AMISTOSO · EJEMPLO · FINALIZADO</div></div>
+<div class="match"><div class="team"><span class="crest">🔵</span> Equipo Azul</div><div class="scoreline">— : —</div><div class="team right">Equipo Rojo <span class="crest">🔴</span></div><div class="meta">LIGA BAUTI · FECHA POR ANUNCIAR</div></div>
+<div class="match"><div class="team"><span class="crest">⭐</span> All-Stars</div><div class="scoreline">— : —</div><div class="team right">Leyendas <span class="crest">🏆</span></div><div class="meta">PARTIDO ESPECIAL · HORARIO POR ANUNCIAR</div></div>
+</div>
+</section>
+
+<section id="torneos" style="background:#081a10">
+<div class="head"><div><div class="kicker">Camino a la gloria</div><h2>Torneos y simuladores</h2></div><p>Accedé a tus juegos existentes sin reemplazar sus archivos.</p></div>
+<div class="grid">
+<article class="card featured"><div class="emoji">🌎</div><span class="badge">TU TORNEO · 3D</span><h3>Bobich World Cup 2026</h3><p>Entrá a tu torneo mundialista 3D existente.</p><a class="btn small" href="bobich-world-cup-2026.html">🏆 JUGAR MUNDIAL 3D →</a></article>
+<article class="card"><div class="emoji">🎮</div><span class="badge">SIMULADOR 3D</span><h3>Simulador de fútbol</h3><p>Abrí tu simulador de partidos.</p><a class="btn small" href="simulador.html">ABRIR SIMULADOR →</a></article>
+<article class="card"><div class="emoji">🏆</div><span class="badge">ELIMINATORIAS</span><h3>Copa Bautibobich</h3><p>Competencia de eliminación directa.</p><div class="progress"><span style="width:35%"></span></div><div class="foot"><span>Eliminatorias</span><span>Preparando</span></div></article>
+<article class="card"><div class="emoji">📊</div><span class="badge">LIGA</span><h3>Liga de Campeones</h3><p>Formato de liga con puntos por victoria.</p><div class="progress"><span style="width:15%"></span></div><div class="foot"><span>Todos contra todos</span><span>Por iniciar</span></div></article>
+<article class="card"><div class="emoji">⚡</div><span class="badge">DESAFÍO RÁPIDO</span><h3>Copa Relámpago</h3><p>Partidos cortos y una final.</p><div class="progress"><span style="width:0%"></span></div><div class="foot"><span>Partido corto</span><span>Abierta</span></div></article>
+</div>
+<p class="notice">Los enlaces del Mundial y el simulador requieren que los archivos HTML correspondientes estén en la misma carpeta que index.html.</p>
+</section>
+
+<section id="tabla">
+<div class="head"><div><div class="kicker">Temporada de demostración</div><h2>Tabla de posiciones</h2></div><p>Clasificación ficticia de ejemplo.</p></div>
+<div class="panel tablewrap"><table><thead><tr><th>#</th><th>Equipo</th><th>Pts</th><th>PJ</th><th>DG</th></tr></thead>
+<tbody><tr><td>1</td><td>🟢 Los Verdes</td><td>9</td><td>3</td><td>+6</td></tr><tr><td>2</td><td>🔵 Los Azules</td><td>6</td><td>3</td><td>+2</td></tr><tr><td>3</td><td>🔴 Los Rojos</td><td>3</td><td>3</td><td>-1</td></tr><tr><td>4</td><td>🟡 Los Dorados</td><td>0</td><td>3</td><td>-7</td></tr></tbody></table></div>
+</section>
+
+<section><div class="panel" style="text-align:center"><div class="kicker">Tu estadio digital</div><h2>El partido no termina acá.</h2><p>Jugá, coleccioná, diseñá y compartí tu pasión por el fútbol.</p><a class="btn" href="#inicio">Volver al inicio ↑</a></div></section>
+<footer class="footer"><div>© 2026 <strong>BAUTIBOBICHBALL</strong> · Hecho con pasión futbolera.</div><div>Juegos · Álbum · Clubes · Torneos</div></footer>
 
 <script>
-let shots=0,goals=0,active=false;
+"use strict";
 
+/* Guardado local seguro */
+const STORE_KEY="bautibobichball_v3";
+const defaults={owned:[],stickers:[],clubs:[]};
+let data=loadData();
+
+function loadData(){
+ try{
+  const saved=JSON.parse(localStorage.getItem(STORE_KEY)||"{}");
+  return {
+   owned:Array.isArray(saved.owned)?saved.owned:[],
+   stickers:Array.isArray(saved.stickers)?saved.stickers:[],
+   clubs:Array.isArray(saved.clubs)?saved.clubs:[]
+  };
+ }catch(e){return {...defaults,owned:[],stickers:[],clubs:[]}}
+}
+function saveData(){
+ try{
+  localStorage.setItem(STORE_KEY,JSON.stringify(data));
+  return true;
+ }catch(e){
+  alert("El almacenamiento del navegador está lleno. Probá con imágenes más pequeñas o borrá algunas creaciones.");
+  return false;
+ }
+}
+function safeText(value,max=100){
+ return String(value||"").trim().slice(0,max);
+}
+function escapeHTML(value){
+ return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function makeId(){
+ return Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+}
+function readImage(file){
+ return new Promise((resolve,reject)=>{
+  if(!file){resolve("");return}
+  if(!file.type.startsWith("image/")){reject(new Error("Elegí un archivo de imagen válido."));return}
+  if(file.size>12*1024*1024){reject(new Error("La imagen pesa más de 12 MB. Elegí otra más pequeña."));return}
+  const reader=new FileReader();
+  reader.onerror=()=>reject(new Error("No se pudo leer la imagen."));
+  reader.onload=()=>{
+   const img=new Image();
+   img.onerror=()=>reject(new Error("No se pudo abrir esa imagen."));
+   img.onload=()=>{
+    const max=650,scale=Math.min(1,max/Math.max(img.width,img.height));
+    const canvas=document.createElement("canvas");
+    canvas.width=Math.max(1,Math.round(img.width*scale));
+    canvas.height=Math.max(1,Math.round(img.height*scale));
+    const ctx=canvas.getContext("2d");
+    ctx.drawImage(img,0,0,canvas.width,canvas.height);
+    resolve(canvas.toDataURL("image/jpeg",.76));
+   };
+   img.src=reader.result;
+  };
+  reader.readAsDataURL(file);
+ });
+}
+
+/* PENALES */
+let shots=0,goals=0,activePens=false;
 function startPens(){
- shots=goals=0;active=true;
- document.getElementById('pens').classList.add('show');
- document.getElementById('goal').textContent='🧤';
- document.getElementById('pmsg').textContent='Elegí dónde patear.';
- document.getElementById('pscore').textContent='Goles: 0 · Tiros: 0/5';
+ shots=0;goals=0;activePens=true;
+ document.getElementById("pens").classList.add("show");
+ document.getElementById("goal").textContent="🧤";
+ document.getElementById("pmsg").textContent="Elegí dónde patear.";
+ document.getElementById("pscore").textContent="Goles: 0 · Tiros: 0/5";
 }
 function shoot(side){
- if(!active||shots>=5)return;
+ if(!activePens||shots>=5)return;
  shots++;
- let save=['Izquierda','Centro','Derecha'][Math.floor(Math.random()*3)];
- let goal=side!==save;
- if(goal)goals++;
- document.getElementById('goal').textContent=goal?'🥅':'🧤';
- document.getElementById('pmsg').textContent=goal?'¡GOOOOL! Elegiste '+side+'.':'¡Atajó el arquero! Elegiste '+side+'.';
- document.getElementById('pscore').textContent='Goles: '+goals+' · Tiros: '+shots+'/5';
+ const goalkeeper=["Izquierda","Centro","Derecha"][Math.floor(Math.random()*3)];
+ const scored=side!==goalkeeper;
+ if(scored)goals++;
+ document.getElementById("goal").textContent=scored?"🥅":"🧤";
+ document.getElementById("pmsg").textContent=scored?"¡GOOOOL! Pateaste a "+side+".":"¡Atajó el arquero! Pateaste a "+side+".";
+ document.getElementById("pscore").textContent="Goles: "+goals+" · Tiros: "+shots+"/5";
  if(shots===5){
-  active=false;
-  document.getElementById('pmsg').textContent+=' Resultado final: '+goals+'/5 goles.';
+  activePens=false;
+  document.getElementById("pmsg").textContent+=" Resultado final: "+goals+" de 5 goles.";
  }
 }
 
-const qs=[
- {q:'¿Cuántos jugadores por equipo hay en cancha?',a:['9','10','11','12'],c:2},
- {q:'¿Qué tarjeta significa expulsión?',a:['Verde','Amarilla','Azul','Roja'],c:3},
- {q:'¿Cuánto dura un partido reglamentario sin añadido?',a:['60 min','80 min','90 min','100 min'],c:2},
- {q:'¿Quién puede usar las manos en su propia área?',a:['Cualquier defensor','El arquero','El capitán','El delantero'],c:1},
- {q:'¿Cuántos puntos da una victoria en la mayoría de las ligas?',a:['1','2','3','5'],c:2}
+/* TRIVIA */
+const questions=[
+ {q:"¿Cuántos jugadores por equipo hay en cancha?",a:["9","10","11","12"],c:2},
+ {q:"¿Qué tarjeta significa expulsión?",a:["Verde","Amarilla","Azul","Roja"],c:3},
+ {q:"¿Cuánto dura un partido reglamentario sin añadido?",a:["60 min","80 min","90 min","100 min"],c:2},
+ {q:"¿Quién puede usar las manos en su propia área bajo las reglas normales?",a:["Cualquier defensor","El arquero","El capitán","El delantero"],c:1},
+ {q:"¿Cuántos puntos da una victoria en la mayoría de las ligas?",a:["1","2","3","5"],c:2}
 ];
-let qi=0,pts=0,answered=false;
-
-function startQuiz(){
- qi=pts=0;
- document.getElementById('quiz').classList.add('show');
- renderQ();
-}
-function renderQ(){
+let qi=0,points=0,answered=false;
+function startQuiz(){qi=0;points=0;document.getElementById("quiz").classList.add("show");renderQuestion()}
+function renderQuestion(){
  answered=false;
- let q=qs[qi];
- document.getElementById('qcount').textContent='PREGUNTA '+(qi+1)+' DE '+qs.length+' · PUNTOS: '+pts;
- document.getElementById('question').textContent=q.q;
- document.getElementById('qmsg').textContent='';
- document.getElementById('next').style.display='none';
- document.getElementById('next').onclick=nextQ;
- let el=document.getElementById('answers');
- el.innerHTML='';
- q.a.forEach((a,i)=>{
-  let b=document.createElement('button');
-  b.className='answer';b.textContent=a;
-  b.onclick=()=>answerQ(i);
-  el.appendChild(b);
+ const q=questions[qi];
+ document.getElementById("qcount").textContent="PREGUNTA "+(qi+1)+" DE "+questions.length+" · PUNTOS: "+points;
+ document.getElementById("question").textContent=q.q;
+ document.getElementById("qmsg").textContent="";
+ const next=document.getElementById("next");
+ next.style.display="none";next.textContent="Siguiente →";next.onclick=nextQ;
+ const answers=document.getElementById("answers");answers.replaceChildren();
+ q.a.forEach((answer,index)=>{
+  const button=document.createElement("button");
+  button.className="answer";button.textContent=answer;button.type="button";
+  button.addEventListener("click",()=>answerQuestion(index));
+  answers.appendChild(button);
  });
 }
-function answerQ(i){
+function answerQuestion(index){
  if(answered)return;
  answered=true;
- let q=qs[qi];
- document.querySelectorAll('#answers button').forEach((b,j)=>{
-  b.disabled=true;
-  if(j===q.c)b.style.borderColor='#caff38';
+ const q=questions[qi];
+ document.querySelectorAll("#answers button").forEach((button,i)=>{
+  button.disabled=true;
+  if(i===q.c){button.style.borderColor="#caff38";button.style.color="#caff38"}
+  else if(i===index)button.style.borderColor="#ff6565";
  });
- if(i===q.c){
-  pts+=10;
-  document.getElementById('qmsg').textContent='¡Correcto! +10 puntos.';
- }else{
-  document.getElementById('qmsg').textContent='La respuesta correcta es '+q.a[q.c]+'.';
- }
- document.getElementById('qcount').textContent='PREGUNTA '+(qi+1)+' DE '+qs.length+' · PUNTOS: '+pts;
- document.getElementById('next').style.display='inline-block';
- document.getElementById('next').textContent=qi===qs.length-1?'Ver resultado →':'Siguiente →';
+ if(index===q.c){points+=10;document.getElementById("qmsg").textContent="¡Correcto! +10 puntos."}
+ else document.getElementById("qmsg").textContent="La respuesta correcta es "+q.a[q.c]+".";
+ document.getElementById("qcount").textContent="PREGUNTA "+(qi+1)+" DE "+questions.length+" · PUNTOS: "+points;
+ const next=document.getElementById("next");
+ next.style.display="inline-block";next.textContent=qi===questions.length-1?"Ver resultado →":"Siguiente →";
 }
 function nextQ(){
- if(qi<qs.length-1){qi++;renderQ()}
- else{
-  document.getElementById('question').textContent='¡Trivia terminada!';
-  document.getElementById('answers').innerHTML='';
-  document.getElementById('qmsg').textContent='Puntuación final: '+pts+' de 50 puntos.';
-  document.getElementById('next').textContent='Volver a jugar ↻';
-  document.getElementById('next').onclick=startQuiz;
- }
+ if(qi<questions.length-1){qi++;renderQuestion();return}
+ document.getElementById("question").textContent="¡Trivia terminada!";
+ document.getElementById("answers").replaceChildren();
+ document.getElementById("qmsg").textContent="Puntuación final: "+points+" de "+(questions.length*10)+" puntos.";
+ const next=document.getElementById("next");next.textContent="Volver a jugar ↻";next.onclick=startQuiz;
 }
 
-let mode='idle',start=0,timer;
+/* REFLEJOS */
+let reflexMode="idle",reflexStartedAt=0,reflexTimer=null;
 function reflexStart(){
- let s=document.getElementById('rmsg'),b=document.getElementById('rbtn');
- if(mode==='wait'){
-  clearTimeout(timer);mode='early';
-  s.textContent='¡Te adelantaste! Intentá otra vez.';
-  b.textContent='Intentar otra vez';b.style.background='';
-  return;
- }
- mode='wait';s.textContent='Esperá a que aparezca ¡AHORA!';
- b.textContent='Esperando…';b.style.background='#a43b3b';
- timer=setTimeout(()=>{
-  if(mode!=='wait')return;
-  mode='go';start=performance.now();
-  s.textContent='¡AHORA! ¡TOCÁ YA!';
-  b.textContent='¡AHORA!';b.style.background='#caff38';
+ const message=document.getElementById("rmsg"),button=document.getElementById("rbtn");
+ clearTimeout(reflexTimer);reflexMode="wait";
+ message.textContent="Esperá a que aparezca ¡AHORA!";
+ button.textContent="Esperando…";button.style.background="#a43b3b";button.style.color="white";
+ reflexTimer=setTimeout(()=>{
+  if(reflexMode!=="wait")return;
+  reflexMode="go";reflexStartedAt=performance.now();
+  message.textContent="¡AHORA! ¡TOCÁ YA!";
+  button.textContent="¡AHORA!";button.style.background="#caff38";button.style.color="#07130b";
  },1200+Math.random()*2400);
 }
 function reflexTap(){
- let s=document.getElementById('rmsg'),b=document.getElementById('rbtn');
- if(mode==='idle'||mode==='early'||mode==='done'){reflexStart();return}
- if(mode==='wait'){
-  clearTimeout(timer);mode='early';
-  s.textContent='¡Muy pronto! Esperá la señal.';
-  b.textContent='Intentar otra vez';b.style.background='';
-  return;
+ const message=document.getElementById("rmsg"),button=document.getElementById("rbtn");
+ if(reflexMode==="idle"||reflexMode==="early"||reflexMode==="done"){reflexStart();return}
+ if(reflexMode==="wait"){
+  clearTimeout(reflexTimer);reflexMode="early";
+  message.textContent="¡Te adelantaste! Esperá la señal verde.";
+  button.textContent="Intentar otra vez";button.style.background="";button.style.color="";return;
  }
- if(mode==='go'){
-  let ms=Math.round(performance.now()-start);
-  mode='done';
-  s.textContent='Tu tiempo: '+ms+' ms. '+(ms<250?'¡Reflejos rapidísimos!':'¡Buen intento, probá otra vez.');
-  b.textContent='Jugar otra vez';b.style.background='';
+ if(reflexMode==="go"){
+  const ms=Math.round(performance.now()-reflexStartedAt);reflexMode="done";
+  message.textContent="Tu tiempo: "+ms+" ms. "+(ms<250?"¡Reflejos rapidísimos!":"¡Buen intento, probá otra vez.");
+  button.textContent="Jugar otra vez";button.style.background="";button.style.color="";
  }
 }
+document.addEventListener("visibilitychange",()=>{
+ if(document.hidden&&reflexMode==="wait"){
+  clearTimeout(reflexTimer);reflexMode="early";
+  document.getElementById("rmsg").textContent="Partida pausada. Tocá para intentarlo otra vez.";
+  document.getElementById("rbtn").textContent="Intentar otra vez";
+  document.getElementById("rbtn").style.background="";
+ }
+});
+
+/* ÁLBUM DE MUESTRA */
+const albumBase=[
+ {id:"arg10",name:"La Pulga",country:"Argentina",club:"Selección Argentina",pos:"Delantero",rating:99,rarity:"Ícono",emoji:"🇦🇷"},
+ {id:"por7",name:"El Capitán",country:"Portugal",club:"Selección de Portugal",pos:"Delantero",rating:98,rarity:"Legendario",emoji:"🇵🇹"},
+ {id:"fra10",name:"La Estrella",country:"Francia",club:"Selección de Francia",pos:"Delantero",rating:97,rarity:"Épico",emoji:"🇫🇷"},
+ {id:"nor9",name:"El Goleador",country:"Noruega",club:"Selección de Noruega",pos:"Delantero",rating:95,rarity:"Épico",emoji:"🇳🇴"},
+ {id:"bra10",name:"El Mago",country:"Brasil",club:"Selección de Brasil",pos:"Centrocampista",rating:94,rarity:"Legendario",emoji:"🇧🇷"},
+ {id:"argdib",name:"El Guardián",country:"Argentina",club:"Selección Argentina",pos:"Arquero",rating:92,rarity:"Raro",emoji:"🧤"},
+ {id:"esp8",name:"El Cerebro",country:"España",club:"Selección de España",pos:"Centrocampista",rating:93,rarity:"Épico",emoji:"🇪🇸"},
+ {id:"eng9",name:"El Tanque",country:"Inglaterra",club:"Selección de Inglaterra",pos:"Delantero",rating:91,rarity:"Raro",emoji:"🏴"},
+ {id:"mar5",name:"La Muralla",country:"Marruecos",club:"Selección de Marruecos",pos:"Defensor",rating:89,rarity:"Raro",emoji:"🇲🇦"},
+ {id:"jpn11",name:"El Rayo",country:"Japón",club:"Selección de Japón",pos:"Delantero",rating:87,rarity:"Común",emoji:"🇯🇵"},
+ {id:"uru9",name:"El Pistolero",country:"Uruguay",club:"Selección de Uruguay",pos:"Delantero",rating:90,rarity:"Legendario",emoji:"🇺🇾"},
+ {id:"usa1",name:"El Muro",country:"Estados Unidos",club:"Selección de Estados Unidos",pos:"Arquero",rating:86,rarity:"Común",emoji:"🇺🇸"}
+];
+function getAllStickers(){return [...albumBase,...data.stickers]}
+function stickerCard(sticker,owned,large=false){
+ const card=document.createElement("article");
+ card.className="sticker"+(owned?" owned":"")+(large?" large":"");
+ const art=document.createElement("div");art.className="sticker-art";
+ const placeholder=document.createElement("span");placeholder.className="placeholder";
+ placeholder.textContent=sticker.photo?"":(sticker.emoji||"⚽");
+ art.appendChild(placeholder);
+ if(sticker.photo){
+  const img=document.createElement("img");img.src=sticker.photo;img.alt="Cromo de "+sticker.name;
+  img.onerror=()=>{img.remove();placeholder.textContent=sticker.emoji||"⚽"};
+  art.appendChild(img);
+ }
+ const rating=document.createElement("span");rating.className="rating";rating.textContent=sticker.rating||90;art.appendChild(rating);
+ const info=document.createElement("div");info.className="sticker-info";
+ const rarity=document.createElement("span");rarity.className="rarity";rarity.textContent="★ "+(sticker.rarity||"Común");
+ const name=document.createElement("strong");name.textContent=sticker.name;
+ const club=document.createElement("span");club.textContent=sticker.club||sticker.country||"Club sin indicar";
+ const position=document.createElement("span");position.textContent=(sticker.pos||"Jugador")+" · "+(sticker.country||"País");
+ info.append(rarity,name,club,position);
+ const button=document.createElement("button");button.type="button";button.className="small";
+ button.textContent=owned?"✓ En tu álbum":"Añadir al álbum";
+ button.disabled=owned;
+ if(!owned)button.addEventListener("click",()=>addSticker(sticker.id));
+ info.appendChild(button);card.append(art,info);
+ return card;
+}
+function renderAlbum(){
+ const filter=document.getElementById("albumFilter").value;
+ const grid=document.getElementById("albumGrid");grid.replaceChildren();
+ const all=albumBase;
+ all.filter(s=>filter==="all"||(filter==="owned"?data.owned.includes(s.id):!data.owned.includes(s.id)))
+ .forEach(s=>grid.appendChild(stickerCard(s,data.owned.includes(s.id))));
+ const my=document.getElementById("myStickerGrid");my.replaceChildren();
+ if(!data.stickers.length){
+  const empty=document.createElement("div");empty.className="empty";empty.textContent="Todavía no creaste cromos. ¡Usá el creador para empezar!";
+  my.appendChild(empty);
+ }else{
+  data.stickers.forEach(s=>my.appendChild(stickerCard(s,data.owned.includes(s.id))));
+ }
+ const total=albumBase.length;
+ const owned=data.owned.filter(id=>albumBase.some(s=>s.id===id)).length;
+ const percent=Math.round(owned/total*100);
+ document.getElementById("albumCount").textContent=owned+" de "+total+" cromos";
+ document.getElementById("albumPercent").textContent=percent+"% completo";
+ document.getElementById("albumBar").style.width=percent+"%";
+}
+function addSticker(id){
+ if(!data.owned.includes(id))data.owned.push(id);
+ if(saveData())renderAlbum();
+}
+function unlockRandom(){
+ const missing=albumBase.filter(s=>!data.owned.includes(s.id));
+ if(!missing.length){alert("¡Completaste todos los cromos de muestra!");return}
+ const chosen=missing[Math.floor(Math.random()*missing.length)];
+ data.owned.push(chosen.id);
+ if(saveData()){
+  renderAlbum();alert("¡Conseguiste a "+chosen.name+"! Buscalo en tu álbum.");
+ }
+}
+
+/* CREAR CROMOS */
+let stickerPhoto="";
+const formStickerFields=["playerName","playerPosition","playerCountry","playerRating","playerRarity","playerClub"];
+function updateStickerPreview(){
+ document.getElementById("previewName").textContent=safeText(document.getElementById("playerName").value,45).toUpperCase()||"TU JUGADOR";
+ document.getElementById("previewPosition").textContent=(document.getElementById("playerPosition").value+" · "+(safeText(document.getElementById("playerCountry").value,35)||"PAÍS")).toUpperCase();
+ document.getElementById("previewClub").textContent=(safeText(document.getElementById("playerClub").value,45)||"CLUB / SELECCIÓN").toUpperCase();
+ document.getElementById("previewRating").textContent=document.getElementById("playerRating").value||90;
+ document.getElementById("previewRarity").textContent="★ "+document.getElementById("playerRarity").value.toUpperCase();
+}
+formStickerFields.forEach(id=>document.getElementById(id).addEventListener("input",updateStickerPreview));
+document.getElementById("playerPhoto").addEventListener("change",async function(){
+ const file=this.files&&this.files[0];if(!file){stickerPhoto="";return}
+ try{
+  stickerPhoto=await readImage(file);
+  const img=document.getElementById("previewPhoto");
+  img.src=stickerPhoto;img.hidden=false;
+  document.getElementById("previewEmoji").hidden=true;
+ }catch(e){stickerPhoto="";this.value="";alert(e.message)}
+});
+document.getElementById("stickerForm").addEventListener("submit",async function(event){
+ event.preventDefault();
+ const message=document.getElementById("createMessage");
+ const rating=Number(document.getElementById("playerRating").value);
+ if(!Number.isFinite(rating)||rating<1||rating>99){message.textContent="La valoración debe estar entre 1 y 99.";return}
+ const button=this.querySelector('button[type="submit"]');button.disabled=true;message.textContent="Creando tu cromo…";
+ try{
+  const sticker={
+   id:makeId(),name:safeText(document.getElementById("playerName").value,45),
+   pos:document.getElementById("playerPosition").value,
+   country:safeText(document.getElementById("playerCountry").value,35)||"País no indicado",
+   rating,rarity:document.getElementById("playerRarity").value,
+   club:safeText(document.getElementById("playerClub").value,45)||"Club sin indicar",
+   photo:stickerPhoto,emoji:"⚽"
+  };
+  data.stickers.push(sticker);data.owned.push(sticker.id);
+  if(saveData()){
+   renderAlbum();message.textContent="¡Cromo creado y añadido a tu colección!";
+   this.reset();stickerPhoto="";
+   document.getElementById("previewPhoto").hidden=true;
+   document.getElementById("previewPhoto").removeAttribute("src");
+   document.getElementById("previewEmoji").hidden=false;
+   updateStickerPreview();
+  }else{
+   data.stickers=data.stickers.filter(s=>s.id!==sticker.id);
+   data.owned=data.owned.filter(id=>id!==sticker.id);
+   message.textContent="No se pudo guardar. Probá con una imagen más pequeña.";
+  }
+ }catch(e){message.textContent="No se pudo crear el cromo: "+e.message}
+ finally{button.disabled=false}
+});
+
+/* CREAR CLUBES */
+let clubPhoto="";
+function updateClubPreview(){
+ const name=safeText(document.getElementById("clubName").value,45)||"TU CLUB FC";
+ const country=safeText(document.getElementById("clubCountry").value,35)||"País";
+ const city=safeText(document.getElementById("clubCity").value,35)||"Ciudad";
+ const stadium=safeText(document.getElementById("clubStadium").value,45)||"Tu estadio";
+ const primary=document.getElementById("clubPrimary").value;
+ const secondary=document.getElementById("clubSecondary").value;
+ const symbol=document.getElementById("clubSymbol").value;
+ document.getElementById("clubPreview").style.setProperty("--club",primary);
+ document.getElementById("clubPreview").style.background="radial-gradient(circle at top,"+primary+"44,transparent 65%),"+secondary;
+ document.getElementById("clubEmblem").style.background=primary;
+ document.getElementById("clubEmblem").style.color=secondary;
+ document.getElementById("clubPreviewName").textContent=name.toUpperCase();
+ document.getElementById("clubPreviewCountry").textContent=country+" · "+city;
+ document.getElementById("clubPreviewStadium").textContent=stadium;
+ const emblem=document.getElementById("clubEmblem");
+ emblem.replaceChildren();
+ if(clubPhoto){
+  const img=document.createElement("img");img.src=clubPhoto;img.alt="Escudo del club";emblem.appendChild(img);
+ }else emblem.textContent=symbol;
+}
+["clubName","clubCountry","clubCity","clubPrimary","clubSecondary","clubStadium","clubSymbol"].forEach(id=>{
+ document.getElementById(id).addEventListener("input",updateClubPreview);
+});
+document.getElementById("clubLogo").addEventListener("change",async function(){
+ const file=this.files&&this.files[0];if(!file){clubPhoto="";updateClubPreview();return}
+ try{clubPhoto=await readImage(file);updateClubPreview()}
+ catch(e){clubPhoto="";this.value="";alert(e.message)}
+});
+document.getElementById("clubForm").addEventListener("submit",function(event){
+ event.preventDefault();
+ const name=safeText(document.getElementById("clubName").value,45);
+ if(!name)return;
+ const club={
+  id:makeId(),name,
+  country:safeText(document.getElementById("clubCountry").value,35)||"País no indicado",
+  city:safeText(document.getElementById("clubCity").value,35)||"Ciudad no indicada",
+  stadium:safeText(document.getElementById("clubStadium").value,45)||"Estadio sin nombre",
+  primary:document.getElementById("clubPrimary").value,
+  secondary:document.getElementById("clubSecondary").value,
+  symbol:document.getElementById("clubSymbol").value,
+  photo:clubPhoto
+ };
+ data.clubs.push(club);
+ if(saveData()){
+  renderClubs();document.getElementById("clubMessage").textContent="¡Club guardado correctamente!";
+  this.reset();clubPhoto="";updateClubPreview();
+ }else{
+  data.clubs=data.clubs.filter(c=>c.id!==club.id);
+  document.getElementById("clubMessage").textContent="No se pudo guardar. Probá con un escudo más pequeño.";
+ }
+});
+function renderClubs(){
+ const list=document.getElementById("clubList");list.replaceChildren();
+ if(!data.clubs.length){
+  const empty=document.createElement("div");empty.className="empty";empty.textContent="Todavía no creaste clubes. ¡Diseñá el primero!";
+  list.appendChild(empty);return;
+ }
+ data.clubs.forEach(club=>{
+  const row=document.createElement("div");row.className="club-row";
+  row.style.setProperty("--club",club.primary);
+  const logo=document.createElement("div");logo.className="club-mini";
+  if(club.photo){
+   const img=document.createElement("img");img.src=club.photo;img.alt="";img.style.width="100%";img.style.height="100%";img.style.objectFit="cover";logo.appendChild(img);
+  }else logo.textContent=club.symbol;
+  const info=document.createElement("div");
+  const title=document.createElement("strong");title.textContent=club.name;
+  const sub=document.createElement("small");sub.textContent=club.country+" · "+club.city+" · 🏟️ "+club.stadium;
+  info.append(title,sub);
+  const del=document.createElement("button");del.className="small";del.textContent="Eliminar";
+  del.addEventListener("click",()=>{
+   if(!confirm("¿Querés eliminar el club "+club.name+"?"))return;
+   data.clubs=data.clubs.filter(c=>c.id!==club.id);
+   if(saveData())renderClubs();
+  });
+  row.append(logo,info,del);list.appendChild(row);
+ });
+}
+
+/* Arranque de la página */
+renderAlbum();
+renderClubs();
+updateStickerPreview();
+updateClubPreview();
 </script>
 </body>
 </html>
